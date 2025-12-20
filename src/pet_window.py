@@ -138,6 +138,13 @@ class PetWindow(QWidget):
         self.image_label.resize(200, 200)
         self.image_label.move(0, 0) # 相对 container 0,0
         
+        # 4.5 特效层 (叠加在图片之上)
+        from src.effect_widget import EffectWidget
+        self.effect_widget = EffectWidget(self.image_container)
+        self.effect_widget.resize(200, 200)
+        self.effect_widget.move(0, 0)
+        self.effect_widget.hide()
+        
         # 5. 信息 Label (默认完全隐藏)
         self.info_label = QLabel(self)
         self.info_label.resize(280, 50)
@@ -288,67 +295,88 @@ class PetWindow(QWidget):
             
             # 这里我们还是先做基础的 mask 测试，如果 mask 不动的话。
             # 考虑到浮动范围很小，我们可以给整个 Window 一个稍微大一点的 Mask，或者暂时不 mask
-            # 为了响应 USER 的“穿透点击”需求，我们必须判定 alpha。
+            # 我们尝试给整个窗口设置 Mask，每次 float 更新时移动 mask？
             pass
+            
+        # 特效控制
+        if state == PetState.ALCHEMY:
+            self.effect_widget.start_fire()
+        else:
+            self.effect_widget.stop()
 
     # --- 鼠标拖拽逻辑 ---
     def mousePressEvent(self, event: QMouseEvent):
         # 手动判定是否点击在了图片的非透明区域
         # 1. 获取点击位置相对于 image_label 的坐标
+        # event.position() 是相对于窗口 PetWindow 的
         click_pos = event.position().toPoint()
         
         # image_container 的位置
         container_pos = self.image_container.pos()
         
-        # 相对坐标
+        # 相对坐标 (相对于 image_label/container 左上角)
         local_pos = click_pos - container_pos
         
         is_hit = False
         if hasattr(self, 'state_images') and self.current_state in self.state_images:
             pixmap = self.state_images[self.current_state]
-            # 检查坐标是否在图片范围内
-            if 0 <= local_pos.x() < pixmap.width() and 0 <= local_pos.y() < pixmap.height():
-                # 获取该点的 alpha
-                # 注意：频繁转 Image 可能会慢，但在点击瞬间做一次是可以接受的
+            
+            # Label 的大小 (200x200)
+            lbl_w = self.image_label.width()
+            lbl_h = self.image_label.height()
+            
+            # 检查坐标是否在 Label 范围内
+            if 0 <= local_pos.x() < lbl_w and 0 <= local_pos.y() < lbl_h:
+                # 关键修复：将 Label 坐标映射回原图 Pixmap 坐标
+                # 因为 setScaledContents(True) 会把图片拉伸
                 img = pixmap.toImage()
-                color = img.pixelColor(local_pos)
-                if color.alpha() > 10: # 非透明
+                pm_w = img.width()
+                pm_h = img.height()
+                
+                if pm_w > 0 and pm_h > 0:
+                    # 计算映射坐标
+                    img_x = int(local_pos.x() * (pm_w / lbl_w))
+                    img_y = int(local_pos.y() * (pm_h / lbl_h))
+                    
+                    # 边界检查
+                    img_x = max(0, min(img_x, pm_w - 1))
+                    img_y = max(0, min(img_y, pm_h - 1))
+                    
+                    color = img.pixelColor(img_x, img_y)
+                    # print(f"Click at {local_pos}, map to {img_x},{img_y}, alpha={color.alpha()}") # Debug
+                    if color.alpha() > 10: # 非透明
+                        is_hit = True
+                        
+            # 【保底逻辑】
+            # 如果像素检测没过（可能是去背去多了，或者是误判），
+            # 我们强制给一个“核心区域”作为可点击区 (例如中间 60x100 的区域)
+            center_rect_x = (lbl_w - 60) // 2
+            center_rect_y = (lbl_h - 100) // 2
+            if not is_hit:
+                if (center_rect_x <= local_pos.x() <= center_rect_x + 60 and 
+                    center_rect_y <= local_pos.y() <= center_rect_y + 100):
                     is_hit = True
 
         if not is_hit:
-            # 如果没点中实体，理论上应该穿透
-            # 但作为 Frameless Window, 我们无法物理上“穿透”给下层窗口，
-            # 除非我们在系统层面 setMask。
-            # 但动态 setMask (动画中) 性能很差。
-            # 为了折中：我们让它 "忽略" 这次点击，不进行拖动。
-            # 但用户想的是“点到后面的网页”，这需要 setMask。
-            
-            # 既然用户明确要求“穿透点击”，我们必须用 setMask。
-            # 但为了性能，我们只在动画每一帧更新 mask? 
-            # 这太卡了。
-            # 妥协方案：只在“打坐”不动的时候 mask？或者只要 Mask 覆盖图片矩形即可？
-            pass
-            # 实际上，PyQt 有个 WA_TranslucentBackground 配合 setMask(pixmap.mask()) 是标准做法
-            # 我们尝试给整个窗口设置 Mask，每次 float 更新时移动 mask？
+            # 如果没点中实体，忽略事件以尝试穿透
+            event.ignore() 
+            # 注意：在某些系统上，如果窗口没有设置 Mask，ignore 可能也不会穿透给桌面，
+            # 而是直接被丢弃。但在 PyQt 顶层窗口中，ignore 通常意味着“我不处理”，
+            # 如果是 Frameless，行为取决于 OS。
+            # 如果依然无法穿透，说明必须用 setMask。
+            # 但用户反馈的是“原本的小人无法拖动/右键”，说明 is_hit 判定失败了，所以我们优先修 is_hit。
+            return # 既然没点中，就直接返回，不再执行下面的拖拽逻辑
 
+        # 点中了，处理事件
         if event.button() == Qt.MouseButton.LeftButton:
-            if is_hit:
-                self.is_dragging = True
-                self.drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
-                self.press_pos = event.globalPosition().toPoint()
-                self.setCursor(QCursor(Qt.CursorShape.ClosedHandCursor))
-                event.accept()
-            else:
-                # 转发还是忽略？
-                # 如果我们没有 setMask，我们依然挡住了后面。
-                # 只有 setMask 才能真正穿透。
-                event.ignore() # 试图忽略，看系统是否传递 (通常 Frameless 不会传递)
-                
+            self.is_dragging = True
+            self.drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            self.press_pos = event.globalPosition().toPoint()
+            self.setCursor(QCursor(Qt.CursorShape.ClosedHandCursor))
+            event.accept()
         elif event.button() == Qt.MouseButton.RightButton:
-            if is_hit:
-                self.show_context_menu(event.globalPosition().toPoint())
-            else:
-                event.ignore()
+            self.show_context_menu(event.globalPosition().toPoint())
+            event.accept()
 
 
     def mouseMoveEvent(self, event: QMouseEvent):
