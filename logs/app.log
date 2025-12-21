@@ -1398,3 +1398,20 @@ AttributeError: 'Cultivator' object has no attribute 'layer'
 2025-12-21 22:05:24,754 [INFO] [main.py:30] - 用户强制退出 (SIGINT)
 2025-12-21 22:05:24,754 [INFO] [pet_window.py:192] - 程序关闭，保存数据...
 2025-12-21 22:05:24,762 [INFO] [cultivator.py:410] - 数据已保存
+2025-12-21 22:10:19,596 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 22:10:19,612 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 22:10:19,749 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 22:10:19,754 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 22:10:19,759 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 22:10:19,782 [INFO] [cultivator.py:450] - 数据已加载
+2025-12-21 22:10:19,909 [DEBUG] [pet_window.py:539] - 切换状态: IDLE
+2025-12-21 22:10:22,013 [DEBUG] [pet_window.py:539] - 切换状态: READ
+2025-12-21 22:10:28,159 [DEBUG] [pet_window.py:539] - 切换状态: IDLE
+2025-12-21 22:10:30,211 [DEBUG] [pet_window.py:539] - 切换状态: READ
+2025-12-21 22:10:31,160 [DEBUG] [pet_window.py:539] - 切换状态: IDLE
+2025-12-21 22:10:38,160 [DEBUG] [pet_window.py:539] - 切换状态: READ
+2025-12-21 22:10:52,160 [DEBUG] [pet_window.py:539] - 切换状态: COMBAT
+2025-12-21 22:10:55,160 [DEBUG] [pet_window.py:539] - 切换状态: READ
+2025-12-21 22:10:57,446 [INFO] [main.py:30] - 用户强制退出 (SIGINT)
+2025-12-21 22:10:57,447 [INFO] [pet_window.py:192] - 程序关闭，保存数据...
+2025-12-21 22:10:57,455 [INFO] [cultivator.py:410] - 数据已保存
