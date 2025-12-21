@@ -1,13 +1,12 @@
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QListWidget, QPushButton, QHBoxLayout, QMessageBox, QGraphicsDropShadowEffect
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QListWidget, QPushButton, QHBoxLayout, QMessageBox, QGraphicsDropShadowEffect, QListWidgetItem
 from PyQt6.QtCore import Qt, QPoint
 from PyQt6.QtGui import QPainter, QColor, QPen, QBrush, QAction
+from src.logger import logger
 
 class InventoryWindow(QWidget):
     def __init__(self, cultivator, parent=None):
-        super().__init__(parent) # parent 设为 None 以便独立作为 Tool 窗口，或者设为 parent 但作为 Tool
+        super().__init__(parent)
         
-        # 关键：如果有 parent，默认是子控件，除非设置 Window 标志
-        # 这里为了灵活定位，我们设为 Tool Window
         self.setWindowFlags(
             Qt.WindowType.Tool | 
             Qt.WindowType.FramelessWindowHint | 
@@ -16,6 +15,7 @@ class InventoryWindow(QWidget):
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         
         self.cultivator = cultivator
+        self.item_manager = cultivator.item_manager
         self.resize(260, 350)
         
         self.init_ui()
@@ -23,7 +23,7 @@ class InventoryWindow(QWidget):
     def init_ui(self):
         # 主布局
         main_layout = QVBoxLayout()
-        main_layout.setContentsMargins(15, 15, 15, 15) # 留出绘制边框的边距
+        main_layout.setContentsMargins(15, 15, 15, 15)
         
         # 顶部：灵石显示
         self.money_label = QLabel(f"灵石: {self.cultivator.money}")
@@ -31,7 +31,7 @@ class InventoryWindow(QWidget):
         self.money_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         main_layout.addWidget(self.money_label)
         
-        # 中部：物品列表 (自定义样式)
+        # 中部：物品列表
         self.item_list = QListWidget()
         self.item_list.setStyleSheet("""
             QListWidget {
@@ -122,57 +122,134 @@ class InventoryWindow(QWidget):
 
     def refresh_list(self):
         self.item_list.clear()
-        for name, count in self.cultivator.inventory.items():
+        # cultivator.inventory store keys as item_id now
+        for item_id, count in self.cultivator.inventory.items():
             if count > 0:
-                self.item_list.addItem(f"{name} x{count}")
+                item_data = self.item_manager.get_item(item_id)
+                name = item_data["name"] if item_data else item_id
+                
+                list_item = QListWidgetItem(f"{name} x{count}")
+                list_item.setData(Qt.ItemDataRole.UserRole, item_id) # Store ID
+                self.item_list.addItem(list_item)
+                
+        self.money_label.setText(f"灵石: {self.cultivator.money}")
 
     def show_item_detail(self, item):
-        item_text = item.text()
-        name = item_text.split(" x")[0]
-        self.current_selected_item = name
+        item_id = item.data(Qt.ItemDataRole.UserRole)
+        self.current_selected_id = item_id
         
-        info = self.cultivator.ITEMS.get(name, {})
-        desc = info.get("desc", "未知物品")
-        self.detail_label.setText(f"【{name}】\n{desc}")
-        
-        self.use_btn.setEnabled(True)
-
-    def use_item(self):
-        if not hasattr(self, 'current_selected_item'):
+        info = self.item_manager.get_item(item_id)
+        if not info:
             return
             
-        name = self.current_selected_item
-        if self.cultivator.inventory.get(name, 0) <= 0:
+        name = info.get("name", "未知")
+        desc = info.get("desc", "没有描述")
+        item_type = info.get("type", "misc")
+        
+        type_str = ""
+        if item_type == "material": type_str = "[材料]"
+        elif item_type == "consumable": type_str = "[消耗品]"
+        elif item_type == "junk": type_str = "[杂物]"
+        elif item_type == "breakthrough": type_str = "[珍稀]"
+        
+        self.detail_label.setText(f"【{name}】{type_str}\n{desc}")
+        
+        # 只有 consumable 和 breakthrough 可以使用
+        can_use = item_type in ["consumable", "breakthrough", "buff"]
+        self.use_btn.setEnabled(can_use)
+
+    def use_item(self):
+        if not hasattr(self, 'current_selected_id'):
+            return
+            
+        item_id = self.current_selected_id
+        if self.cultivator.inventory.get(item_id, 0) <= 0:
             return
 
-        # 使用逻辑
-        info = self.cultivator.ITEMS.get(name, {})
+        info = self.item_manager.get_item(item_id)
+        if not info: return
+        
         item_type = info.get("type", "misc")
+        effects = info.get("effect", {})
         
         msg = ""
         used_success = False
         
-        if item_type == "exp":
-            val = info.get("value", 0)
-            self.cultivator.gain_exp(val)
-            msg = f"使用了 {name}, 修为增加 {val}!"
-            used_success = True
-        elif item_type == "material" or item_type == "breakthrough":
-             # 暂时没有用途，但允许消耗掉
-            msg = "使用了该物品，感觉神清气爽 (功能开发中)"
-            used_success = True
-        else:
-            msg = "无法使用"
-
+        if item_type == "consumable" or item_type == "buff":
+            # 处理各类效果
+            if "exp" in effects:
+                val = effects["exp"]
+                self.cultivator.gain_exp(val)
+                msg = f"服用了 {info['name']}, 修为增加 {val}!"
+                used_success = True
+                
+            elif "heal" in effects:
+                val = effects["heal"]
+                msg = f"恢复了 {val} 点状态 (暂无实效)"
+                used_success = True
+                
+            elif "buff" in effects:
+                buff_name = effects["buff"]
+                duration = effects.get("duration", 0)
+                msg = f"获得了增益 [{buff_name}] 持续 {duration//60} 分钟 (开发中)"
+                used_success = True
+                
+            elif "stat_body" in effects:
+                val = effects["stat_body"]
+                self.cultivator.modify_stat("body", val)
+                msg = f"体魄增加了 {val} 点 (永久)"
+                used_success = True
+                
+            elif "mind_heal" in effects:
+                val = effects["mind_heal"]
+                self.cultivator.modify_stat("mind", -val)
+                msg = f"心魔减少了 {val} 点"
+                used_success = True
+                
+            elif "affection" in effects:
+                val = effects["affection"]
+                self.cultivator.modify_stat("affection", val)
+                msg = f"宠物好感度增加 {val} 点"
+                used_success = True
+                
+            elif "action" in effects:
+                action = effects["action"]
+                if action == "reset_talent":
+                    self.cultivator.modify_stat("reset_talent", 0)
+                    msg = "已洗髓伐骨，天赋点已重置！"
+                    used_success = True
+                
+            # Fallback
+            if not used_success:
+                 msg = "物品已使用，但好像没发生什么。"
+                 used_success = True
+                 
+        elif item_type == "breakthrough":
+             # 突破逻辑
+             chance_percent = effects.get("chance", 0)
+             base_rate = chance_percent / 100.0
+             
+             success, res_msg = self.cultivator.attempt_breakthrough(base_rate)
+             msg = res_msg
+             
+             # 如果成功，consumable 逻辑下面会自动减1; 
+             # 但如果 "can_breakthrough" 返回 False (修为不够)，虽然 used_success=True 会导致扣减，这不太合理。
+             # 我们应该只在尝试了突破（无论成败）时才扣减。
+             # 如果返回 "修为不足"，则不扣减。
+             
+             if not success and "修为" in res_msg: #  有点蹩脚的判断，但暂时有效
+                 msg = res_msg
+                 used_success = False # 不扣物品
+             else:
+                 used_success = True # 尝试了，扣物品
+             
         if used_success:
-            self.cultivator.inventory[name] -= 1
-            # 通知 label
-            self.detail_label.setText(msg)
-            # 刷新
-            self.refresh_list()
-            self.money_label.setText(f"灵石: {self.cultivator.money}")
+            self.cultivator.inventory[item_id] -= 1
+            logger.info(f"使用了物品: {info['name']}")
             
-            # 如果数量归零，清空选择
-            if self.cultivator.inventory[name] <= 0:
+            self.detail_label.setText(msg)
+            self.refresh_list()
+            
+            if self.cultivator.inventory[item_id] <= 0:
                 self.detail_label.setText("物品已用完")
                 self.use_btn.setEnabled(False)

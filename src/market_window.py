@@ -1,0 +1,312 @@
+from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QLabel, QListWidget, QPushButton, 
+                             QHBoxLayout, QTabWidget, QMessageBox, QListWidgetItem)
+from PyQt6.QtCore import Qt, QTimer
+from PyQt6.QtGui import QPainter, QColor, QPen, QBrush
+from src.logger import logger
+
+class MarketWindow(QWidget):
+    def __init__(self, cultivator, parent=None):
+        super().__init__(parent)
+        
+        self.setWindowFlags(
+            Qt.WindowType.Tool | 
+            Qt.WindowType.FramelessWindowHint | 
+            Qt.WindowType.WindowStaysOnTopHint
+        )
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        
+        self.cultivator = cultivator
+        self.item_manager = cultivator.item_manager
+        self.resize(300, 400)
+        
+        self.init_ui()
+
+    def init_ui(self):
+        main_layout = QVBoxLayout()
+        main_layout.setContentsMargins(15, 15, 15, 15)
+        
+        # 顶部标题 & 灵石
+        top_layout = QHBoxLayout()
+        title = QLabel("【修仙坊市】")
+        title.setStyleSheet("color: #FFD700; font-weight: bold; font-size: 16px;")
+        
+        self.money_label = QLabel(f"灵石: {self.cultivator.money}")
+        self.money_label.setStyleSheet("color: #FFF; font-weight: bold;")
+        
+        top_layout.addWidget(title)
+        top_layout.addStretch()
+        top_layout.addWidget(self.money_label)
+        main_layout.addLayout(top_layout)
+        
+        # Tab 分页
+        self.tabs = QTabWidget()
+        self.tabs.setStyleSheet("""
+            QTabWidget::pane { border: 0; }
+            QTabBar::tab {
+                background: rgba(255, 255, 255, 20);
+                color: #AAA;
+                padding: 6px 12px;
+                border-radius: 4px;
+                margin-right: 4px;
+            }
+            QTabBar::tab:selected {
+                background: rgba(255, 215, 0, 40);
+                color: #FFD700;
+            }
+        """)
+        
+        self.buy_tab = QWidget()
+        self.setup_buy_tab()
+        
+        self.sell_tab = QWidget()
+        self.setup_sell_tab()
+        
+        self.tabs.addTab(self.buy_tab, "每日特惠")
+        self.tabs.addTab(self.sell_tab, "资源回收")
+        main_layout.addWidget(self.tabs)
+        
+        # 底部关闭
+        close_btn = QPushButton("离开坊市")
+        close_btn.clicked.connect(self.hide)
+        close_btn.setStyleSheet("""
+            QPushButton {
+                background: rgba(255, 255, 255, 10);
+                border: 1px solid #666;
+                color: #DDD;
+                border-radius: 4px;
+                padding: 6px;
+            }
+            QPushButton:hover {
+                background: rgba(255, 255, 255, 30);
+                border-color: #EEE;
+            }
+        """)
+        main_layout.addWidget(close_btn)
+        
+        self.setLayout(main_layout)
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        
+        bg_color = QColor(20, 20, 25, 240) 
+        border_color = QColor(255, 215, 0, 200)
+        
+        rect = self.rect().adjusted(2, 2, -2, -2)
+        painter.setBrush(QBrush(bg_color))
+        painter.setPen(QPen(border_color, 1.5))
+        painter.drawRoundedRect(rect, 10, 10)
+
+    # --- Buy Logic ---
+    def setup_buy_tab(self):
+        layout = QVBoxLayout(self.buy_tab)
+        layout.setContentsMargins(0, 10, 0, 0)
+        
+        self.goods_list = QListWidget()
+        self.style_list_widget(self.goods_list)
+        layout.addWidget(self.goods_list)
+        
+        self.buy_btn = QPushButton("购买选定")
+        self.buy_btn.clicked.connect(self.buy_item)
+        self.style_action_btn(self.buy_btn)
+        layout.addWidget(self.buy_btn)
+        
+        self.buy_msg = QLabel("每日0点自动刷新")
+        self.buy_msg.setStyleSheet("color: #888; font-size: 10px;")
+        self.buy_msg.setAlignment(Qt.AlignmentFlag.AlignRight)
+        layout.addWidget(self.buy_msg)
+
+    def refresh_buy_list(self):
+        self.goods_list.clear()
+        for idx, goods in enumerate(self.cultivator.market_goods):
+            item_id = goods["id"]
+            price = goods["price"]
+            discount = goods["discount"]
+            
+            info = self.item_manager.get_item(item_id)
+            name = info.get("name", "未知") if info else item_id
+            
+            # 显示折扣与价格
+            discount_str = ""
+            if discount < 1.0:
+                 discount_str = f" [{(discount*10):.1f}折]"
+            
+            text = f"{name} {discount_str}\n价格: {price} 灵石"
+            
+            item = QListWidgetItem(text)
+            item.setData(Qt.ItemDataRole.UserRole, idx) # Store index in market_goods list
+            self.goods_list.addItem(item)
+            
+        self.update_money()
+
+    def buy_item(self):
+        current_item = self.goods_list.currentItem()
+        if not current_item:
+            return
+            
+        idx = current_item.data(Qt.ItemDataRole.UserRole)
+        if idx >= len(self.cultivator.market_goods):
+            return
+            
+        goods = self.cultivator.market_goods[idx]
+        price = goods["price"]
+        item_id = goods["id"]
+        
+        if self.cultivator.money >= price:
+            self.cultivator.money -= price
+            self.cultivator.gain_item(item_id, 1)
+            
+            # 移除商品 (买完就没了)
+            self.cultivator.market_goods.pop(idx)
+            
+            self.buy_msg.setText(f"购买成功! -{price}灵石")
+            self.refresh_buy_list()
+        else:
+            self.buy_msg.setText("灵石不足!")
+
+    # --- Sell Logic ---
+    def setup_sell_tab(self):
+        layout = QVBoxLayout(self.sell_tab)
+        layout.setContentsMargins(0, 10, 0, 0)
+        
+        self.sell_list = QListWidget()
+        self.style_list_widget(self.sell_list)
+        layout.addWidget(self.sell_list)
+        
+        btn_box = QHBoxLayout()
+        self.sell_btn = QPushButton("出售选定")
+        self.sell_btn.clicked.connect(self.sell_item)
+        self.style_action_btn(self.sell_btn)
+        
+        self.recycle_btn = QPushButton("一键回收杂物")
+        self.recycle_btn.clicked.connect(self.recycle_junk)
+        self.recycle_btn.setStyleSheet("""
+             QPushButton {
+                background: rgba(200, 50, 50, 40);
+                border: 1px solid #A55;
+                color: #FAA;
+                border-radius: 4px;
+                padding: 6px;
+            }
+            QPushButton:hover { background: rgba(200, 50, 50, 80); }
+        """)
+        
+        btn_box.addWidget(self.sell_btn)
+        btn_box.addWidget(self.recycle_btn)
+        layout.addLayout(btn_box)
+        
+        self.sell_msg = QLabel("")
+        self.sell_msg.setStyleSheet("color: #888; font-size: 10px;")
+        layout.addWidget(self.sell_msg)
+
+    def refresh_sell_list(self):
+        self.sell_list.clear()
+        for item_id, count in self.cultivator.inventory.items():
+            if count > 0:
+                info = self.item_manager.get_item(item_id)
+                name = info.get("name", item_id) if info else item_id
+                base_price = info.get("price", 1) if info else 1
+                sell_price = max(1, int(base_price * 0.5))
+                
+                type_str = ""
+                if info and info.get("type") == "junk":
+                    type_str = " [杂物]"
+                
+                text = f"{name}{type_str} x{count}\n售价: {sell_price} 灵石/个"
+                
+                item = QListWidgetItem(text)
+                item.setData(Qt.ItemDataRole.UserRole, item_id)
+                self.sell_list.addItem(item)
+        
+        self.update_money()
+
+    def sell_item(self):
+        current_item = self.sell_list.currentItem()
+        if not current_item:
+            return
+            
+        item_id = current_item.data(Qt.ItemDataRole.UserRole)
+        count = self.cultivator.inventory.get(item_id, 0)
+        
+        if count > 0:
+            info = self.item_manager.get_item(item_id)
+            base_price = info.get("price", 1) if info else 1
+            sell_price = max(1, int(base_price * 0.5))
+            
+            # 卖一个
+            self.cultivator.inventory[item_id] -= 1
+            self.cultivator.money += sell_price
+            
+            self.sell_msg.setText(f"出售成功! +{sell_price}灵石")
+            self.refresh_sell_list()
+
+    def recycle_junk(self):
+        total_income = 0
+        items_to_sell = []
+        
+        for item_id, count in self.cultivator.inventory.items():
+            if count > 0:
+                info = self.item_manager.get_item(item_id)
+                if info and info.get("type") == "junk":
+                    base_price = info.get("price", 1)
+                    sell_price = max(1, int(base_price * 0.5))
+                    total = sell_price * count
+                    
+                    items_to_sell.append((item_id, count))
+                    total_income += total
+        
+        if not items_to_sell:
+            self.sell_msg.setText("背包里没有杂物")
+            return
+            
+        # 执行出售
+        for item_id, count in items_to_sell:
+            self.cultivator.inventory[item_id] = 0
+            
+            # 清理 inventory 里为 0 的 key? 暂时留着也行
+        
+        self.cultivator.money += total_income
+        self.sell_msg.setText(f"一键回收完成! 获得 {total_income} 灵石")
+        self.refresh_sell_list()
+
+    # --- Utils ---
+    def update_money(self):
+        self.money_label.setText(f"灵石: {self.cultivator.money}")
+
+    def showEvent(self, event):
+        self.refresh_buy_list()
+        self.refresh_sell_list()
+        super().showEvent(event)
+
+    def style_list_widget(self, list_widget):
+        list_widget.setStyleSheet("""
+            QListWidget {
+                background-color: rgba(0, 0, 0, 40);
+                border: 1px solid rgba(255, 215, 0, 30);
+                border-radius: 4px;
+                color: #DDD;
+                outline: none;
+            }
+            QListWidget::item {
+                border-bottom: 1px solid rgba(255, 255, 255, 10);
+                padding: 4px;
+            }
+            QListWidget::item:selected {
+                background-color: rgba(255, 215, 0, 30);
+                color: #FFD700;
+            }
+        """)
+
+    def style_action_btn(self, btn):
+        btn.setStyleSheet("""
+            QPushButton {
+                background: rgba(255, 215, 0, 20);
+                border: 1px solid #FFD700;
+                color: #FFD700;
+                border-radius: 4px;
+                padding: 6px;
+            }
+            QPushButton:hover {
+                background: rgba(255, 215, 0, 50);
+            }
+        """)

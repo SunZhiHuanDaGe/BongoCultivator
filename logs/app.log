@@ -458,3 +458,454 @@ AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
 2025-12-21 19:26:44,960 [INFO] [main.py:25] - 用户强制退出 (SIGINT)
 2025-12-21 19:26:44,964 [INFO] [pet_window.py:133] - 程序关闭，保存数据...
 2025-12-21 19:26:44,972 [INFO] [cultivator.py:157] - 数据已保存
+2025-12-21 19:35:24,959 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:35:24,978 [INFO] [main.py:10] - 启动应用程序...
+2025-12-21 19:35:25,089 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:35:25,093 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:35:25,097 [INFO] [cultivator.py:296] - 数据已加载
+2025-12-21 19:35:25,133 [DEBUG] [pet_window.py:320] - 切换状态: IDLE
+2025-12-21 19:35:57,693 [DEBUG] [pet_window.py:320] - 切换状态: ALCHEMY
+2025-12-21 19:35:57,698 [INFO] [pet_window.py:110] - 开始闭关炼丹
+2025-12-21 19:35:58,160 [WARNING] [pet_window.py:58] - 炼丹失败: APM过高 (60)
+2025-12-21 19:35:58,161 [DEBUG] [pet_window.py:320] - 切换状态: COMBAT
+2025-12-21 19:35:59,159 [DEBUG] [pet_window.py:320] - 切换状态: IDLE
+2025-12-21 19:36:06,299 [DEBUG] [pet_window.py:320] - 切换状态: ALCHEMY
+2025-12-21 19:36:06,302 [INFO] [pet_window.py:110] - 开始闭关炼丹
+2025-12-21 19:36:07,159 [WARNING] [pet_window.py:58] - 炼丹失败: APM过高 (60)
+2025-12-21 19:36:07,160 [DEBUG] [pet_window.py:320] - 切换状态: COMBAT
+2025-12-21 19:36:10,159 [DEBUG] [pet_window.py:320] - 切换状态: IDLE
+2025-12-21 19:36:12,679 [DEBUG] [pet_window.py:320] - 切换状态: ALCHEMY
+2025-12-21 19:36:12,680 [INFO] [pet_window.py:110] - 开始闭关炼丹
+2025-12-21 19:36:13,160 [WARNING] [pet_window.py:58] - 炼丹失败: APM过高 (60)
+2025-12-21 19:36:13,161 [DEBUG] [pet_window.py:320] - 切换状态: COMBAT
+2025-12-21 19:36:16,159 [DEBUG] [pet_window.py:320] - 切换状态: IDLE
+2025-12-21 19:37:37,509 [INFO] [pet_window.py:141] - 程序关闭，保存数据...
+2025-12-21 19:37:37,522 [INFO] [cultivator.py:273] - 数据已保存
+2025-12-21 19:37:45,487 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:37:45,491 [INFO] [main.py:10] - 启动应用程序...
+2025-12-21 19:37:45,591 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:37:45,595 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:37:45,595 [INFO] [cultivator.py:296] - 数据已加载
+2025-12-21 19:37:45,625 [DEBUG] [pet_window.py:323] - 切换状态: IDLE
+2025-12-21 19:38:00,663 [DEBUG] [pet_window.py:323] - 切换状态: COMBAT
+2025-12-21 19:38:03,662 [DEBUG] [pet_window.py:323] - 切换状态: IDLE
+2025-12-21 19:38:05,664 [DEBUG] [pet_window.py:323] - 切换状态: COMBAT
+2025-12-21 19:38:09,661 [DEBUG] [pet_window.py:323] - 切换状态: IDLE
+2025-12-21 19:38:29,902 [INFO] [pet_window.py:144] - 程序关闭，保存数据...
+2025-12-21 19:38:29,917 [INFO] [cultivator.py:273] - 数据已保存
+2025-12-21 19:39:44,849 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:39:44,853 [INFO] [main.py:10] - 启动应用程序...
+2025-12-21 19:39:44,949 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:39:44,951 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:39:44,953 [INFO] [cultivator.py:296] - 数据已加载
+2025-12-21 19:39:44,979 [DEBUG] [pet_window.py:350] - 切换状态: IDLE
+2025-12-21 19:39:53,682 [INFO] [pet_window.py:171] - 程序关闭，保存数据...
+2025-12-21 19:39:53,697 [INFO] [cultivator.py:273] - 数据已保存
+2025-12-21 19:40:51,539 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:40:51,542 [INFO] [main.py:10] - 启动应用程序...
+2025-12-21 19:40:51,639 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:40:51,643 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:40:51,644 [INFO] [cultivator.py:296] - 数据已加载
+2025-12-21 19:40:51,668 [DEBUG] [pet_window.py:348] - 切换状态: IDLE
+2025-12-21 19:41:12,659 [DEBUG] [pet_window.py:348] - 切换状态: COMBAT
+2025-12-21 19:41:13,011 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:41:13,012 [INFO] [main.py:10] - 启动应用程序...
+2025-12-21 19:41:13,106 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:41:13,109 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:41:13,112 [INFO] [cultivator.py:296] - 数据已加载
+2025-12-21 19:41:13,136 [DEBUG] [pet_window.py:348] - 切换状态: IDLE
+2025-12-21 19:41:14,660 [DEBUG] [pet_window.py:348] - 切换状态: IDLE
+2025-12-21 19:41:23,679 [INFO] [pet_window.py:168] - 程序关闭，保存数据...
+2025-12-21 19:41:23,693 [INFO] [cultivator.py:273] - 数据已保存
+2025-12-21 19:41:57,425 [INFO] [pet_window.py:168] - 程序关闭，保存数据...
+2025-12-21 19:41:57,442 [INFO] [cultivator.py:273] - 数据已保存
+2025-12-21 19:42:52,790 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:42:52,793 [INFO] [main.py:10] - 启动应用程序...
+2025-12-21 19:42:52,882 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:42:52,884 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:42:52,884 [INFO] [cultivator.py:296] - 数据已加载
+2025-12-21 19:42:52,908 [DEBUG] [pet_window.py:351] - 切换状态: IDLE
+2025-12-21 19:42:59,166 [DEBUG] [pet_window.py:351] - 切换状态: COMBAT
+2025-12-21 19:43:04,161 [DEBUG] [pet_window.py:351] - 切换状态: IDLE
+2025-12-21 19:43:08,565 [INFO] [pet_window.py:171] - 程序关闭，保存数据...
+2025-12-21 19:43:08,578 [INFO] [cultivator.py:273] - 数据已保存
+2025-12-21 19:44:16,521 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:44:16,524 [INFO] [main.py:10] - 启动应用程序...
+2025-12-21 19:44:16,626 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:44:16,630 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:44:16,630 [INFO] [cultivator.py:296] - 数据已加载
+2025-12-21 19:44:16,654 [DEBUG] [pet_window.py:349] - 切换状态: IDLE
+2025-12-21 19:46:13,764 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:46:13,771 [INFO] [main.py:10] - 启动应用程序...
+2025-12-21 19:46:13,875 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:46:13,881 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:46:13,882 [INFO] [cultivator.py:344] - 数据已加载
+2025-12-21 19:46:13,909 [DEBUG] [pet_window.py:349] - 切换状态: IDLE
+2025-12-21 19:46:25,000 [INFO] [pet_window.py:168] - 程序关闭，保存数据...
+2025-12-21 19:46:25,011 [INFO] [cultivator.py:273] - 数据已保存
+2025-12-21 19:48:07,159 [DEBUG] [pet_window.py:349] - 切换状态: COMBAT
+2025-12-21 19:48:17,160 [DEBUG] [pet_window.py:349] - 切换状态: IDLE
+2025-12-21 19:49:18,159 [DEBUG] [pet_window.py:349] - 切换状态: COMBAT
+2025-12-21 19:49:20,160 [DEBUG] [pet_window.py:349] - 切换状态: IDLE
+2025-12-21 19:52:57,628 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:52:57,635 [INFO] [main.py:10] - 启动应用程序...
+2025-12-21 19:52:57,735 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:52:57,740 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:52:57,744 [INFO] [cultivator.py:344] - 数据已加载
+2025-12-21 19:52:57,805 [DEBUG] [pet_window.py:349] - 切换状态: IDLE
+2025-12-21 19:53:01,660 [DEBUG] [pet_window.py:349] - 切换状态: COMBAT
+2025-12-21 19:53:01,730 [INFO] [main.py:25] - 用户强制退出 (SIGINT)
+2025-12-21 19:53:01,730 [INFO] [pet_window.py:168] - 程序关闭，保存数据...
+2025-12-21 19:53:01,741 [INFO] [cultivator.py:321] - 数据已保存
+2025-12-21 19:53:02,159 [DEBUG] [pet_window.py:349] - 切换状态: COMBAT
+2025-12-21 19:53:19,160 [DEBUG] [pet_window.py:349] - 切换状态: IDLE
+2025-12-21 19:54:40,592 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:54:40,611 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/main.py", line 9, in <module>
+    import sysignal
+ModuleNotFoundError: No module named 'sysignal'
+2025-12-21 19:54:52,765 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:54:52,769 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 19:54:52,866 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:54:52,871 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:54:52,873 [INFO] [cultivator.py:344] - 数据已加载
+2025-12-21 19:54:52,897 [DEBUG] [pet_window.py:385] - 切换状态: IDLE
+2025-12-21 19:54:52,897 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/main.py", line 40, in <module>
+    main()
+  File "/Volumes/home/mac/robin/bongo/main.py", line 17, in main
+    pet = PetWindow()
+          ^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 27, in __init__
+    self.load_assets()
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 377, in load_assets
+    self.set_state(PetState.IDLE)
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 388, in set_state
+    self.image_label.setPixmap(pixmap)
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'PetWindow' object has no attribute 'image_label'
+2025-12-21 19:55:09,541 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:55:09,544 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 19:55:09,638 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:55:09,640 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:55:09,640 [INFO] [cultivator.py:344] - 数据已加载
+2025-12-21 19:55:09,666 [DEBUG] [pet_window.py:385] - 切换状态: IDLE
+2025-12-21 19:55:09,666 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/main.py", line 40, in <module>
+    main()
+  File "/Volumes/home/mac/robin/bongo/main.py", line 17, in main
+    pet = PetWindow()
+          ^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 27, in __init__
+    self.load_assets()
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 377, in load_assets
+    self.set_state(PetState.IDLE)
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 388, in set_state
+    self.image_label.setPixmap(pixmap)
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'PetWindow' object has no attribute 'image_label'
+2025-12-21 19:55:22,029 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:55:22,034 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 19:55:22,126 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:55:22,128 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:55:22,128 [INFO] [cultivator.py:344] - 数据已加载
+2025-12-21 19:55:22,150 [DEBUG] [pet_window.py:385] - 切换状态: IDLE
+2025-12-21 19:55:22,150 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/main.py", line 40, in <module>
+    main()
+  File "/Volumes/home/mac/robin/bongo/main.py", line 17, in main
+    pet = PetWindow()
+          ^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 27, in __init__
+    self.load_assets() # 再加载资源
+    ^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 377, in load_assets
+    self.set_state(PetState.IDLE)
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 388, in set_state
+    self.image_label.setPixmap(pixmap)
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'PetWindow' object has no attribute 'image_label'
+2025-12-21 19:55:30,392 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:55:30,395 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 19:55:30,490 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:55:30,492 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:55:30,492 [INFO] [cultivator.py:344] - 数据已加载
+2025-12-21 19:55:30,513 [DEBUG] [pet_window.py:385] - 切换状态: IDLE
+2025-12-21 19:55:30,513 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/main.py", line 40, in <module>
+    main()
+  File "/Volumes/home/mac/robin/bongo/main.py", line 17, in main
+    pet = PetWindow()
+          ^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 27, in __init__
+    self.load_assets() # 再加载资源
+    ^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 377, in load_assets
+    self.set_state(PetState.IDLE)
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 388, in set_state
+    self.image_label.setPixmap(pixmap)
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'PetWindow' object has no attribute 'image_label'
+2025-12-21 19:55:43,334 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:55:43,338 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 19:55:43,428 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:55:43,430 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:55:43,436 [INFO] [cultivator.py:344] - 数据已加载
+2025-12-21 19:55:43,454 [DEBUG] [pet_window.py:386] - 切换状态: IDLE
+2025-12-21 19:55:43,454 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/main.py", line 40, in <module>
+    main()
+  File "/Volumes/home/mac/robin/bongo/main.py", line 17, in main
+    pet = PetWindow()
+          ^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 28, in __init__
+    self.load_assets() # 再加载资源
+    ^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 378, in load_assets
+    self.set_state(PetState.IDLE)
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 389, in set_state
+    self.image_label.setPixmap(pixmap)
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'PetWindow' object has no attribute 'image_label'
+2025-12-21 19:56:03,188 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:56:03,193 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 19:56:03,285 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:56:03,287 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:56:03,293 [INFO] [cultivator.py:344] - 数据已加载
+2025-12-21 19:56:03,308 [DEBUG] [pet_window.py:385] - 切换状态: IDLE
+2025-12-21 19:56:03,308 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/main.py", line 40, in <module>
+    main()
+  File "/Volumes/home/mac/robin/bongo/main.py", line 17, in main
+    pet = PetWindow()
+          ^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 27, in __init__
+    self.load_assets() # 再加载资源
+    ^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 377, in load_assets
+    self.set_state(PetState.IDLE)
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 388, in set_state
+    self.image_label.setPixmap(pixmap)
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'PetWindow' object has no attribute 'image_label'
+2025-12-21 19:56:18,212 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:56:18,216 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 19:56:18,310 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:56:18,312 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:56:18,317 [INFO] [cultivator.py:344] - 数据已加载
+2025-12-21 19:56:18,338 [DEBUG] [pet_window.py:385] - 切换状态: IDLE
+2025-12-21 19:56:18,338 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/main.py", line 40, in <module>
+    main()
+  File "/Volumes/home/mac/robin/bongo/main.py", line 17, in main
+    pet = PetWindow()
+          ^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 27, in __init__
+    self.load_assets() # 再加载资源
+    ^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 377, in load_assets
+    self.set_state(PetState.IDLE)
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 388, in set_state
+    self.image_label.setPixmap(pixmap)
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'PetWindow' object has no attribute 'image_label'
+2025-12-21 19:56:36,757 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:56:36,761 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 19:56:36,852 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:56:36,854 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:56:36,860 [INFO] [cultivator.py:344] - 数据已加载
+2025-12-21 19:56:36,875 [DEBUG] [pet_window.py:385] - 切换状态: IDLE
+2025-12-21 19:56:36,875 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/main.py", line 40, in <module>
+    main()
+  File "/Volumes/home/mac/robin/bongo/main.py", line 17, in main
+    pet = PetWindow()
+          ^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 27, in __init__
+    self.load_assets() # 再加载资源
+    ^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 377, in load_assets
+    self.set_state(PetState.IDLE)
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 388, in set_state
+    self.image_label.setPixmap(pixmap)
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'PetWindow' object has no attribute 'image_label'
+2025-12-21 19:56:45,181 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:56:45,182 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 19:56:45,276 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:56:45,279 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:56:45,284 [INFO] [cultivator.py:344] - 数据已加载
+2025-12-21 19:56:45,300 [DEBUG] [pet_window.py:385] - 切换状态: IDLE
+2025-12-21 19:56:45,300 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/main.py", line 40, in <module>
+    main()
+  File "/Volumes/home/mac/robin/bongo/main.py", line 17, in main
+    pet = PetWindow()
+          ^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 27, in __init__
+    self.load_assets() # 再加载资源
+    ^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 377, in load_assets
+    self.set_state(PetState.IDLE)
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 388, in set_state
+    self.image_label.setPixmap(pixmap)
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'PetWindow' object has no attribute 'image_label'
+2025-12-21 19:56:58,638 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:56:58,642 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 19:56:58,739 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:56:58,741 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:56:58,746 [INFO] [cultivator.py:344] - 数据已加载
+2025-12-21 19:56:58,762 [DEBUG] [pet_window.py:385] - 切换状态: IDLE
+2025-12-21 19:56:58,762 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/main.py", line 40, in <module>
+    main()
+  File "/Volumes/home/mac/robin/bongo/main.py", line 17, in main
+    pet = PetWindow()
+          ^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 27, in __init__
+    self.load_assets() # 只有在UI初始化后才能加载资源
+    ^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 377, in load_assets
+    self.set_state(PetState.IDLE)
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 388, in set_state
+    self.image_label.setPixmap(pixmap)
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'PetWindow' object has no attribute 'image_label'
+2025-12-21 19:57:26,159 [DEBUG] [pet_window.py:349] - 切换状态: COMBAT
+2025-12-21 19:57:32,160 [DEBUG] [pet_window.py:349] - 切换状态: IDLE
+2025-12-21 19:58:42,523 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:58:42,532 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 19:58:42,628 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:58:42,633 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 19:58:42,646 [INFO] [cultivator.py:344] - 数据已加载
+2025-12-21 19:58:42,664 [DEBUG] [pet_window.py:383] - 切换状态: IDLE
+2025-12-21 19:58:55,777 [INFO] [pet_window.py:168] - 程序关闭，保存数据...
+2025-12-21 19:58:55,788 [INFO] [cultivator.py:321] - 数据已保存
+2025-12-21 19:59:01,225 [INFO] [main.py:30] - 用户强制退出 (SIGINT)
+2025-12-21 19:59:01,225 [INFO] [pet_window.py:168] - 程序关闭，保存数据...
+2025-12-21 19:59:01,232 [INFO] [cultivator.py:321] - 数据已保存
+2025-12-21 20:01:55,027 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 20:01:55,051 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 20:01:55,180 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 20:01:55,183 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 20:01:55,184 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 20:01:55,200 [INFO] [cultivator.py:358] - 数据已加载
+2025-12-21 20:01:55,222 [DEBUG] [pet_window.py:383] - 切换状态: IDLE
+2025-12-21 20:02:05,390 [INFO] [main.py:30] - 用户强制退出 (SIGINT)
+2025-12-21 20:02:05,390 [INFO] [pet_window.py:168] - 程序关闭，保存数据...
+2025-12-21 20:02:05,400 [INFO] [cultivator.py:335] - 数据已保存
+2025-12-21 20:02:51,205 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 20:02:51,217 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 20:02:51,319 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 20:02:51,321 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 20:02:51,322 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 20:02:51,332 [INFO] [cultivator.py:399] - 数据已加载
+2025-12-21 20:02:51,349 [DEBUG] [pet_window.py:383] - 切换状态: IDLE
+2025-12-21 20:03:00,559 [INFO] [main.py:30] - 用户强制退出 (SIGINT)
+2025-12-21 20:03:00,560 [INFO] [pet_window.py:168] - 程序关闭，保存数据...
+2025-12-21 20:03:00,567 [INFO] [cultivator.py:376] - 数据已保存
+2025-12-21 20:03:42,342 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 20:03:42,353 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 20:03:42,462 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 20:03:42,466 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 20:03:42,468 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 20:03:42,483 [INFO] [cultivator.py:399] - 数据已加载
+2025-12-21 20:03:42,503 [DEBUG] [pet_window.py:383] - 切换状态: IDLE
+2025-12-21 20:03:51,382 [INFO] [main.py:30] - 用户强制退出 (SIGINT)
+2025-12-21 20:03:51,382 [INFO] [pet_window.py:168] - 程序关闭，保存数据...
+2025-12-21 20:03:51,392 [INFO] [cultivator.py:376] - 数据已保存
+2025-12-21 20:05:03,584 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 20:05:03,593 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 20:05:03,691 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 20:05:03,695 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 20:05:03,697 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 20:05:03,710 [INFO] [cultivator.py:419] - 数据已加载
+2025-12-21 20:05:03,726 [DEBUG] [pet_window.py:383] - 切换状态: IDLE
+2025-12-21 20:05:43,660 [DEBUG] [pet_window.py:383] - 切换状态: COMBAT
+2025-12-21 20:05:50,660 [DEBUG] [pet_window.py:383] - 切换状态: IDLE
+2025-12-21 20:06:34,946 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 20:06:34,956 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 20:06:35,051 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 20:06:35,056 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 20:06:35,058 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 20:06:35,067 [INFO] [cultivator.py:419] - 数据已加载
+2025-12-21 20:06:35,086 [DEBUG] [pet_window.py:383] - 切换状态: IDLE
+2025-12-21 20:07:15,699 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 20:07:15,712 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 20:07:15,812 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 20:07:15,819 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 20:07:15,824 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 20:07:15,835 [INFO] [cultivator.py:430] - 数据已加载
+2025-12-21 20:07:15,853 [DEBUG] [pet_window.py:383] - 切换状态: IDLE
+2025-12-21 20:07:46,688 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 20:07:46,697 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 20:07:46,798 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 20:07:46,801 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 20:07:46,803 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 20:07:46,812 [INFO] [cultivator.py:102] - 坊市商品已刷新
+2025-12-21 20:07:46,812 [INFO] [cultivator.py:449] - 数据已加载
+2025-12-21 20:07:46,831 [DEBUG] [pet_window.py:383] - 切换状态: IDLE
+2025-12-21 20:10:03,661 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 73, in game_loop
+    gain_msg, state_code = self.cultivator.update(kb_apm, mouse_apm)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/cultivator.py", line 332, in update
+    # 应用心魔惩罚
+          ^^^
+  File "/Volumes/home/mac/robin/bongo/src/event_manager.py", line 37, in get_random_event
+    if self._check_conditions(event, cultivator):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/event_manager.py", line 58, in _check_conditions
+    if 'min_layer' in conditions and cultivator.layer < conditions['min_layer']:
+                                     ^^^^^^^^^^^^^^^^
+AttributeError: 'Cultivator' object has no attribute 'layer'
+2025-12-21 20:11:34,359 [INFO] [pet_window.py:168] - 程序关闭，保存数据...
+2025-12-21 20:11:34,371 [INFO] [cultivator.py:396] - 数据已保存
+2025-12-21 20:11:35,159 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 73, in game_loop
+    gain_msg, state_code = self.cultivator.update(kb_apm, mouse_apm)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/cultivator.py", line 332, in update
+    # 应用心魔惩罚
+          ^^^
+  File "/Volumes/home/mac/robin/bongo/src/event_manager.py", line 37, in get_random_event
+    if self._check_conditions(event, cultivator):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/event_manager.py", line 58, in _check_conditions
+    if 'min_layer' in conditions and cultivator.layer < conditions['min_layer']:
+                                     ^^^^^^^^^^^^^^^^
+AttributeError: 'Cultivator' object has no attribute 'layer'
+2025-12-21 20:11:36,285 [INFO] [pet_window.py:168] - 程序关闭，保存数据...
+2025-12-21 20:11:36,296 [INFO] [cultivator.py:396] - 数据已保存
+2025-12-21 20:11:37,790 [INFO] [pet_window.py:168] - 程序关闭，保存数据...
+2025-12-21 20:11:37,802 [INFO] [cultivator.py:407] - 数据已保存
+2025-12-21 20:11:39,349 [INFO] [pet_window.py:168] - 程序关闭，保存数据...
+2025-12-21 20:11:39,363 [INFO] [cultivator.py:409] - 数据已保存
+2025-12-21 20:16:49,289 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 20:16:49,304 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 20:16:49,422 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 20:16:49,428 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 20:16:49,431 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 20:16:49,453 [INFO] [cultivator.py:449] - 数据已加载
+2025-12-21 20:16:49,501 [DEBUG] [pet_window.py:383] - 切换状态: IDLE
+2025-12-21 20:18:00,311 [DEBUG] [pet_window.py:383] - 切换状态: ALCHEMY
+2025-12-21 20:18:00,316 [INFO] [pet_window.py:127] - 开始炼制: pill_five
+2025-12-21 20:18:00,660 [WARNING] [pet_window.py:58] - 炼丹失败: APM过高 (60)
+2025-12-21 20:18:00,661 [DEBUG] [pet_window.py:383] - 切换状态: COMBAT
+2025-12-21 20:18:01,660 [DEBUG] [pet_window.py:383] - 切换状态: IDLE
+2025-12-21 20:18:39,660 [DEBUG] [pet_window.py:383] - 切换状态: COMBAT
+2025-12-21 20:18:52,660 [DEBUG] [pet_window.py:383] - 切换状态: IDLE

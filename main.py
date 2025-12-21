@@ -3,8 +3,10 @@ from PyQt6.QtWidgets import QApplication
 from PyQt6.QtCore import QTimer
 from src.pet_window import PetWindow
 from src.logger import logger  # 初始化日志
+from src.tray_icon import SystemTray
 
 import signal
+import sys
 
 def main():
     logger.info("启动应用程序...")
@@ -19,12 +21,15 @@ def main():
     timer = QTimer()
     timer.timeout.connect(lambda: None)
     timer.start(100)
+
+    # 初始化托盘图标
+    tray = SystemTray(pet, app)
     
-    # 使用 signal 处理 Ctrl+C
-    def signal_handler(sig, frame):
-        logger.info("用户强制退出 (SIGINT)")
-        pet.close() # 保存数据
-        QApplication.quit() # 退出 Qt 事件循环
+    # 3. 设置清理逻辑
+    def signal_handler(signum, frame):
+        logger.info(f"用户强制退出 ({signal.Signals(signum).name})")
+        pet.close() # 触发保存
+        app.quit() # 退出 Qt 事件循环
         
     signal.signal(signal.SIGINT, signal_handler)
     

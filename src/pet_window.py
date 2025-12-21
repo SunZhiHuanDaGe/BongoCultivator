@@ -16,15 +16,15 @@ class PetWindow(QWidget):
         logger.info("初始化 PetWindow...")
         self.cultivator = Cultivator()
         
+        self.init_ui() # 必须先初始化UI
+        
         # 路径处理
         script_dir = os.path.dirname(os.path.abspath(__file__))
         project_root = os.path.dirname(script_dir)
         self.save_path = os.path.join(project_root, 'save_data.json')
         
         self.cultivator.load_data(self.save_path)
-        
-        self.init_ui()
-        self.load_assets()
+        self.load_assets() # 只有在UI初始化后才能加载资源
         
         # 拖拽相关
         self.is_dragging = False
@@ -100,34 +100,69 @@ class PetWindow(QWidget):
             self.show_notification(latest_event)
             self.cultivator.events.clear()
                 
-    def start_alchemy(self):
-        if self.is_alchemying:
-            return
+    def open_alchemy_window(self):
+        from src.alchemy_window import AlchemyWindow
+        if not hasattr(self, 'alchemy_window') or self.alchemy_window is None:
+            self.alchemy_window = AlchemyWindow(self.cultivator, self)
+            
+        # 居中显示
+        screen = QApplication.primaryScreen().geometry()
+        x = (screen.width() - self.alchemy_window.width()) // 2
+        y = (screen.height() - self.alchemy_window.height()) // 2
+        
+        self.alchemy_window.move(x, y)
+        self.alchemy_window.show()
+
+    def start_alchemy_task(self, target_pill_id):
+        if self.is_alchemying: return
         
         self.is_alchemying = True
         self.alchemy_time = 0
-        self.set_state(PetState.ALCHEMY)
-        logger.info("开始闭关炼丹")
-        self.show_notification("开始闭关炼丹... (请勿高频操作)")
+        self.current_crafting_id = target_pill_id
         
+        # 不同丹药耗时不同？暂时统一 10s
+        self.alchemy_target_time = 10 
+        
+        self.set_state(PetState.ALCHEMY)
+        logger.info(f"开始炼制: {target_pill_id}")
+        self.show_notification("开始闭关炼丹... (请勿高频操作)")
+
     def finish_alchemy(self):
         import random
-        # 炼丹产出
-        pills = ["聚气丹", "筑基丹", "废丹"]
-        # 权重
-        weights = [60, 10, 30]
-        result = random.choices(pills, weights=weights, k=1)[0]
         
-        if result == "废丹":
-             logger.info("炼丹完成: 废丹")
-             self.show_notification("炼丹失败，得出一炉废丹。")
+        target_id = getattr(self, 'current_crafting_id', None)
+        if not target_id:
+            # Fallback for legacy (should not happen with UI)
+            self._legacy_finish_alchemy()
+            return
+            
+        target_info = self.cultivator.item_manager.get_item(target_id)
+        name = target_info["name"]
+        
+        # 成功率判定 (越高级越难?)
+        # 暂时简单处理: 80% 成功率 (因为材料已经扣了，太容易失败会很挫败)
+        success_rate = 0.8
+        
+        if random.random() < success_rate:
+            logger.info(f"炼丹成功: {name}")
+            self.cultivator.gain_item(target_id, 1)
+            self.show_notification(f"丹成！获得 {name} x1")
+            
+            # 粒子特效: 成功金光
+            # self.effect_widget.show_success() # TODO
         else:
-             logger.info(f"炼丹成功: {result}")
-             self.cultivator.gain_item(result, 1)
-             self.show_notification(f"丹成！获得 {result} x1")
-        
+            logger.info("炼丹失败: 废丹")
+            self.cultivator.gain_item("pill_waste", 1) # 假如有废丹ID，或者就不给东西
+            self.show_notification("炼丹失败，材料化为乌有...")
+            
+        self.is_alchemying = False
         self.set_state(PetState.IDLE)
         QTimer.singleShot(2000, lambda: self.info_label.setText("准备修仙..."))
+        
+    def _legacy_finish_alchemy(self):
+        # ... (旧逻辑备份，或者直接删除) ...
+        self.is_alchemying = False
+        self.set_state(PetState.IDLE)
 
     def closeEvent(self, event):
         logger.info("程序关闭，保存数据...")
@@ -140,15 +175,16 @@ class PetWindow(QWidget):
         self.setWindowFlags(
             Qt.WindowType.FramelessWindowHint |       # 无边框
             Qt.WindowType.WindowStaysOnTopHint |      # 始终置顶
-            Qt.WindowType.Tool                        # 工具窗口 (不在任务栏显示)
+            Qt.WindowType.Tool |                      # 工具窗口 (不在任务栏显示)
+            Qt.WindowType.WindowDoesNotAcceptFocus    # 不抢占焦点(关键!)
         )
         
         # 2. 核心透明设置 (macOS 关键)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground, True)
         self.setAttribute(Qt.WidgetAttribute.WA_NoSystemBackground, False)
-        # 设置整个窗口的样式为透明
+        self.setAttribute(Qt.WidgetAttribute.WA_ShowWithoutActivating, True) 
         self.setStyleSheet("background: transparent;")
-        
+
         # 3. 初始位置与大小
         self.resize(300, 350)
         screen = QApplication.primaryScreen().geometry()
@@ -203,6 +239,41 @@ class PetWindow(QWidget):
         self.float_y = 0
         self.float_direction = 1
         self.base_y = 60 # 图片的基础 Y 坐标
+        
+    def reset_position(self):
+        screen = QApplication.primaryScreen().geometry()
+        self.move(screen.width() - 350, screen.height() - 400)
+        self.show()
+        
+    def set_ghost_mode(self, enabled: bool):
+        # 切换鼠标穿透模式
+        # 需要重新设置 WindowFlags，这会隐藏窗口，所以需要重新 show
+        
+        current_flags = self.windowFlags()
+        
+        if enabled:
+            logger.info("开启鼠标穿透模式 (Ghost Mode)")
+            # 添加 TransparentForInput
+            new_flags = current_flags | Qt.WindowType.WindowTransparentForInput
+            self.show_notification("已锁定: 鼠标将穿透窗口 (请使用托盘图标解锁)")
+        else:
+            logger.info("关闭鼠标穿透模式")
+            # 移除 TransparentForInput
+            # Note: WindowFlags 是位掩码，移除只能重组
+            # 重新构建标准 flags
+            new_flags = (Qt.WindowType.FramelessWindowHint | 
+                         Qt.WindowType.WindowStaysOnTopHint | 
+                         Qt.WindowType.Tool |
+                         Qt.WindowType.WindowDoesNotAcceptFocus)
+
+        self.setWindowFlags(new_flags)
+        
+        # 重新应用属性 (setWindowFlags 可能会重置某些属性)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground, True)
+        self.setAttribute(Qt.WidgetAttribute.WA_NoSystemBackground, False)
+        self.setAttribute(Qt.WidgetAttribute.WA_ShowWithoutActivating, True)
+        
+        self.show()
 
     def update_floating_animation(self):
         # 简单的上下浮动 (Sin 也可以，这里用简单的增量)
@@ -436,6 +507,7 @@ class PetWindow(QWidget):
         self.float_y = -10 # 向上跳一下
             
     # --- 右键菜单 ---
+    # --- 右键菜单 ---
     def show_context_menu(self, pos):
         menu = QMenu(self)
         # 修仙风格暗色菜单
@@ -465,15 +537,25 @@ class PetWindow(QWidget):
             }
         """)
         
-        status_action = QAction(f'境界: {self.cultivator.current_layer}', self)
-        status_action.setEnabled(False)
-        menu.addAction(status_action)
+        if self.cultivator.can_breakthrough():
+            break_action = QAction('⚡ 渡劫突破 ⚡', self)
+            break_action.triggered.connect(self.on_attempt_breakthrough)
+            menu.addAction(break_action)
+        else:
+            status_action = QAction(f'境界: {self.cultivator.current_layer}', self)
+            status_action.triggered.connect(self.open_talent_window) # 点击境界打开属性面板
+            menu.addAction(status_action)
+            
+        # 额外加一个属性入口，方便没点境界的时候查看
+        talent_action = QAction('个人属性', self)
+        talent_action.triggered.connect(self.open_talent_window)
+        menu.addAction(talent_action)
         
         menu.addSeparator()
 
         # 炼丹
         alchemy_action = QAction('闭关炼丹', self)
-        alchemy_action.triggered.connect(self.start_alchemy)
+        alchemy_action.triggered.connect(self.open_alchemy_window)
         menu.addAction(alchemy_action)
 
         # 打开背包
@@ -481,13 +563,35 @@ class PetWindow(QWidget):
         bag_action.triggered.connect(self.open_inventory)
         menu.addAction(bag_action)
         
+        # 坊市
+        market_action = QAction('修仙坊市', self)
+        market_action.triggered.connect(self.open_market)
+        menu.addAction(market_action)
+        
         menu.addSeparator()
+        
+        # 调试: 增加经验 (方便测试渡劫)
+        # debug_exp_action = QAction('修炼(Debug +50xp)', self)
+        # debug_exp_action.triggered.connect(lambda: self.cultivator.gain_exp(50))
+        # menu.addAction(debug_exp_action)
         
         quit_action = QAction('归隐山林 (退出)', self)
         quit_action.triggered.connect(QApplication.instance().quit)
         menu.addAction(quit_action)
         
         menu.exec(pos)
+
+    def on_attempt_breakthrough(self):
+        success, msg = self.cultivator.attempt_breakthrough()
+        self.show_notification(msg)
+        
+        if success:
+            # 视觉反馈: 开启炼丹特效冒充金光，2秒后关闭
+            self.effect_widget.start_fire() 
+            QTimer.singleShot(2000, self.effect_widget.stop)
+        else:
+            # 失败反馈
+            pass
 
     def open_inventory(self):
         # 延迟导入防止循环依赖
@@ -512,6 +616,45 @@ class PetWindow(QWidget):
         self.inventory_window.move(target_x, target_y)
         self.inventory_window.show()
         self.inventory_window.refresh_list() # 刷新数据
+
+    def open_market(self):
+        from src.market_window import MarketWindow
+        
+        if not hasattr(self, 'market_window') or self.market_window is None:
+            self.market_window = MarketWindow(self.cultivator, None)
+            
+        pet_geo = self.frameGeometry()
+        screen_geo = QApplication.primaryScreen().geometry()
+        
+        # 默认放左边 (和背包分开)
+        target_x = pet_geo.left() - self.market_window.width() - 10
+        target_y = pet_geo.top()
+        
+        # 如果左边放不下，就放右边
+        if target_x < screen_geo.left():
+            target_x = pet_geo.right() + 10
+            
+        self.market_window.move(target_x, target_y)
+        self.market_window.show()
+
+    def open_talent_window(self):
+        from src.talent_window import TalentWindow
+        
+        if not hasattr(self, 'talent_window') or self.talent_window is None:
+            self.talent_window = TalentWindow(self.cultivator, None)
+            
+        pet_geo = self.frameGeometry()
+        screen_geo = QApplication.primaryScreen().geometry()
+        
+        # 默认放左边
+        target_x = pet_geo.left() - self.talent_window.width() - 10
+        target_y = pet_geo.top()
+        
+        if target_x < screen_geo.left():
+            target_x = pet_geo.right() + 10
+            
+        self.talent_window.move(target_x, target_y)
+        self.talent_window.show()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

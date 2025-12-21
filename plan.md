@@ -125,18 +125,18 @@
 3.  ParticleWidget: 实现粒子特效。
 
 **Phase 2: 数据与背包 (Data & Inventory) [进行中]**
-1.  **ItemManager**: 加载 `items.json`，实现 30+ 种物品定义。
+1.  **ItemManager**: 加载 `items.json`，实现 30+ 种物品定义。 [已完成]
     *   *Need*: 定义物品的 price, type (material/consumable/junk).
-2.  **InventoryUI**: 制作网格状背包界面。
-3.  **DropSystem**: 实现根据不同状态掉落不同物品的逻辑。
+2.  **InventoryUI**: 制作网格状背包界面。 [已完成]
+3.  **DropSystem**: 实现根据不同状态掉落不同物品的逻辑。 [已完成]
 
-**Phase 3: 坊市与经济 (Market & Economy) [Next]**
-1.  **MarketUI**: 商品列表与买卖逻辑。
-2.  **RefreshLogic**: 每日随机刷新商品池。
+**Phase 3: 坊市与经济 (Market & Economy) [已完成]**
+1.  **MarketUI**: 商品列表与买卖逻辑。 [已完成]
+2.  **RefreshLogic**: 每日随机刷新商品池。 [已完成]
 
-**Phase 4: 炼丹与成长 (Alchemy & Growth)**
-1.  **AlchemyUI**: 炼丹界面。
-2.  **Stats**: 实现 RPG 属性 (攻击/防御/挂机效率/心魔)。
+**Phase 4: 炼丹与成长 (Alchemy & Growth) [已完成]**
+1.  **AlchemyUI**: 炼丹界面。 [已完成]
+2.  **Stats**: 实现 RPG 属性 (攻击/防御/挂机效率/心魔)。 [已完成]
 
 **Phase 5: 完整闭环**
 1.  **EventSystem**: 随机文字事件系统。
