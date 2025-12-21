@@ -302,6 +302,7 @@ class Cultivator:
                     self.gain_item(drop_id)
                     name = self.item_manager.get_item_name(drop_id)
                     gain_msg = f"探险发现: {name}!"
+                    self.events.append(gain_msg) # 添加到事件日志以显示通知
                 
             if not gain_msg:
                 gain_msg = "+5 修为 (历练中)"

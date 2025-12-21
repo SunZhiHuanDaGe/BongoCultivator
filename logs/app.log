@@ -1058,3 +1058,343 @@ AttributeError: 'Cultivator' object has no attribute 'layer'
 2025-12-21 21:11:08,659 [DEBUG] [pet_window.py:498] - 切换状态: IDLE
 2025-12-21 21:11:54,255 [INFO] [pet_window.py:170] - 程序关闭，保存数据...
 2025-12-21 21:11:54,268 [INFO] [cultivator.py:409] - 数据已保存
+2025-12-21 21:14:45,832 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 21:14:45,844 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 21:14:45,951 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 21:14:45,957 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 21:14:45,959 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 21:14:45,996 [INFO] [cultivator.py:449] - 数据已加载
+2025-12-21 21:14:46,041 [DEBUG] [pet_window.py:499] - 切换状态: IDLE
+2025-12-21 21:15:51,160 [DEBUG] [pet_window.py:499] - 切换状态: COMBAT
+2025-12-21 21:15:55,159 [DEBUG] [pet_window.py:499] - 切换状态: IDLE
+2025-12-21 21:17:26,160 [DEBUG] [pet_window.py:499] - 切换状态: COMBAT
+2025-12-21 21:17:27,160 [DEBUG] [pet_window.py:499] - 切换状态: IDLE
+2025-12-21 21:19:46,159 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 75, in game_loop
+  File "/Volumes/home/mac/robin/bongo/src/cultivator.py", line 343, in update
+    event = self.event_manager.get_random_event(self)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/event_manager.py", line 37, in get_random_event
+    if self._check_conditions(event, cultivator):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/event_manager.py", line 58, in _check_conditions
+    if 'min_layer' in conditions and cultivator.layer < conditions['min_layer']:
+                                     ^^^^^^^^^^^^^^^^
+AttributeError: 'Cultivator' object has no attribute 'layer'
+2025-12-21 21:21:40,049 [INFO] [pet_window.py:170] - 程序关闭，保存数据...
+2025-12-21 21:21:40,059 [INFO] [cultivator.py:409] - 数据已保存
+2025-12-21 21:21:43,607 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 21:21:43,618 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 21:21:43,715 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 21:21:43,721 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 21:21:43,723 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 21:21:43,755 [INFO] [cultivator.py:449] - 数据已加载
+2025-12-21 21:21:43,783 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/main.py", line 40, in <module>
+    main()
+  File "/Volumes/home/mac/robin/bongo/main.py", line 17, in main
+    pet = PetWindow()
+          ^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 27, in __init__
+    self.load_assets() # 只有在UI初始化后才能加载资源
+    ^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 496, in load_assets
+    if os.path.exists(alchemy_path):
+                      ^^^^^^^^^^^^
+NameError: name 'alchemy_path' is not defined
+2025-12-21 21:24:08,808 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 21:24:08,825 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 21:24:08,934 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 21:24:08,939 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 21:24:08,943 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 21:24:08,959 [INFO] [cultivator.py:449] - 数据已加载
+2025-12-21 21:24:09,110 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:25:16,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:25:18,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:25:20,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:25:22,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:25:23,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:25:24,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:25:25,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:25:26,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:25:27,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:25:30,159 [DEBUG] [pet_window.py:527] - 切换状态: COMBAT
+2025-12-21 21:25:32,159 [DEBUG] [pet_window.py:527] - 切换状态: WORK
+2025-12-21 21:25:36,160 [DEBUG] [pet_window.py:527] - 切换状态: COMBAT
+2025-12-21 21:25:37,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:25:39,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:25:40,897 [INFO] [main.py:30] - 用户强制退出 (SIGINT)
+2025-12-21 21:25:40,898 [INFO] [pet_window.py:181] - 程序关闭，保存数据...
+2025-12-21 21:25:40,907 [INFO] [cultivator.py:409] - 数据已保存
+2025-12-21 21:31:25,979 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 21:31:25,993 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 21:31:26,102 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 21:31:26,107 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 21:31:26,111 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 21:31:26,133 [INFO] [cultivator.py:449] - 数据已加载
+2025-12-21 21:31:26,262 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:31:28,163 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:31:29,160 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:31:30,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:31:31,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:31:32,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:31:33,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:31:34,160 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:31:35,160 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:31:36,160 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:31:37,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:31:38,120 [DEBUG] [pet_window.py:527] - 切换状态: ALCHEMY
+2025-12-21 21:31:38,120 [INFO] [pet_window.py:140] - 开始炼制: pill_zhenyuan
+2025-12-21 21:31:38,159 [WARNING] [pet_window.py:62] - 炼丹失败: APM过高 (60)
+2025-12-21 21:31:38,160 [DEBUG] [pet_window.py:527] - 切换状态: COMBAT
+2025-12-21 21:31:38,160 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:31:39,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:31:41,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:31:43,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:31:44,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:31:45,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:31:46,160 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:31:54,160 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:31:56,160 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:31:58,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:31:59,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:32:00,158 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:32:02,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:32:04,160 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:32:05,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:32:06,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:32:10,160 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:32:17,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:32:17,937 [INFO] [main.py:30] - 用户强制退出 (SIGINT)
+2025-12-21 21:32:17,938 [INFO] [pet_window.py:181] - 程序关闭，保存数据...
+2025-12-21 21:32:17,948 [INFO] [cultivator.py:409] - 数据已保存
+2025-12-21 21:33:20,765 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 21:33:20,775 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 21:33:20,885 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 21:33:20,890 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 21:33:20,893 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 21:33:20,910 [INFO] [cultivator.py:449] - 数据已加载
+2025-12-21 21:33:21,028 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:33:27,160 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:33:28,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:33:34,158 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:33:36,158 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:33:41,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:33:42,160 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:33:43,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:33:44,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:33:45,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:33:46,160 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:33:47,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:33:48,160 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:33:49,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:33:50,097 [INFO] [main.py:30] - 用户强制退出 (SIGINT)
+2025-12-21 21:33:50,100 [INFO] [pet_window.py:181] - 程序关闭，保存数据...
+2025-12-21 21:33:50,107 [INFO] [cultivator.py:409] - 数据已保存
+2025-12-21 21:35:00,069 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 21:35:00,078 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 21:35:00,173 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 21:35:00,176 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 21:35:00,178 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 21:35:00,188 [INFO] [cultivator.py:449] - 数据已加载
+2025-12-21 21:35:00,270 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:35:07,160 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:35:13,160 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:35:26,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:35:34,160 [DEBUG] [pet_window.py:527] - 切换状态: COMBAT
+2025-12-21 21:35:36,160 [DEBUG] [pet_window.py:527] - 切换状态: WORK
+2025-12-21 21:36:01,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:36:12,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:36:25,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:36:30,160 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:36:35,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:36:47,160 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:36:59,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:37:00,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:37:09,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:37:13,159 [DEBUG] [pet_window.py:527] - 切换状态: WORK
+2025-12-21 21:37:36,160 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:38:20,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:38:27,160 [DEBUG] [pet_window.py:527] - 切换状态: WORK
+2025-12-21 21:38:32,160 [DEBUG] [pet_window.py:527] - 切换状态: COMBAT
+2025-12-21 21:38:34,160 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:38:41,159 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:38:44,160 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:38:50,160 [DEBUG] [pet_window.py:527] - 切换状态: IDLE
+2025-12-21 21:38:59,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:39:33,160 [DEBUG] [pet_window.py:527] - 切换状态: COMBAT
+2025-12-21 21:39:36,158 [DEBUG] [pet_window.py:527] - 切换状态: WORK
+2025-12-21 21:40:00,160 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 77, in game_loop
+    gain_msg, state_code = self.cultivator.update(kb_apm, mouse_apm)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/cultivator.py", line 343, in update
+    event = self.event_manager.get_random_event(self)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/event_manager.py", line 37, in get_random_event
+    if self._check_conditions(event, cultivator):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/event_manager.py", line 58, in _check_conditions
+    if 'min_layer' in conditions and cultivator.layer < conditions['min_layer']:
+                                     ^^^^^^^^^^^^^^^^
+AttributeError: 'Cultivator' object has no attribute 'layer'
+2025-12-21 21:40:05,158 [DEBUG] [pet_window.py:527] - 切换状态: COMBAT
+2025-12-21 21:40:09,159 [DEBUG] [pet_window.py:527] - 切换状态: READ
+2025-12-21 21:40:09,353 [INFO] [main.py:30] - 用户强制退出 (SIGINT)
+2025-12-21 21:40:09,354 [INFO] [pet_window.py:181] - 程序关闭，保存数据...
+2025-12-21 21:40:09,361 [INFO] [cultivator.py:409] - 数据已保存
+2025-12-21 21:41:57,271 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 21:41:57,282 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 21:41:57,394 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 21:41:57,397 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 21:41:57,399 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 21:41:57,414 [INFO] [cultivator.py:450] - 数据已加载
+2025-12-21 21:41:57,535 [DEBUG] [pet_window.py:526] - 切换状态: IDLE
+2025-12-21 21:42:53,660 [DEBUG] [pet_window.py:526] - 切换状态: READ
+2025-12-21 21:42:57,659 [DEBUG] [pet_window.py:526] - 切换状态: IDLE
+2025-12-21 21:43:14,659 [DEBUG] [pet_window.py:526] - 切换状态: READ
+2025-12-21 21:43:20,660 [DEBUG] [pet_window.py:526] - 切换状态: IDLE
+2025-12-21 21:43:28,659 [DEBUG] [pet_window.py:526] - 切换状态: READ
+2025-12-21 21:43:33,660 [DEBUG] [pet_window.py:526] - 切换状态: IDLE
+2025-12-21 21:43:39,659 [DEBUG] [pet_window.py:526] - 切换状态: READ
+2025-12-21 21:43:43,660 [DEBUG] [pet_window.py:526] - 切换状态: IDLE
+2025-12-21 21:43:44,465 [DEBUG] [pet_window.py:526] - 切换状态: ALCHEMY
+2025-12-21 21:43:44,466 [INFO] [pet_window.py:140] - 开始炼制: pill_skin
+2025-12-21 21:43:53,660 [WARNING] [pet_window.py:62] - 炼丹失败: APM过高 (204)
+2025-12-21 21:43:53,663 [DEBUG] [pet_window.py:526] - 切换状态: COMBAT
+2025-12-21 21:43:53,664 [DEBUG] [pet_window.py:526] - 切换状态: READ
+2025-12-21 21:43:58,659 [DEBUG] [pet_window.py:526] - 切换状态: IDLE
+2025-12-21 21:44:00,660 [DEBUG] [pet_window.py:526] - 切换状态: READ
+2025-12-21 21:44:09,660 [DEBUG] [pet_window.py:526] - 切换状态: IDLE
+2025-12-21 21:44:12,659 [DEBUG] [pet_window.py:526] - 切换状态: READ
+2025-12-21 21:44:20,659 [DEBUG] [pet_window.py:526] - 切换状态: IDLE
+2025-12-21 21:44:21,660 [DEBUG] [pet_window.py:526] - 切换状态: READ
+2025-12-21 21:44:30,659 [DEBUG] [pet_window.py:526] - 切换状态: IDLE
+2025-12-21 21:44:32,660 [DEBUG] [pet_window.py:526] - 切换状态: READ
+2025-12-21 21:44:39,660 [DEBUG] [pet_window.py:526] - 切换状态: IDLE
+2025-12-21 21:44:43,659 [DEBUG] [pet_window.py:526] - 切换状态: READ
+2025-12-21 21:44:50,659 [DEBUG] [pet_window.py:526] - 切换状态: IDLE
+2025-12-21 21:44:55,659 [DEBUG] [pet_window.py:526] - 切换状态: READ
+2025-12-21 21:44:58,660 [DEBUG] [pet_window.py:526] - 切换状态: IDLE
+2025-12-21 21:45:04,659 [DEBUG] [pet_window.py:526] - 切换状态: READ
+2025-12-21 21:45:10,659 [DEBUG] [pet_window.py:526] - 切换状态: IDLE
+2025-12-21 21:45:13,659 [DEBUG] [pet_window.py:526] - 切换状态: READ
+2025-12-21 21:45:21,403 [INFO] [pet_window.py:181] - 程序关闭，保存数据...
+2025-12-21 21:45:21,413 [INFO] [cultivator.py:410] - 数据已保存
+2025-12-21 21:46:45,551 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 21:46:45,578 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 21:46:45,690 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 21:46:45,695 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 21:46:45,696 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 21:46:45,711 [INFO] [cultivator.py:450] - 数据已加载
+2025-12-21 21:46:45,818 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:46:46,769 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:46:54,660 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:46:58,659 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:47:04,659 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:47:15,660 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:47:32,659 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:47:34,659 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:47:39,660 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:47:41,660 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:47:46,660 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:48:25,659 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:48:29,660 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:48:31,660 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:48:39,659 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:48:42,660 [DEBUG] [pet_window.py:537] - 切换状态: COMBAT
+2025-12-21 21:48:45,660 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:48:47,660 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:49:00,659 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:49:02,660 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:49:09,660 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:49:14,660 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:49:19,659 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:49:26,660 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:49:30,660 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:49:31,660 [DEBUG] [pet_window.py:537] - 切换状态: COMBAT
+2025-12-21 21:49:32,659 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:49:38,660 [DEBUG] [pet_window.py:537] - 切换状态: COMBAT
+2025-12-21 21:49:40,659 [DEBUG] [pet_window.py:537] - 切换状态: WORK
+2025-12-21 21:50:06,660 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:50:17,659 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:50:20,660 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:51:19,659 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:51:30,659 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:51:34,659 [DEBUG] [pet_window.py:537] - 切换状态: WORK
+2025-12-21 21:51:39,660 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:51:40,659 [DEBUG] [pet_window.py:537] - 切换状态: WORK
+2025-12-21 21:51:45,660 [INFO] [cultivator.py:355] - 触发特殊事件(未实装UI): 下山途中遭遇一只练气期的妖兽拦路！
+2025-12-21 21:51:45,660 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:51:46,660 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:51:50,660 [DEBUG] [pet_window.py:537] - 切换状态: COMBAT
+2025-12-21 21:51:53,660 [DEBUG] [pet_window.py:537] - 切换状态: WORK
+2025-12-21 21:52:03,660 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:52:24,659 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:52:27,659 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:55:26,660 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:55:32,660 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:55:32,753 [DEBUG] [pet_window.py:537] - 切换状态: ALCHEMY
+2025-12-21 21:55:32,753 [INFO] [pet_window.py:140] - 开始炼制: pill_turtle
+2025-12-21 21:55:42,660 [INFO] [pet_window.py:160] - 炼丹成功: 龟息丹
+2025-12-21 21:55:42,661 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:55:48,660 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:55:51,659 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:55:52,660 [DEBUG] [pet_window.py:537] - 切换状态: WORK
+2025-12-21 21:56:10,660 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:56:13,281 [INFO] [pet_window.py:192] - 程序关闭，保存数据...
+2025-12-21 21:56:13,291 [INFO] [cultivator.py:410] - 数据已保存
+2025-12-21 21:56:36,899 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 21:56:36,914 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 21:56:37,038 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 21:56:37,042 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 21:56:37,045 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 21:56:37,061 [INFO] [cultivator.py:450] - 数据已加载
+2025-12-21 21:56:37,177 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:56:42,160 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:56:50,159 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:56:59,159 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:57:00,160 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:57:03,822 [INFO] [pet_window.py:192] - 程序关闭，保存数据...
+2025-12-21 21:57:03,832 [INFO] [cultivator.py:410] - 数据已保存
+2025-12-21 21:57:41,316 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 21:57:41,328 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 21:57:41,444 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 21:57:41,448 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 21:57:41,451 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 21:57:41,467 [INFO] [cultivator.py:450] - 数据已加载
+2025-12-21 21:57:41,590 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:57:58,660 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:58:03,660 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:58:09,659 [DEBUG] [pet_window.py:537] - 切换状态: WORK
+2025-12-21 21:58:12,660 [DEBUG] [pet_window.py:537] - 切换状态: COMBAT
+2025-12-21 21:58:14,660 [DEBUG] [pet_window.py:537] - 切换状态: READ
+2025-12-21 21:58:17,660 [DEBUG] [pet_window.py:537] - 切换状态: WORK
+2025-12-21 21:58:20,660 [DEBUG] [pet_window.py:537] - 切换状态: IDLE
+2025-12-21 21:58:23,253 [INFO] [pet_window.py:192] - 程序关闭，保存数据...
+2025-12-21 21:58:23,262 [INFO] [cultivator.py:410] - 数据已保存
+2025-12-21 21:58:49,559 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 21:58:49,570 [INFO] [main.py:12] - 启动应用程序...
+2025-12-21 21:58:49,694 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 21:58:49,699 [INFO] [item_manager.py:39] - 成功加载物品数据库，共 52 种物品。
+2025-12-21 21:58:49,702 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-21 21:58:49,735 [INFO] [cultivator.py:450] - 数据已加载
+2025-12-21 21:58:49,862 [DEBUG] [pet_window.py:539] - 切换状态: IDLE
+2025-12-21 21:58:51,763 [DEBUG] [pet_window.py:539] - 切换状态: READ
+2025-12-21 21:58:52,713 [DEBUG] [pet_window.py:539] - 切换状态: IDLE
+2025-12-21 21:58:58,659 [DEBUG] [pet_window.py:539] - 切换状态: READ
+2025-12-21 21:59:00,659 [DEBUG] [pet_window.py:539] - 切换状态: IDLE
+2025-12-21 21:59:04,659 [DEBUG] [pet_window.py:539] - 切换状态: READ
+2025-12-21 21:59:10,660 [DEBUG] [pet_window.py:539] - 切换状态: IDLE
+2025-12-21 22:03:49,659 [INFO] [cultivator.py:355] - 触发特殊事件(未实装UI): 下山途中遭遇一只练气期的妖兽拦路！
+2025-12-21 22:03:58,660 [DEBUG] [pet_window.py:539] - 切换状态: WORK
+2025-12-21 22:04:07,660 [DEBUG] [pet_window.py:539] - 切换状态: IDLE
+2025-12-21 22:05:18,660 [DEBUG] [pet_window.py:539] - 切换状态: READ
+2025-12-21 22:05:23,660 [DEBUG] [pet_window.py:539] - 切换状态: IDLE
+2025-12-21 22:05:24,659 [DEBUG] [pet_window.py:539] - 切换状态: READ
+2025-12-21 22:05:24,754 [INFO] [main.py:30] - 用户强制退出 (SIGINT)
+2025-12-21 22:05:24,754 [INFO] [pet_window.py:192] - 程序关闭，保存数据...
+2025-12-21 22:05:24,762 [INFO] [cultivator.py:410] - 数据已保存

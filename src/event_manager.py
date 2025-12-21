@@ -55,7 +55,7 @@ class EventManager:
         conditions = event.get('conditions', {})
         
         # 境界检查
-        if 'min_layer' in conditions and cultivator.layer < conditions['min_layer']:
+        if 'min_layer' in conditions and cultivator.layer_index < conditions['min_layer']:
             return False
             
         # 灵石检查

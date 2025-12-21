@@ -11,6 +11,13 @@ class InputMonitor:
         self.last_error = None
         self.permission_denied = False
         
+        # 滑动窗口记录 (最近 5 次调用的数据)
+        # 如果 get_stats 每秒调用一次，平滑窗口就是 5 秒
+        from collections import deque
+        self.history_size = 5
+        self.kb_history = deque(maxlen=self.history_size)
+        self.mouse_history = deque(maxlen=self.history_size)
+        
         # 监听器
         self.kb_listener = keyboard.Listener(on_press=self.on_press)
         self.kb_listener.daemon = True
@@ -26,6 +33,10 @@ class InputMonitor:
         self.running = True
         self.last_error = None
         self.permission_denied = False
+        # 清空历史
+        self.kb_history.clear()
+        self.mouse_history.clear()
+        
         try:
             self.kb_listener.start()
             self.mouse_listener.start()
@@ -67,16 +78,29 @@ class InputMonitor:
 
     def get_stats(self):
         """
-        获取当前 键盘和鼠标 的操作计数，并重置计数器。
+        获取过去 N 秒的平均 APM (滑动窗口)。
         建议每秒调用一次。
-        Returns:
-            (kb_apm, mouse_apm) - 其实是 Actions Per Minute (但这里返回数值直接用作判定即可)
         """
         with self._lock:
-            kb = self._kb_count
-            ms = self._mouse_count
+            current_kb = self._kb_count
+            current_ms = self._mouse_count
             self._kb_count = 0
             self._mouse_count = 0
             
-        # 转换为 Per Minute (如果每秒调用一次，则 * 60)
-        return kb * 60, ms * 60
+        # 存入历史窗口
+        self.kb_history.append(current_kb)
+        self.mouse_history.append(current_ms)
+        
+        # 计算窗口内的总数
+        # 如果历史数据不足窗口大小，则按实际时间缩放? 
+        # 简单起见，按 len(history) 缩放
+        # APM = (Total / Seconds) * 60
+        
+        valid_seconds = len(self.kb_history)
+        if valid_seconds == 0:
+            return 0, 0
+            
+        avg_kb = sum(self.kb_history) / valid_seconds * 60
+        avg_ms = sum(self.mouse_history) / valid_seconds * 60
+            
+        return int(avg_kb), int(avg_ms)

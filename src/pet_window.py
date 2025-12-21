@@ -44,6 +44,8 @@ class PetWindow(QWidget):
         self.game_timer = QTimer(self)
         self.game_timer.timeout.connect(self.game_loop)
         self.game_timer.start(1000) # 1秒刷新一次
+        
+        self.idle_duration = 0 # 记录 IDLE 持续时间
 
     def game_loop(self):
         # 1. 获取分离的统计数据
@@ -54,8 +56,8 @@ class PetWindow(QWidget):
         
         # 如果正在炼丹
         if self.is_alchemying:
-            # 高 APM 会打断炼丹
-            if total_apm > 50:
+            # 高 APM 会打断炼丹 (阈值提高到 200，即每秒 >3 次操作)
+            if total_apm > 200:
                 self.is_alchemying = False
                 logger.warning(f"炼丹失败: APM过高 ({total_apm})")
                 self.show_notification("心神不宁，炼丹失败！(APM太高)")
@@ -95,6 +97,15 @@ class PetWindow(QWidget):
         if not self.is_alchemying:
             if self.current_state != target_state:
                 self.set_state(target_state)
+            
+            # Idle Sleep Logic
+            if target_state == PetState.IDLE:
+                self.idle_duration += 1
+                if self.idle_duration > 60: # 60s without input -> Sleep
+                    if hasattr(self, 'extra_images') and 'sleep' in self.extra_images:
+                        self.image_label.setPixmap(self.extra_images['sleep'])
+            else:
+                self.idle_duration = 0 # Reset on activity
         
         # 4. 检查事件日志
         if self.cultivator.events:
@@ -159,11 +170,22 @@ class PetWindow(QWidget):
             
         self.is_alchemying = False
         self.set_state(PetState.IDLE)
+        # 恢复默认style，防止背景残留（虽然用了transparent，但更保险）
+        self.info_label.setStyleSheet("""
+            QLabel {
+                color: #FFFFFF;
+                font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+                font-size: 14px;
+                font-weight: 900;
+                qproperty-alignment: AlignCenter;
+                background-color: rgba(0, 0, 0, 0);
+            }
+        """)
         QTimer.singleShot(2000, lambda: self.info_label.setText("准备修仙..."))
         
     def _legacy_finish_alchemy(self):
         # ... (旧逻辑备份，或者直接删除) ...
-        self.is_alchemying = False
+        self.is_legacy_alchemying = False # Changed variable name to avoid conflict if really needed, but it's legacy
         self.set_state(PetState.IDLE)
 
     def closeEvent(self, event):
@@ -194,6 +216,8 @@ class PetWindow(QWidget):
 
         # 4. 图片容器 (用于动画)
         self.image_container = QWidget(self)
+        self.image_container.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground, True)
+        self.image_container.setStyleSheet("background-color: rgba(0, 0, 0, 0);")
         self.image_container.resize(200, 200)
         self.image_container.move(50, 60) # 初始位置
         
@@ -208,6 +232,7 @@ class PetWindow(QWidget):
         self.effect_widget.resize(200, 200)
         self.effect_widget.move(0, 0)
         self.effect_widget.hide()
+        self.effect_widget.request_shake.connect(self.on_shake_requested)
         
         # 5. 信息 Label (默认完全隐藏)
         self.info_label = QLabel(self)
@@ -221,14 +246,15 @@ class PetWindow(QWidget):
                 font-size: 14px;
                 font-weight: 900;
                 qproperty-alignment: AlignCenter;
+                background-color: rgba(0, 0, 0, 0);
             }
         """)
         # 添加阴影效果
         from PyQt6.QtWidgets import QGraphicsDropShadowEffect
         shadow = QGraphicsDropShadowEffect()
-        shadow.setBlurRadius(5)
+        shadow.setBlurRadius(15) # 加大模糊半径
         shadow.setColor(Qt.GlobalColor.black)
-        shadow.setOffset(1, 1)
+        shadow.setOffset(0, 0)
         self.info_label.setGraphicsEffect(shadow)
         
         self.info_label.hide() # 默认隐藏
@@ -423,8 +449,7 @@ class PetWindow(QWidget):
                 color: #FFD700;
                 font-size: 15px;
                 font-weight: bold;
-                background-color: rgba(0, 0, 0, 180);
-                border-radius: 8px;
+                background-color: rgba(0, 0, 0, 0);
                 padding: 4px;
             }
         """)
@@ -443,8 +468,7 @@ class PetWindow(QWidget):
                 color: #00FF7F; 
                 font-size: 16px;
                 font-weight: bold;
-                background-color: rgba(0, 0, 0, 150);
-                border-radius: 8px;
+                background-color: rgba(0, 0, 0, 0);
                 padding: 4px;
             }
         """)
@@ -485,6 +509,23 @@ class PetWindow(QWidget):
         if os.path.exists(alchemy_path):
             self.state_images[PetState.ALCHEMY] = QPixmap(alchemy_path)
 
+        # WORK (Use walk as default)
+        work_path = os.path.join(assets_path, 'cultivator_walk.png')
+        if os.path.exists(work_path):
+             self.state_images[PetState.WORK] = QPixmap(work_path)
+
+        # READ
+        read_path = os.path.join(assets_path, 'cultivator_read.png')
+        if os.path.exists(read_path):
+             self.state_images[PetState.READ] = QPixmap(read_path)
+
+        # Extra optional assets
+        self.extra_images = {}
+        for name in ['drag', 'sleep', 'walk']:
+            path = os.path.join(assets_path, f'cultivator_{name}.png')
+            if os.path.exists(path):
+                self.extra_images[name] = QPixmap(path)
+
         # 默认显示 IDLE
         if PetState.IDLE in self.state_images:
             self.set_state(PetState.IDLE)
@@ -497,27 +538,26 @@ class PetWindow(QWidget):
             if getattr(self, 'current_state', None) != state:
                  logger.debug(f"切换状态: {state.name}")
             self.current_state = state
-            pixmap = self.state_images[state]
-            self.image_label.setPixmap(pixmap)
             
-            # 设置遮罩，实现点击穿透透明区域
-            # 注意：因为我们有浮动动画(Move)，mask 是相对于窗口坐标的
-            # mask 需要跟随 image_container 的位置变化比较麻烦
-            # 简单做法：我们只给 image_label 做 mask？不行，点击是 Window 接收的
+            # Safe get pixmap with fallback to IDLE
+            pixmap = self.state_images.get(state)
+            if not pixmap and PetState.IDLE in self.state_images:
+                pixmap = self.state_images[PetState.IDLE]
             
-            # 更好的方案：不依赖 mask，因为动画会导致 mask 频繁计算极其消耗性能
-            # 方案 B：在 mousePressEvent 里手动判定点击位置是否透明
+            if pixmap:
+                 self.image_label.setPixmap(pixmap)
             
-            # 这里我们还是先做基础的 mask 测试，如果 mask 不动的话。
-            # 考虑到浮动范围很小，我们可以给整个 Window 一个稍微大一点的 Mask，或者暂时不 mask
-            # 我们尝试给整个窗口设置 Mask，每次 float 更新时移动 mask？
-            pass
-            
-        # 特效控制
-        if state == PetState.ALCHEMY:
-            self.effect_widget.start_fire()
-        else:
-            self.effect_widget.stop()
+            # Update effect mode
+            mode_map = {
+                PetState.IDLE: "idle",
+                PetState.WORK: "work",
+                PetState.READ: "read",
+                PetState.COMBAT: "combat",
+                PetState.ALCHEMY: "alchemy",
+                PetState.ASCEND: "tribulation"
+            }
+            effect_mode = mode_map.get(state, "idle")
+            self.effect_widget.set_mode(effect_mode)
 
     # --- 鼠标拖拽逻辑 ---
     def mousePressEvent(self, event: QMouseEvent):
@@ -588,6 +628,14 @@ class PetWindow(QWidget):
             self.drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
             self.press_pos = event.globalPosition().toPoint()
             self.setCursor(QCursor(Qt.CursorShape.ClosedHandCursor))
+            
+            # Switch to drag image if available
+            if hasattr(self, 'extra_images') and 'drag' in self.extra_images:
+                self.image_label.setPixmap(self.extra_images['drag'])
+            
+            # Click effect
+            self.effect_widget.emit_click_effect(local_pos.x(), local_pos.y())
+            
             event.accept()
         elif event.button() == Qt.MouseButton.RightButton:
             self.show_context_menu(event.globalPosition().toPoint())
@@ -603,6 +651,9 @@ class PetWindow(QWidget):
         if event.button() == Qt.MouseButton.LeftButton:
             self.is_dragging = False
             self.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
+            
+            # Restore state image
+            self.set_state(self.current_state)
             
             # 判断是否是点击 (移动距离很小)
             release_pos = event.globalPosition().toPoint()
@@ -634,7 +685,7 @@ class PetWindow(QWidget):
                 padding: 5px;
             }
             QMenu::item {
-                background-color: transparent;
+                background-color: rgba(0, 0, 0, 0);
                 color: #FFFFFF;
                 padding: 8px 24px;
                 font-family: "Microsoft YaHei";
@@ -697,16 +748,46 @@ class PetWindow(QWidget):
         menu.exec(pos)
 
     def on_attempt_breakthrough(self):
+        # 1. Start Tribulation Effect first
+        self.effect_widget.trigger_tribulation()
+        
+        # Delay the actual calculation slightly to show off the effect?
+        # Or just do it.
         success, msg = self.cultivator.attempt_breakthrough()
         self.show_notification(msg)
         
         if success:
-            # 视觉反馈: 开启炼丹特效冒充金光，2秒后关闭
-            self.effect_widget.start_fire() 
-            QTimer.singleShot(2000, self.effect_widget.stop)
+            # 2. Success Effect
+            QTimer.singleShot(1000, self.effect_widget.trigger_breakthrough_success)
+            # Revert to idle after some time
+            QTimer.singleShot(3000, lambda: self.set_state(PetState.IDLE))
         else:
-            # 失败反馈
-            pass
+            # Failed
+            QTimer.singleShot(2000, lambda: self.set_state(PetState.IDLE))
+
+    # --- Window Shake Logic ---
+    def on_shake_requested(self, intensity, duration):
+        self.shake_intensity = intensity
+        self.shake_end_time = QTimer.singleShot(duration, self.stop_shake)
+        
+        if not hasattr(self, 'shake_timer'):
+            self.shake_timer = QTimer(self)
+            self.shake_timer.timeout.connect(self.do_shake)
+            
+        self.shake_timer.start(50)
+        self.original_pos = self.pos()
+
+    def do_shake(self):
+        import random
+        dx = random.randint(-self.shake_intensity, self.shake_intensity)
+        dy = random.randint(-self.shake_intensity, self.shake_intensity)
+        self.move(self.original_pos.x() + dx, self.original_pos.y() + dy)
+
+    def stop_shake(self):
+        if hasattr(self, 'shake_timer'):
+            self.shake_timer.stop()
+        if hasattr(self, 'original_pos'):
+            self.move(self.original_pos)
 
     def open_inventory(self):
         # 延迟导入防止循环依赖
