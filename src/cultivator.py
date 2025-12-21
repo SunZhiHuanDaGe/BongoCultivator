@@ -55,40 +55,63 @@ class Cultivator:
             self.inventory[item_name] = count
         self.events.append(f"获得: {item_name} x{count}")
 
-    def update(self, apm):
+    def update(self, kb_apm, mouse_apm):
         """
-        根据 APM 更新状态并返回获得的收益描述
+        根据 键鼠APM 更新状态并返回获得的收益描述
+        States:
+        - IDLE: kb < 30 and mouse < 30
+        - WORK (Keyboard): kb > 30 and mouse < 30
+        - READ (Mouse): kb < 30 and mouse > 30
+        - COMBAT (Both): kb > 30 and mouse > 30
         """
         gain_msg = ""
-        is_combat = apm > 60
+        current_state_code = 0 # 0:IDLE, 1:COMBAT, 2:WORK, 3:READ (Mapping to PetState logic in UI)
         
-        # 1. 基础收益
-        if is_combat:
-            # 战斗/历练：高几率获得灵石，低几率掉落物品
-            base_exp = 2
-            self.money += 1
-            gain_msg = "+2 修为, +1 灵石"
+        # 1. 判定状态
+        if kb_apm < 30 and mouse_apm < 30:
+            # IDLE: 纯挂机，低收益
+            current_state_code = 0 
+            base_exp = 1  # 挂机收益很低
+            gain_msg = "+1 修为 (闭关中)"
             
-            # 随机掉落
-            if random.random() < 0.05: # 5% 掉落
-                drop_item = random.choice(["洗髓草", "聚气丹", "天雷竹"])
+        elif kb_apm >= 30 and mouse_apm < 30:
+            # WORK: 键盘为主 -> 历练 -> 产出材料
+            current_state_code = 2 # WORK
+            base_exp = 5
+            
+            # 键盘敲击产出材料/灵石
+            if random.random() < 0.1: # 10% 获得灵石
+                self.money += 1
+                gain_msg = "+1 灵石"
+            
+            if random.random() < 0.05: # 5% 掉落材料
+                drop_item = random.choice(["洗髓草", "铁精", "凡铁矿", "废弃符纸"])
                 self.gain_item(drop_item)
-                gain_msg += f", 掉落 [{drop_item}]!"
+                gain_msg = f"探险发现: {drop_item}!"
+                
+            if not gain_msg:
+                gain_msg = "+5 修为 (历练中)"
+
+        elif kb_apm < 30 and mouse_apm >= 30:
+            # READ: 鼠标为主 -> 悟道 -> 产出灵气/特殊
+            current_state_code = 3 # READ
+            base_exp = 8 # 悟道修为高
+            gain_msg = "+8 修为 (悟道中)"
+            
+            if random.random() < 0.02:
+                # 顿悟
+                base_exp += 20
+                gain_msg = "顿悟! +28 修为"
                 
         else:
-            # 打坐：纯经验
-            base_exp = 5
-            gain_msg = "+5 修为"
+            # COMBAT: 键鼠齐飞 -> 斗法/冲刺
+            current_state_code = 1 # COMBAT
+            base_exp = 15 # 高强度操作
+            gain_msg = "火力全开! +15 修为"
             
-            # 随机顿悟
-            if random.random() < 0.02: # 2% 顿悟
-                bonus = 20
-                base_exp += bonus
-                gain_msg += f", 顿悟! (+{bonus}修为)"
-        
         self.gain_exp(base_exp)
             
-        return gain_msg, is_combat
+        return gain_msg, current_state_code
     
     def calculate_offline_progress(self, last_timestamp):
         import time

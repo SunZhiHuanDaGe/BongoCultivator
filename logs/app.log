@@ -150,3 +150,311 @@
 2025-12-21 18:52:56,144 [INFO] [main.py:25] - 用户强制退出 (SIGINT)
 2025-12-21 18:52:56,148 [INFO] [pet_window.py:114] - 程序关闭，保存数据...
 2025-12-21 18:52:56,160 [INFO] [cultivator.py:134] - 数据已保存
+2025-12-21 19:22:11,386 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:22:11,386 [INFO] [main.py:10] - 启动应用程序...
+2025-12-21 19:22:11,494 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:22:11,501 [INFO] [cultivator.py:180] - 数据已加载
+2025-12-21 19:22:11,674 [DEBUG] [pet_window.py:312] - 切换状态: IDLE
+2025-12-21 19:22:12,857 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:14,659 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 276, in hide_notification
+    self.enterEvent(None) # 重新触发一次 hover 刷新逻辑
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:17,784 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:25,570 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:28,788 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:28,822 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:31,554 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:32,848 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:35,569 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 276, in hide_notification
+    self.enterEvent(None) # 重新触发一次 hover 刷新逻辑
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:35,806 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 276, in hide_notification
+    self.enterEvent(None) # 重新触发一次 hover 刷新逻辑
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:36,130 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 276, in hide_notification
+    self.enterEvent(None) # 重新触发一次 hover 刷新逻辑
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:36,159 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 276, in hide_notification
+    self.enterEvent(None) # 重新触发一次 hover 刷新逻辑
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:36,659 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 276, in hide_notification
+    self.enterEvent(None) # 重新触发一次 hover 刷新逻辑
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:36,785 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 276, in hide_notification
+    self.enterEvent(None) # 重新触发一次 hover 刷新逻辑
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:37,143 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 276, in hide_notification
+    self.enterEvent(None) # 重新触发一次 hover 刷新逻辑
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:37,160 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 276, in hide_notification
+    self.enterEvent(None) # 重新触发一次 hover 刷新逻辑
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:37,257 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 276, in hide_notification
+    self.enterEvent(None) # 重新触发一次 hover 刷新逻辑
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:37,605 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 276, in hide_notification
+    self.enterEvent(None) # 重新触发一次 hover 刷新逻辑
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:38,202 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 276, in hide_notification
+    self.enterEvent(None) # 重新触发一次 hover 刷新逻辑
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:38,305 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 276, in hide_notification
+    self.enterEvent(None) # 重新触发一次 hover 刷新逻辑
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:39,145 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 276, in hide_notification
+    self.enterEvent(None) # 重新触发一次 hover 刷新逻辑
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:39,659 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 276, in hide_notification
+    self.enterEvent(None) # 重新触发一次 hover 刷新逻辑
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:40,531 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 276, in hide_notification
+    self.enterEvent(None) # 重新触发一次 hover 刷新逻辑
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:43,703 [DEBUG] [pet_window.py:312] - 切换状态: ALCHEMY
+2025-12-21 19:22:43,708 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 109, in start_alchemy
+    self.set_state(PetState.ALCHEMY)
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 332, in set_state
+    self.effect_widget.start_fire()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EffectWidget' object has no attribute 'start_fire'
+2025-12-21 19:22:43,710 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:43,721 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:44,659 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 68, in game_loop
+    self.set_state(PetState.ALCHEMY)
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 332, in set_state
+    self.effect_widget.start_fire()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EffectWidget' object has no attribute 'start_fire'
+2025-12-21 19:22:45,660 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 68, in game_loop
+    self.set_state(PetState.ALCHEMY)
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 332, in set_state
+    self.effect_widget.start_fire()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EffectWidget' object has no attribute 'start_fire'
+2025-12-21 19:22:46,659 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 68, in game_loop
+    self.set_state(PetState.ALCHEMY)
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 332, in set_state
+    self.effect_widget.start_fire()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EffectWidget' object has no attribute 'start_fire'
+2025-12-21 19:22:47,659 [WARNING] [pet_window.py:58] - 炼丹失败: APM过高 (60)
+2025-12-21 19:22:47,660 [DEBUG] [pet_window.py:312] - 切换状态: COMBAT
+2025-12-21 19:22:48,659 [DEBUG] [pet_window.py:312] - 切换状态: IDLE
+2025-12-21 19:22:50,114 [DEBUG] [pet_window.py:312] - 切换状态: ALCHEMY
+2025-12-21 19:22:50,116 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 109, in start_alchemy
+    self.set_state(PetState.ALCHEMY)
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 332, in set_state
+    self.effect_widget.start_fire()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EffectWidget' object has no attribute 'start_fire'
+2025-12-21 19:22:50,117 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:50,132 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:22:50,659 [WARNING] [pet_window.py:58] - 炼丹失败: APM过高 (60)
+2025-12-21 19:22:50,660 [DEBUG] [pet_window.py:312] - 切换状态: COMBAT
+2025-12-21 19:22:51,659 [DEBUG] [pet_window.py:312] - 切换状态: IDLE
+2025-12-21 19:22:57,621 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:23:02,659 [DEBUG] [pet_window.py:312] - 切换状态: COMBAT
+2025-12-21 19:23:06,643 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:23:06,659 [DEBUG] [pet_window.py:312] - 切换状态: IDLE
+2025-12-21 19:23:08,387 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:23:12,841 [CRITICAL] [logger.py:60] - 未捕获的异常 (Uncaught exception):
+Traceback (most recent call last):
+  File "/Volumes/home/mac/robin/bongo/src/pet_window.py", line 234, in enterEvent
+    self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'InputMonitor' object has no attribute 'get_apm_snapshot'
+2025-12-21 19:23:17,659 [DEBUG] [pet_window.py:312] - 切换状态: COMBAT
+2025-12-21 19:23:35,660 [DEBUG] [pet_window.py:312] - 切换状态: IDLE
+2025-12-21 19:23:44,031 [INFO] [pet_window.py:133] - 程序关闭，保存数据...
+2025-12-21 19:23:44,047 [INFO] [cultivator.py:157] - 数据已保存
+2025-12-21 19:25:10,992 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:25:10,993 [INFO] [main.py:10] - 启动应用程序...
+2025-12-21 19:25:11,113 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:25:11,119 [INFO] [cultivator.py:180] - 数据已加载
+2025-12-21 19:25:11,170 [DEBUG] [pet_window.py:312] - 切换状态: IDLE
+2025-12-21 19:25:28,354 [INFO] [pet_window.py:133] - 程序关闭，保存数据...
+2025-12-21 19:25:28,366 [INFO] [cultivator.py:157] - 数据已保存
+2025-12-21 19:25:30,028 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-21 19:25:30,028 [INFO] [main.py:10] - 启动应用程序...
+2025-12-21 19:25:30,128 [INFO] [pet_window.py:16] - 初始化 PetWindow...
+2025-12-21 19:25:30,129 [INFO] [cultivator.py:180] - 数据已加载
+2025-12-21 19:25:30,151 [DEBUG] [pet_window.py:312] - 切换状态: IDLE
+2025-12-21 19:26:44,960 [INFO] [main.py:25] - 用户强制退出 (SIGINT)
+2025-12-21 19:26:44,964 [INFO] [pet_window.py:133] - 程序关闭，保存数据...
+2025-12-21 19:26:44,972 [INFO] [cultivator.py:157] - 数据已保存

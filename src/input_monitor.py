@@ -5,13 +5,17 @@ from threading import Lock
 class InputMonitor:
     def __init__(self):
         self._lock = Lock()
-        self._action_count = 0
+        self._kb_count = 0
+        self._mouse_count = 0
         self._start_time = time.time()
         
         # 监听器
         self.kb_listener = keyboard.Listener(on_press=self.on_press)
         self.kb_listener.daemon = True
-        self.mouse_listener = mouse.Listener(on_click=self.on_click)
+        self.mouse_listener = mouse.Listener(
+            on_click=self.on_click,
+            on_scroll=self.on_scroll
+        )
         self.mouse_listener.daemon = True
         
         self.running = False
@@ -28,30 +32,30 @@ class InputMonitor:
 
     def on_press(self, key):
         with self._lock:
-            self._action_count += 1
+            self._kb_count += 1
 
     def on_click(self, x, y, button, pressed):
         if pressed:
             with self._lock:
-                self._action_count += 1
+                self._mouse_count += 1
 
-    def get_apm(self):
+    def on_scroll(self, x, y, dx, dy):
+        with self._lock:
+             # 滚轮也算鼠标操作
+            self._mouse_count += 1
+
+    def get_stats(self):
         """
-        获取当前 APM 并重置计数器 (简化版)
-        建议每秒调用一次，返回值即为 Actions Per Second，乘以 60 即为 APM
+        获取当前 键盘和鼠标 的操作计数，并重置计数器。
+        建议每秒调用一次。
+        Returns:
+            (kb_apm, mouse_apm) - 其实是 Actions Per Minute (但这里返回数值直接用作判定即可)
         """
         with self._lock:
-            count = self._action_count
-            self._action_count = 0 # 重置，计算瞬时 APM
+            kb = self._kb_count
+            ms = self._mouse_count
+            self._kb_count = 0
+            self._mouse_count = 0
             
-        return count * 60 # 简单的把这一秒的操作数 * 60 当作瞬时 APM
-
-    def get_apm_snapshot(self):
-        """
-        获取当前瞬时 APM 快照，不重置计数器 (用于 UI 显示)
-        """
-        with self._lock:
-            # 这里其实不太准，因为 get_apm 每秒清零了，这里拿到的永远也只是这 1 秒内的累积
-            # 但既然是 Snapshot，就直接返回 0 或者 上一秒的值会更好
-            # 简化起见，还是返回当前累计值 * 60
-            return self._action_count * 60
+        # 转换为 Per Minute (如果每秒调用一次，则 * 60)
+        return kb * 60, ms * 60

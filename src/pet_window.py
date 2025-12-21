@@ -44,14 +44,18 @@ class PetWindow(QWidget):
         self.game_timer.start(1000) # 1秒刷新一次
 
     def game_loop(self):
-        apm = self.monitor.get_apm()
+        # 1. 获取分离的统计数据
+        kb_apm, mouse_apm = self.monitor.get_stats()
+        
+        # 混合总 APM 用于旧逻辑判断 (比如炼丹打断)
+        total_apm = kb_apm + mouse_apm
         
         # 如果正在炼丹
         if self.is_alchemying:
             # 高 APM 会打断炼丹
-            if apm > 50:
+            if total_apm > 50:
                 self.is_alchemying = False
-                logger.warning(f"炼丹失败: APM过高 ({apm})")
+                logger.warning(f"炼丹失败: APM过高 ({total_apm})")
                 self.show_notification("心神不宁，炼丹失败！(APM太高)")
                 self.set_state(PetState.COMBAT)
             else:
@@ -62,24 +66,39 @@ class PetWindow(QWidget):
                     self.finish_alchemy()
                 else:
                     self.set_state(PetState.ALCHEMY)
-                    # 炼丹中不获取常规收益，或者获取少量
-                    return # 跳过后续常规 update
+                    # 炼丹中不获取常规收益
+                    return 
 
-        gain_msg, is_combat = self.cultivator.update(apm)
+        # 2. 调用新的 Cultivator 更新逻辑
+        gain_msg, state_code = self.cultivator.update(kb_apm, mouse_apm)
         
-        # 检查有没有新的事件需要通知
+        # 3. 状态映射 (Cultivator 返回的是 int code, 转为 Enum)
+        # 0:IDLE, 1:COMBAT, 2:WORK, 3:READ
+        target_state = PetState.IDLE
+        if state_code == 1:
+            target_state = PetState.COMBAT
+            # 触发粒子: 爆发模式
+            self.effect_widget.set_mode("combat") # 预留
+        elif state_code == 2:
+            target_state = PetState.WORK
+            self.effect_widget.set_mode("work")   # 预留
+        elif state_code == 3:
+            target_state = PetState.READ
+            self.effect_widget.set_mode("read")   # 预留
+        else:
+            target_state = PetState.IDLE
+            self.effect_widget.set_mode("idle")   # 预留
+            
+        # 切换状态 (如果不是炼丹状态)
+        if not self.is_alchemying:
+            if self.current_state != target_state:
+                self.set_state(target_state)
+        
+        # 4. 检查事件日志
         if self.cultivator.events:
-            # 取出最新的一个事件显示 (防止刷屏)
             latest_event = self.cultivator.events[-1]
             self.show_notification(latest_event)
-            self.cultivator.events.clear() # 清空日志，或者你可以保留日志到界面查看
-        
-        if is_combat:
-            if self.current_state != PetState.COMBAT:
-                self.set_state(PetState.COMBAT)
-        else:
-            if self.current_state != PetState.IDLE:
-                self.set_state(PetState.IDLE)
+            self.cultivator.events.clear()
                 
     def start_alchemy(self):
         if self.is_alchemying:
@@ -121,7 +140,7 @@ class PetWindow(QWidget):
         self.setWindowFlags(
             Qt.WindowType.FramelessWindowHint |       # 无边框
             Qt.WindowType.WindowStaysOnTopHint |      # 始终置顶
-            Qt.WindowType.Tool                        # 工具窗口
+            Qt.WindowType.Tool                        # 工具窗口 (不在任务栏显示)
         )
         
         # 2. 核心透明设置 (macOS 关键)
@@ -212,7 +231,7 @@ class PetWindow(QWidget):
         # msg, _ = self.cultivator.update(0) # 不调用 update，只获取属性
         # update 会触发经验增长，hover 不应该触发
         
-        self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money} | APM: {self.monitor.get_apm_snapshot()}")
+        self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money}")
         self.info_label.setStyleSheet("""
             QLabel {
                 color: #FFD700;
