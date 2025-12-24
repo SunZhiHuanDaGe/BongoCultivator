@@ -95,4 +95,26 @@ pyinstaller BongoCultivation.spec
 4.  **Windows 环境**: 若需要 Windows 包，需要在 Windows 机器 (或虚拟机) 上重复上述步骤 (Python 代码通用的，但 PyInstaller 必须在目标系统上运行)。
 
 ---
-**Status**: Pending Implementation
+**Status**: Completed (macOS)
+
+## 完成情况 (Completion Log)
+*Date: 2025-12-24*
+
+### 1. 代码适配
+- 创建了 `src/utils/path_helper.py`，实现了 `get_resource_path` 和 `get_user_data_dir`。
+- 全面更新了 `pet_window.py` (资源加载, 存档路径), `item_manager.py` (JSON路径), `event_manager.py` (JSON路径), `database.py` (DB路径), `logger.py` (日志路径)，确保兼容 PyInstaller 的 `_MEIPASS` 环境。
+
+### 2. macOS 打包
+- 生成了 `assets/icon.icns` 图标文件。
+- 生成了 `BongoCultivation.spec`，配置了:
+    - 资源文件 (`assets`, `src/data`)
+    - 图标 (`icon.icns`)
+    - Bundle ID (`com.robin.bongo`)
+    - Info.plist 权限声明 (Accessibility, AppleEvents, InputMonitoring)。
+- 成功执行构建，生成了 `dist/BongoCultivation.app`。
+- 验证了应用包内包含必要的资源文件和 Python 依赖。
+
+### 3. Windows 平台
+- 由于当前环境为 macOS，无法直接构建 Windows `.exe`。
+- 代码层面的适配 (`path_helper`) 已兼容 Windows，只需在 Windows 机器上安装 PyInstaller 并运行相同的 Spec 生成命令 (需微调分隔符) 即可打包。
+

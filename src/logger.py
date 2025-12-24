@@ -11,10 +11,8 @@ def setup_logging():
     同时设置全局异常捕获钩子。
     """
     # 1. 确定日志目录
-    # 获取项目根目录 (假设 src 在根目录下)
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    project_root = os.path.dirname(current_dir)
-    log_dir = os.path.join(project_root, 'logs')
+    from src.utils.path_helper import get_user_data_dir
+    log_dir = os.path.join(get_user_data_dir(), 'logs')
     
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)

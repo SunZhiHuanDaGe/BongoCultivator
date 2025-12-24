@@ -5,10 +5,11 @@ from src.logger import logger
 
 class EventManager:
     def __init__(self, data_path=None):
+        from src.utils.path_helper import get_resource_path
+        
         if data_path is None:
             # 默认路径
-            script_dir = os.path.dirname(os.path.abspath(__file__))
-            data_path = os.path.join(script_dir, 'data', 'events.json')
+            data_path = get_resource_path(os.path.join('src', 'data', 'events.json'))
             
         self.events = []
         self.load_events(data_path)

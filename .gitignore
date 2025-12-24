@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+
+# Mac
+.DS_Store
+
+# Build Artifacts
+build/
+dist/
+
+# Logs
+logs/
+*.log
+
+# Database & Saves
+*.db
+user_data.db
+save_data.json
+save_data.json.bak
+
+# Virtual Env
+venv/
+env/
+.env
+
+# Crash reports
+crash_*.txt

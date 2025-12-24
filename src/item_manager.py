@@ -50,11 +50,12 @@ class ItemManager:
     def import_from_json(self):
         import json
         from src.database import db_manager
+        from src.utils.path_helper import get_resource_path
         
         # Try v2 first
-        json_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'items_v2.json')
+        json_path = get_resource_path(os.path.join('src', 'data', 'items_v2.json'))
         if not os.path.exists(json_path):
-             logger.warning("items_v2.json not found, skipping import.")
+             logger.warning(f"items_v2.json not found at {json_path}, skipping import.")
              return
 
         try:

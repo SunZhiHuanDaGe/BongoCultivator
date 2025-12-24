@@ -8,6 +8,7 @@ from src.input_monitor import InputMonitor
 from src.services.activity_recorder import ActivityRecorder
 from src.cultivator import Cultivator
 from src.logger import logger
+from src.utils.path_helper import get_resource_path, get_user_data_dir
 
 class PetWindow(QWidget):
     def __init__(self):
@@ -20,9 +21,7 @@ class PetWindow(QWidget):
         self.init_ui() # 必须先初始化UI
         
         # 路径处理
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        project_root = os.path.dirname(script_dir)
-        self.save_path = os.path.join(project_root, 'save_data.json')
+        self.save_path = os.path.join(get_user_data_dir(), 'save_data.json')
         
         self.cultivator.load_data(self.save_path)
         self.load_assets() # 只有在UI初始化后才能加载资源
@@ -522,9 +521,7 @@ class PetWindow(QWidget):
 
     def load_assets(self):
         # 资源路径
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        project_root = os.path.dirname(script_dir)
-        assets_path = os.path.join(project_root, 'assets')
+        assets_path = get_resource_path('assets')
         
         # 预加载所有状态图片
         self.state_images = {}

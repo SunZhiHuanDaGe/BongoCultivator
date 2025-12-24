@@ -1,11 +1,14 @@
 import sqlite3
 import os
 from src.logger import logger
+from src.utils.path_helper import get_user_data_dir
 
-DB_FILE = "user_data.db"
+DB_FILE = os.path.join(get_user_data_dir(), "user_data.db")
 
 class DatabaseManager:
-    def __init__(self, db_path=DB_FILE):
+    def __init__(self, db_path=None):
+        if db_path is None:
+            db_path = DB_FILE
         self.db_path = db_path
         self._init_db()
 
