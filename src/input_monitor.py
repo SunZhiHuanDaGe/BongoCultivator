@@ -18,6 +18,10 @@ class InputMonitor:
         self.kb_history = deque(maxlen=self.history_size)
         self.mouse_history = deque(maxlen=self.history_size)
         
+        # 累积计数 (用于数据持久化，独立于 APM 计算)
+        self._acc_kb_count = 0
+        self._acc_mouse_count = 0
+        
         # 监听器
         self.kb_listener = keyboard.Listener(on_press=self.on_press)
         self.kb_listener.daemon = True
@@ -65,16 +69,19 @@ class InputMonitor:
     def on_press(self, key):
         with self._lock:
             self._kb_count += 1
+            self._acc_kb_count += 1
 
     def on_click(self, x, y, button, pressed):
         if pressed:
             with self._lock:
                 self._mouse_count += 1
+                self._acc_mouse_count += 1
 
     def on_scroll(self, x, y, dx, dy):
         with self._lock:
              # 滚轮也算鼠标操作
             self._mouse_count += 1
+            self._acc_mouse_count += 1
 
     def get_stats(self):
         """
@@ -104,3 +111,14 @@ class InputMonitor:
         avg_ms = sum(self.mouse_history) / valid_seconds * 60
             
         return int(avg_kb), int(avg_ms)
+
+    def pop_accumulated_counts(self):
+        """
+        获取并重置累积计数 (用于数据库写入)
+        """
+        with self._lock:
+            kb = self._acc_kb_count
+            ms = self._acc_mouse_count
+            self._acc_kb_count = 0
+            self._acc_mouse_count = 0
+        return kb, ms

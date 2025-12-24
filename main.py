@@ -12,6 +12,10 @@ def main():
     logger.info("启动应用程序...")
     app = QApplication(sys.argv)
     
+    # 防止关闭唯一的可视窗口 (StatsWindow) 时导致程序退出
+    # 因为 PetWindow 是 Tool 类型，不被视为 Primary Window
+    app.setQuitOnLastWindowClosed(False)
+    
     # 可以在这里做一些全局配置，比如样式表
     
     pet = PetWindow()

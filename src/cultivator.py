@@ -39,6 +39,9 @@ class Cultivator:
             "drop": 0  # 寻宝天赋: +5% 掉落概率
         }
         
+        # 每日任务相关
+        self.daily_reward_claimed = None # 记录上次领奖日期 'YYYY-MM-DD'
+        
     # ... (properties methods) ...
 
     def modify_stat(self, stat, value):
@@ -108,6 +111,40 @@ class Cultivator:
         # 这里用简单的时间间隔: 8小时刷新一次
         if time.time() - self.last_market_refresh > 8 * 3600:
             self.refresh_market()
+
+    def claim_daily_work_reward(self, total_actions):
+        """
+        尝试领取每日“勤勉”奖励
+        :param total_actions: 今日总操作数 (keys + clicks)
+        :return: (bool success, str message)
+        """
+        import datetime
+        today_str = datetime.date.today().strftime("%Y-%m-%d")
+        
+        if self.daily_reward_claimed == today_str:
+            return False, "今日奖励已领取，明日再来吧！"
+            
+        # 阈值设定: 比如 2000 操作算“勤勉”
+        threshold = 2000 
+        if total_actions < threshold:
+            return False, f"功力未够！今日仅 {total_actions} 操作，需 {threshold} 方可领赏。"
+            
+        # 发放奖励
+        reward_money = 100
+        # 额外：如果操作非常多 (>10000)，给大奖
+        is_big_win = total_actions > 10000
+        if is_big_win:
+            reward_money = 500
+            
+        self.money += reward_money
+        self.daily_reward_claimed = today_str
+        
+        msg = f"天道酬勤！已领取今日薪俸: {reward_money} 灵石。"
+        if is_big_win:
+            msg += "\n(恐怖如斯！竟有如此肝帝！)"
+            
+        logger.info(f"领取每日奖励: {reward_money} 灵石")
+        return True, msg
 
     # ... (existing methods) ...
 
@@ -396,6 +433,7 @@ class Cultivator:
             "last_save_time": time.time(),
             "market_goods": self.market_goods,
             "last_market_refresh": self.last_market_refresh,
+            "daily_reward_claimed": self.daily_reward_claimed,
             "stats": {
                 "mind": self.mind,
                 "body": self.body,
@@ -428,6 +466,7 @@ class Cultivator:
                 self.inventory = data.get("inventory", {})
                 self.market_goods = data.get("market_goods", [])
                 self.last_market_refresh = data.get("last_market_refresh", 0)
+                self.daily_reward_claimed = data.get("daily_reward_claimed", None)
                 
                 stats = data.get("stats", {})
                 self.mind = stats.get("mind", 0)

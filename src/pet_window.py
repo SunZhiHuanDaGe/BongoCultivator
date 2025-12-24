@@ -5,6 +5,7 @@ from PyQt6.QtCore import Qt, QTimer, QPoint, QSize
 from PyQt6.QtGui import QPixmap, QAction, QMouseEvent, QCursor
 from src.state import PetState
 from src.input_monitor import InputMonitor
+from src.services.activity_recorder import ActivityRecorder
 from src.cultivator import Cultivator
 from src.logger import logger
 
@@ -35,6 +36,10 @@ class PetWindow(QWidget):
         monitor_started = self.monitor.start()
         if not monitor_started:
             self._maybe_prompt_input_permissions()
+            
+        # 启动活动记录器 (每分钟存库)
+        self.recorder = ActivityRecorder(self.monitor)
+        self.recorder.start()
         
         # 炼丹状态
         self.is_alchemying = False
@@ -45,7 +50,14 @@ class PetWindow(QWidget):
         self.game_timer.timeout.connect(self.game_loop)
         self.game_timer.start(1000) # 1秒刷新一次
         
+        self.game_timer = QTimer(self)
+        self.game_timer.timeout.connect(self.game_loop)
+        self.game_timer.start(1000) # 1秒刷新一次
+        
         self.idle_duration = 0 # 记录 IDLE 持续时间
+        
+        # Windows
+        self.stats_window = None
 
     def game_loop(self):
         # 1. 获取分离的统计数据
@@ -126,6 +138,15 @@ class PetWindow(QWidget):
         self.alchemy_window.move(x, y)
         self.alchemy_window.show()
 
+    def open_stats_window(self):
+        from src.ui.stats_window import StatsWindow
+        if self.stats_window is None:
+            self.stats_window = StatsWindow(cultivator=self.cultivator)
+            
+        self.stats_window.show()
+        self.stats_window.raise_()
+        self.stats_window.activateWindow()
+
     def start_alchemy_task(self, target_pill_id):
         if self.is_alchemying: return
         
@@ -191,6 +212,8 @@ class PetWindow(QWidget):
     def closeEvent(self, event):
         logger.info("程序关闭，保存数据...")
         self.cultivator.save_data(self.save_path)
+        if hasattr(self, 'recorder'):
+            self.recorder.stop()
         self.monitor.stop()
         super().closeEvent(event)
 
@@ -716,6 +739,11 @@ class PetWindow(QWidget):
         talent_action = QAction('个人属性', self)
         talent_action.triggered.connect(self.open_talent_window)
         menu.addAction(talent_action)
+        
+        # 统计数据
+        stats_action = QAction('修仙记录', self)
+        stats_action.triggered.connect(self.open_stats_window)
+        menu.addAction(stats_action)
         
         menu.addSeparator()
 
