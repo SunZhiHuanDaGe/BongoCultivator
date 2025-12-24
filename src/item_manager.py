@@ -134,6 +134,19 @@ class ItemManager:
                         
                     if tier in self.tier_lists:
                         self.tier_lists[tier][cat].append(item_id)
+            
+                # 3. Load Recipes
+                cursor.execute("SELECT * FROM recipes")
+                recipe_rows = cursor.fetchall()
+                for r_row in recipe_rows:
+                    res_id = r_row['result_item_id']
+                    if res_id in self.flat_items:
+                        ing_json = r_row['ingredients_json']
+                        if ing_json:
+                            self.flat_items[res_id]['recipe'] = json.loads(ing_json)
+                        # Could also load usage craft_time, success_rate if needed
+                        self.flat_items[res_id]['craft_time'] = r_row['craft_time']
+                        self.flat_items[res_id]['success_rate'] = r_row['success_rate']
                         
         except Exception as e:
             logger.error(f"Load from DB failed: {e}")

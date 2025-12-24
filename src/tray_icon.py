@@ -39,3 +39,5 @@ class SystemTray(QObject):
         menu.addAction(quit_action)
         
         self.tray_icon.setContextMenu(menu)
+    def set_tooltip(self, text):
+        self.tray_icon.setToolTip(text)

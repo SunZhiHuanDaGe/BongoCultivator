@@ -28,6 +28,7 @@ def main():
 
     # 初始化托盘图标
     tray = SystemTray(pet, app)
+    pet.set_tray(tray)
     
     # 3. 设置清理逻辑
     def signal_handler(signum, frame):

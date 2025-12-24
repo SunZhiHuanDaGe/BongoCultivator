@@ -126,7 +126,11 @@ class InventoryWindow(QWidget):
         for item_id, count in self.cultivator.inventory.items():
             if count > 0:
                 item_data = self.item_manager.get_item(item_id)
-                name = item_data["name"] if item_data else item_id
+                if item_data:
+                    name = item_data["name"]
+                else:
+                    # Fallback translation for legacy items
+                    name = self.translate_legacy_id(item_id)
                 
                 list_item = QListWidgetItem(f"{name} x{count}")
                 list_item.setData(Qt.ItemDataRole.UserRole, item_id) # Store ID
@@ -253,3 +257,28 @@ class InventoryWindow(QWidget):
             if self.cultivator.inventory[item_id] <= 0:
                 self.detail_label.setText("物品已用完")
                 self.use_btn.setEnabled(False)
+
+    def translate_legacy_id(self, item_id):
+        # 简单映射常见旧物品ID
+        legacy_map = {
+            "ore_copper": "铜矿石",
+            "ore_ice": "寒冰矿",
+            "water_rootless": "无根水",
+            "milk_earth": "地心乳",
+            "ice_century": "万年冰",
+            "herb_sun": "烈阳草",
+            "core_beast_2": "二阶兽丹",
+            "herb_foundation": "筑基草",
+            "flower_purple": "紫猴花",
+            "incense_lure": "引妖香",
+            "meat_beast": "妖兽肉",
+            "bamboo_thunder": "天雷竹",
+            "skin_snake": "蛇皮",
+            "date_fire": "火枣",
+            "herb_illusion": "幻心草",
+            "pill_peiyuan": "培元丹",
+            "pill_zhenyuan": "真元丹",
+            "pill_turtle": "龟息丹",
+            "pill_eye": "明目丹"
+        }
+        return legacy_map.get(item_id, item_id)

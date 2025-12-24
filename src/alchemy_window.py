@@ -94,7 +94,7 @@ class AlchemyWindow(QWidget):
     def refresh_recipes(self):
         self.recipe_list.clear()
         
-        tier = 1 if self.cultivator.layer_index == 0 else 2
+        tier = min(self.cultivator.layer_index, 8)
         # Show recipes for current tier (and maybe previous?)
         # Let's show current tier only for now to keep list clean
         

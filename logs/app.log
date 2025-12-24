@@ -2989,3 +2989,163 @@ AttributeError: 'Cultivator' object has no attribute 'layer'
 2025-12-24 17:08:16,302 [INFO] [cultivator.py:487] - 数据已保存至数据库
 2025-12-24 17:08:16,302 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
 2025-12-24 17:08:16,303 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766567296, Keys=0, Mouse=4
+2025-12-24 17:13:01,263 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-24 17:13:01,511 [INFO] [database.py:99] - 数据库初始化完成: all tables ready
+2025-12-24 17:13:01,512 [INFO] [item_manager.py:48] - Loaded 71 items from Database.
+2025-12-24 17:13:01,512 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-24 17:13:01,512 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,512 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,513 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,513 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,513 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,513 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,513 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,514 [INFO] [cultivator.py:417] - 触发特殊事件(未实装UI): 在坊市闲逛时，有人神秘兮兮地向你兜售“上古丹方”。
+2025-12-24 17:13:01,514 [INFO] [cultivator.py:417] - 触发特殊事件(未实装UI): 在坊市闲逛时，有人神秘兮兮地向你兜售“上古丹方”。
+2025-12-24 17:13:01,514 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,514 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,514 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,514 [INFO] [cultivator.py:417] - 触发特殊事件(未实装UI): 在坊市闲逛时，有人神秘兮兮地向你兜售“上古丹方”。
+2025-12-24 17:13:01,515 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,515 [INFO] [cultivator.py:417] - 触发特殊事件(未实装UI): 在坊市闲逛时，有人神秘兮兮地向你兜售“上古丹方”。
+2025-12-24 17:13:01,515 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,515 [INFO] [cultivator.py:417] - 触发特殊事件(未实装UI): 在坊市闲逛时，有人神秘兮兮地向你兜售“上古丹方”。
+2025-12-24 17:13:01,515 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,515 [INFO] [cultivator.py:417] - 触发特殊事件(未实装UI): 在坊市闲逛时，有人神秘兮兮地向你兜售“上古丹方”。
+2025-12-24 17:13:01,516 [INFO] [cultivator.py:417] - 触发特殊事件(未实装UI): 在坊市闲逛时，有人神秘兮兮地向你兜售“上古丹方”。
+2025-12-24 17:13:01,516 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,516 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,516 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,516 [INFO] [cultivator.py:417] - 触发特殊事件(未实装UI): 在坊市闲逛时，有人神秘兮兮地向你兜售“上古丹方”。
+2025-12-24 17:13:01,517 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,517 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,517 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,517 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,517 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,517 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,518 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:13:01,518 [INFO] [cultivator.py:417] - 触发特殊事件(未实装UI): 在坊市闲逛时，有人神秘兮兮地向你兜售“上古丹方”。
+2025-12-24 17:13:01,518 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:15:19,023 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-24 17:15:19,029 [INFO] [database.py:99] - 数据库初始化完成: all tables ready
+2025-12-24 17:15:19,034 [INFO] [main.py:12] - 启动应用程序...
+2025-12-24 17:15:19,189 [INFO] [pet_window.py:17] - 初始化 PetWindow...
+2025-12-24 17:15:19,190 [INFO] [item_manager.py:48] - Loaded 71 items from Database.
+2025-12-24 17:15:19,190 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-24 17:15:19,208 [INFO] [cultivator.py:118] - 坊市商品已刷新
+2025-12-24 17:15:19,265 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:15:19,266 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-24 17:15:23,067 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:15:26,059 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:15:27,059 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:15:30,058 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:15:33,059 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:15:33,059 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:15:37,059 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:15:41,058 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:15:47,059 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:15:47,059 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:15:48,059 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:15:50,059 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:15:52,229 [INFO] [cultivator.py:159] - 领取每日奖励: 500 灵石
+2025-12-24 17:15:55,058 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:15:55,059 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:15:56,058 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:15:56,059 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:15:57,059 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:15:57,059 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:15:59,058 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:15:59,059 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:16:00,059 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:16:01,058 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:16:02,058 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:16:05,058 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:16:09,059 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:16:13,059 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:16:14,058 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:16:15,059 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:16:19,561 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766567779, Keys=0, Mouse=100
+2025-12-24 17:16:21,451 [INFO] [pet_window.py:238] - 程序关闭，保存数据...
+2025-12-24 17:16:21,453 [INFO] [cultivator.py:497] - 数据已保存至数据库
+2025-12-24 17:16:21,453 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-24 17:16:21,454 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766567781, Keys=0, Mouse=2
+2025-12-24 17:16:48,380 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-24 17:16:48,386 [INFO] [database.py:99] - 数据库初始化完成: all tables ready
+2025-12-24 17:16:48,389 [INFO] [main.py:12] - 启动应用程序...
+2025-12-24 17:16:48,541 [INFO] [pet_window.py:17] - 初始化 PetWindow...
+2025-12-24 17:16:48,542 [INFO] [item_manager.py:48] - Loaded 71 items from Database.
+2025-12-24 17:16:48,542 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-24 17:16:48,559 [INFO] [cultivator.py:118] - 坊市商品已刷新
+2025-12-24 17:16:48,620 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:16:48,621 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-24 17:16:55,559 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:16:55,561 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:16:56,559 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:16:57,559 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:17:01,560 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:17:03,561 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:17:04,560 [DEBUG] [pet_window.py:574] - 切换状态: WORK
+2025-12-24 17:17:25,559 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:17:26,558 [DEBUG] [pet_window.py:574] - 切换状态: WORK
+2025-12-24 17:17:33,559 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:17:34,559 [DEBUG] [pet_window.py:574] - 切换状态: WORK
+2025-12-24 17:17:36,559 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:17:41,560 [DEBUG] [pet_window.py:574] - 切换状态: WORK
+2025-12-24 17:17:48,563 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766567868, Keys=231, Mouse=11
+2025-12-24 17:17:52,559 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:17:55,559 [DEBUG] [pet_window.py:574] - 切换状态: WORK
+2025-12-24 17:18:17,560 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:18:19,559 [DEBUG] [pet_window.py:574] - 切换状态: WORK
+2025-12-24 17:18:32,559 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:18:36,559 [DEBUG] [pet_window.py:574] - 切换状态: WORK
+2025-12-24 17:18:44,559 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:18:47,559 [DEBUG] [pet_window.py:574] - 切换状态: WORK
+2025-12-24 17:18:48,564 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766567928, Keys=240, Mouse=4
+2025-12-24 17:18:48,564 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:18:49,560 [DEBUG] [pet_window.py:574] - 切换状态: WORK
+2025-12-24 17:18:49,561 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:18:50,559 [DEBUG] [pet_window.py:574] - 切换状态: WORK
+2025-12-24 17:18:56,560 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:18:58,560 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:18:58,561 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:19:00,559 [DEBUG] [pet_window.py:574] - 切换状态: WORK
+2025-12-24 17:19:13,560 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:19:18,560 [INFO] [cultivator.py:409] - 触发随机事件: 行至一处荒废洞府，意外发现角落里散落着几枚灵石。
+2025-12-24 17:19:24,559 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:19:24,560 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:19:25,559 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:19:32,560 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:19:33,560 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:19:33,560 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:19:35,559 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:19:40,560 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:19:43,560 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:19:48,561 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766567988, Keys=114, Mouse=98
+2025-12-24 17:19:52,560 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:19:55,559 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:19:57,559 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:19:58,560 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:19:58,561 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:20:01,560 [DEBUG] [pet_window.py:574] - 切换状态: WORK
+2025-12-24 17:20:19,560 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:20:24,611 [INFO] [pet_window.py:238] - 程序关闭，保存数据...
+2025-12-24 17:20:24,612 [INFO] [cultivator.py:497] - 数据已保存至数据库
+2025-12-24 17:20:24,612 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-24 17:20:24,613 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766568024, Keys=129, Mouse=49
+2025-12-24 17:21:18,817 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-24 17:21:18,824 [INFO] [database.py:99] - 数据库初始化完成: all tables ready
+2025-12-24 17:21:18,827 [INFO] [main.py:12] - 启动应用程序...
+2025-12-24 17:21:18,980 [INFO] [pet_window.py:17] - 初始化 PetWindow...
+2025-12-24 17:21:18,981 [INFO] [item_manager.py:48] - Loaded 71 items from Database.
+2025-12-24 17:21:18,982 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-24 17:21:18,997 [INFO] [cultivator.py:118] - 坊市商品已刷新
+2025-12-24 17:21:19,056 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:21:19,057 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-24 17:21:20,078 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:21:21,060 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:21:24,059 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:21:27,060 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:21:29,128 [INFO] [pet_window.py:238] - 程序关闭，保存数据...
+2025-12-24 17:21:29,131 [INFO] [cultivator.py:497] - 数据已保存至数据库
+2025-12-24 17:21:29,131 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-24 17:21:29,132 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766568089, Keys=0, Mouse=11

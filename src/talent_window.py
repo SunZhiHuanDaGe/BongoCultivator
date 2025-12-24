@@ -22,7 +22,7 @@ class TalentWindow(QWidget):
         layout.setContentsMargins(20, 20, 20, 20)
         
         # 标题
-        title = QLabel("修炼属性 & 天赋")
+        title = QLabel("【凝神内视】")
         title.setStyleSheet("color: #FFD700; font-size: 18px; font-weight: bold;")
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(title)
@@ -32,9 +32,33 @@ class TalentWindow(QWidget):
         stat_frame.setStyleSheet("background-color: rgba(255, 255, 255, 10); border-radius: 5px;")
         stat_layout = QVBoxLayout(stat_frame)
         
+        # 境界显示
+        self.layer_label = QLabel()
+        self.layer_label.setStyleSheet("color: #FFAA00; font-size: 16px; font-weight: bold;")
+        stat_layout.addWidget(self.layer_label)
+
+        # 经验条
+        from PyQt6.QtWidgets import QProgressBar
+        self.exp_bar = QProgressBar()
+        self.exp_bar.setStyleSheet("""
+            QProgressBar {
+                border: 1px solid #555;
+                border-radius: 3px;
+                text-align: center;
+                color: white;
+                background-color: #222;
+                height: 15px;
+            }
+            QProgressBar::chunk {
+                background-color: #00AAFF;
+            }
+        """)
+        self.exp_bar.setFormat("%v / %m")
+        stat_layout.addWidget(self.exp_bar)
+
         self.mind_label = QLabel()
         self.body_label = QLabel()
-        self.aff_label = QLabel() # 好感度
+        self.aff_label = QLabel() 
         
         for lbl in [self.mind_label, self.body_label, self.aff_label]:
             lbl.setStyleSheet("color: white; font-size: 14px;")
@@ -60,14 +84,14 @@ class TalentWindow(QWidget):
         talent_layout.addLayout(self.exp_talent_widget)
         
         # 2. 掉落天赋
-        self.drop_talent_widget = self.create_talent_row("机缘 (掉率+5%)", "drop")
+        self.drop_talent_widget = self.create_talent_row("福源 (掉率+5%)", "drop")
         talent_layout.addLayout(self.drop_talent_widget)
         
         layout.addWidget(talent_frame)
         
         layout.addStretch()
         
-        close_btn = QPushButton("关闭")
+        close_btn = QPushButton("灵识归位")
         close_btn.setStyleSheet("""
             QPushButton {
                 background-color: transparent;
@@ -146,9 +170,15 @@ class TalentWindow(QWidget):
             
     def refresh_data(self):
         # 刷新基础属性
+        self.layer_label.setText(f"当前境界: {self.cultivator.current_layer} ({self.cultivator.layer_index}重)")
+        
+        self.exp_bar.setMaximum(self.cultivator.max_exp)
+        self.exp_bar.setValue(self.cultivator.exp)
+        self.exp_bar.setFormat(f"修为: %v / %m")
+        
         self.mind_label.setText(f"心魔: {self.cultivator.mind} / 100")
         self.body_label.setText(f"体魄: {self.cultivator.body}")
-        self.aff_label.setText(f"好感: {self.cultivator.affection}")
+        self.aff_label.setText(f"气运: {self.cultivator.affection}")
         
         # 刷新点数
         pts = self.cultivator.talent_points

@@ -345,16 +345,26 @@ class Cultivator:
             current_state_code = 2 
             base_exp = 5
             
-            # 好感度加成掉落率
-            drop_bonus = (self.affection * 0.002) + talent_drop_bonus # max +20% from aff, +5% * talent
+            # 好感度加成掉落率 (Plan 6: 降低 1/10)
+            # Base 0.5% per second (~once per 3 mins)
+            drop_bonus = (self.affection * 0.0002) + (talent_drop_bonus * 0.1) 
             
-            if random.random() < (0.05 + drop_bonus):
-                drop_id = self.item_manager.get_random_material(current_tier)
+            if random.random() < (0.005 + drop_bonus):
+                # Dynamic Drop Pool (Plan 6)
+                # 80% Current, 15% Low, 5% High
+                roll = random.random()
+                drop_tier = current_tier
+                if roll < 0.15 and current_tier > 0:
+                    drop_tier = current_tier - 1
+                elif roll > 0.95 and current_tier < 8:
+                    drop_tier = current_tier + 1
+                    
+                drop_id = self.item_manager.get_random_material(drop_tier)
                 if drop_id:
                     self.gain_item(drop_id)
                     name = self.item_manager.get_item_name(drop_id)
                     gain_msg = f"探险发现: {name}!"
-                    self.events.append(gain_msg) # 添加到事件日志以显示通知
+                    self.events.append(gain_msg)
                 
             if not gain_msg:
                 gain_msg = "+5 修为 (历练中)"

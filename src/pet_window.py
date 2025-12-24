@@ -58,6 +58,10 @@ class PetWindow(QWidget):
         
         # Windows
         self.stats_window = None
+        self.tray = None
+
+    def set_tray(self, tray):
+        self.tray = tray
 
     def game_loop(self):
         # 1. 获取分离的统计数据
@@ -119,7 +123,28 @@ class PetWindow(QWidget):
             else:
                 self.idle_duration = 0 # Reset on activity
         
-        # 4. 检查事件日志
+        # 4. Update Tray Tooltip
+        if self.tray:
+            # Format: 【筑基期】 EXP/MAX | 灵石: 100 | 状态: 历练
+            state_cn = {
+                PetState.IDLE: "闭关", PetState.WORK: "历练",
+                PetState.READ: "悟道", PetState.COMBAT: "斗法",
+                PetState.ALCHEMY: "炼丹", PetState.ASCEND: "渡劫"
+            }.get(self.current_state, "未知")
+            
+            tooltip = (
+                f"【{self.cultivator.current_layer}】\n"
+                f"修为: {self.cultivator.exp}/{self.cultivator.max_exp}\n"
+                f"灵石: {self.cultivator.money}\n"
+                f"状态: {state_cn}"
+            )
+            self.tray.set_tooltip(tooltip)
+
+        # 5. 检查事件日志
+        state_cn = { # Re-map for logic if needed or just pass
+             # ... existing logic ...
+        }
+        # Simplify checking events
         if self.cultivator.events:
             latest_event = self.cultivator.events[-1]
             self.show_notification(latest_event)
@@ -281,6 +306,7 @@ class PetWindow(QWidget):
         self.info_label.setGraphicsEffect(shadow)
         
         self.info_label.hide() # 默认隐藏
+        self.info_label.setWordWrap(True)
 
         # 6. 呼吸/悬浮动画定时器
         self.float_timer = QTimer(self)
@@ -461,21 +487,9 @@ class PetWindow(QWidget):
 
     # --- 鼠标悬停交互 ---
     def enterEvent(self, event):
-        # 鼠标移入：显示详细信息
-        self.info_label.show()
-        # msg, _ = self.cultivator.update(0) # 不调用 update，只获取属性
-        # update 会触发经验增长，hover 不应该触发
-        
-        self.info_label.setText(f"【{self.cultivator.current_layer}】\n灵石: {self.cultivator.money}")
-        self.info_label.setStyleSheet("""
-            QLabel {
-                color: #FFD700;
-                font-size: 15px;
-                font-weight: bold;
-                background-color: rgba(0, 0, 0, 0);
-                padding: 4px;
-            }
-        """)
+        # 鼠标移入：不再显示详细属性，保持清爽 (Plan 6)
+        # 仅当有通知时显示通知，或者是交互提示
+        # self.info_label.show() 
         super().enterEvent(event)
 
     def leaveEvent(self, event):
@@ -497,16 +511,14 @@ class PetWindow(QWidget):
         """)
         self.info_label.show()
         
-        # 2秒后如果鼠标不在上面，就隐藏
-        QTimer.singleShot(2000, self.hide_notification)
+        # 动态显示时长: 基础 3秒 + 每字 0.2秒
+        duration = 3000 + len(text) * 200
+        QTimer.singleShot(duration, self.hide_notification)
 
     def hide_notification(self):
-        # 如果鼠标不在窗口内，就隐藏
-        if not self.underMouse():
-            self.info_label.hide()
-        else:
-            # 如果鼠标还在，恢复成 hover 状态的显示 (避免通知文字一直卡着)
-            self.enterEvent(None) # 重新触发一次 hover 刷新逻辑
+        # 只有在非悬停状态下隐藏? 
+        # Plan 6: 实际上是对话框模式，显示完了就消失，不需要一直在
+        self.info_label.hide()
 
     def load_assets(self):
         # 资源路径
@@ -735,8 +747,8 @@ class PetWindow(QWidget):
             status_action.triggered.connect(self.open_talent_window) # 点击境界打开属性面板
             menu.addAction(status_action)
             
-        # 额外加一个属性入口，方便没点境界的时候查看
-        talent_action = QAction('个人属性', self)
+        # 额外加一个属性入口
+        talent_action = QAction('凝神内视', self)
         talent_action.triggered.connect(self.open_talent_window)
         menu.addAction(talent_action)
         
@@ -748,28 +760,27 @@ class PetWindow(QWidget):
         menu.addSeparator()
 
         # 炼丹
-        alchemy_action = QAction('闭关炼丹', self)
+        alchemy_action = QAction('开炉炼丹', self)
         alchemy_action.triggered.connect(self.open_alchemy_window)
         menu.addAction(alchemy_action)
 
-        # 打开背包
-        bag_action = QAction('储物袋', self)
+        # 打开背包 - 动态命名
+        # 化神期(4)及以上叫储物戒指，否则叫储物袋
+        bag_name = '储物戒指' if self.cultivator.layer_index >= 4 else '储物袋'
+        bag_action = QAction(bag_name, self)
         bag_action.triggered.connect(self.open_inventory)
         menu.addAction(bag_action)
         
-        # 坊市
-        market_action = QAction('修仙坊市', self)
+        # 坊市 - 动态命名
+        # 化神期(4)及以上叫多宝阁，否则叫修仙坊市
+        market_name = '多宝阁' if self.cultivator.layer_index >= 4 else '修仙坊市'
+        market_action = QAction(market_name, self)
         market_action.triggered.connect(self.open_market)
         menu.addAction(market_action)
         
         menu.addSeparator()
         
-        # 调试: 增加经验 (方便测试渡劫)
-        # debug_exp_action = QAction('修炼(Debug +50xp)', self)
-        # debug_exp_action.triggered.connect(lambda: self.cultivator.gain_exp(50))
-        # menu.addAction(debug_exp_action)
-        
-        quit_action = QAction('归隐山林 (退出)', self)
+        quit_action = QAction('云游四海 (退出)', self) # 原: 归隐山林
         quit_action.triggered.connect(QApplication.instance().quit)
         menu.addAction(quit_action)
         
