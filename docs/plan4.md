@@ -69,4 +69,20 @@ def max_exp(self):
 - 建议：将修为丹药改为 **增加当前等级 1% - 5% 的修为**，而不是固定数值。
 
 ---
-**Status**: Pending Implementation
+**Status**: Completed
+
+## 完成情况 (Completion Log)
+*Date: 2025-12-24*
+
+### 1. 数值基准落地
+- 经确认 `EXP_TABLE` (src/cultivator.py) 已符合炼气(1天) -> 大乘(152天)的规划。
+- 基础收益速率维持不变 (Active 5/s, Idle 1/s)，确保每日约 20w 修为的获取基准。
+- 修正了 `calculate_offline_progress` 的倍率 (2.5 -> 1.0) 以匹配挂机基准。
+
+### 2. 物品数值平衡
+- 更新了 `tools_generate_items.py` 算法：
+    - 丹药经验值 = 当前境界总修为上限的 1%。
+    - 区分了普通灵草(0.1%)、元果(0.5%)、丹药(1%) 的收益阶梯。
+- 重生成并导入了 `items_v2.json` 到数据库 (71种物品)。
+- 验证了各阶丹药的经验收益符合预期 (Tier 0: ~2000, Tier 2: ~60000)。
+

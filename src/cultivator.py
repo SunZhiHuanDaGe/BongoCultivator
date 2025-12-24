@@ -428,8 +428,8 @@ class Cultivator:
             
         diff = int(current_time - last_timestamp)
         if diff > 60: # 离线超过1分钟才结算
-            # 离线默认按打坐计算，但收益减半 (2.5 exp/s)
-            exp_gain = int(diff * 2.5)
+            # 离线默认按打坐计算，但收益减半 (1.0 exp/s, Plan 4 benchmark)
+            exp_gain = int(diff * 1.0)
             self.gain_exp(exp_gain)
             self.events.append(f"闭关结束，离线 {diff // 60} 分钟，获得 {exp_gain} 修为")
             
@@ -616,3 +616,59 @@ class Cultivator:
             self.events.append("【轮回】万法归一，重入灵途！")
         except Exception as e:
             logger.error(f"重置失败: {e}")
+    def process_secret_command(self, code):
+        """
+        处理作弊/秘籍指令
+        :param code: 输入的指令字符串
+        :return: (success: bool, message: str)
+        """
+        code = code.strip()
+        
+        # 1. isosyourdaddy -> 炼气(0) 到 筑基(1)
+        if code.lower() == "whosyourdaddy":
+            if self.layer_index == 0:
+                self.layer_index = 1
+                self.exp = 0
+                self.body += 5
+                self.mind = 0
+                self.talent_points += 1
+                msg = "【天道作弊】神力加持！你已直接晋升筑基期！"
+                self.events.append(msg)
+                return True, msg
+            else:
+                return False, "当前境界无法使用此密令 (仅炼气期可用)"
+                
+        # 2. 上上下下左左右右baba -> 筑基(1) 到 金丹(2)
+        elif code == "上上下下左左右右baba":
+            if self.layer_index == 1:
+                self.layer_index = 2
+                self.exp = 0
+                self.body += 10
+                self.mind = 0
+                self.talent_points += 1
+                msg = "【天道作弊】魂斗罗附体！你已直接晋升金丹大道！"
+                self.events.append(msg)
+                return True, msg
+            else:
+                return False, "当前境界无法使用此密令 (仅筑基期可用)"
+                
+        # 3. haiwangshabi -> 金丹(2) 到 元婴(3)
+        elif code == "haiwangshabi":
+            if self.layer_index == 2:
+                self.layer_index = 3
+                self.exp = 0
+                self.body += 20
+                self.mind = 0
+                self.talent_points += 1
+                msg = "【天道作弊】海王之力附体？你已直接晋升元婴老祖！"
+                self.events.append(msg)
+                return True, msg
+            else:
+                return False, "当前境界无法使用此密令 (仅金丹期可用)"
+                
+        # 4. reborn -> 重置 (Existing logic wrapper)
+        elif code.lower() == "laozibuganle":
+             self.reset_to_beginning()
+             return True, "已转世重修。"
+             
+        return False, "天机不可泄露 (无效密令)"

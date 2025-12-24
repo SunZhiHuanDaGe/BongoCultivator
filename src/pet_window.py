@@ -780,12 +780,28 @@ class PetWindow(QWidget):
         
         menu.addSeparator()
         
+        # 隐秘入口
+        secret_action = QAction('天机', self)
+        secret_action.triggered.connect(self.input_secret)
+        menu.addAction(secret_action)
+        
         quit_action = QAction('云游四海 (退出)', self) # 原: 归隐山林
         quit_action.triggered.connect(QApplication.instance().quit)
         menu.addAction(quit_action)
         
         menu.exec(pos)
 
+    def input_secret(self):
+        from PyQt6.QtWidgets import QInputDialog, QLineEdit
+        text, ok = QInputDialog.getText(self, "天机", "请输入密令:", QLineEdit.EchoMode.Normal, "")
+        if ok and text:
+            success, msg = self.cultivator.process_secret_command(text)
+            self.show_notification(msg)
+            if success:
+                # 播放音效或特效 (复用渡劫成功特效)
+                if "已转世" not in msg:
+                    self.effect_widget.trigger_breakthrough_success()
+                
     def on_attempt_breakthrough(self):
         # 1. Start Tribulation Effect first
         self.effect_widget.trigger_tribulation()

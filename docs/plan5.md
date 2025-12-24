@@ -44,7 +44,7 @@ def process_cheat_code(self, code):
             self.cultivator.exp = 0
             return "魂斗罗附体！你已直接晋升金丹大道！"
             
-    return "天机不可泄露 (无效密令)"
+    return "何方小辈竟敢窥视天道！速速退去！ (无效密令)"
 ```
 
 ### 步骤 3: 触发反馈
@@ -52,4 +52,24 @@ def process_cheat_code(self, code):
 - 显示通知消息。
 
 ---
-**Status**: Pending Implementation
+**Status**: Completed
+
+## 完成情况 (Completion Log)
+*Date: 2025-12-24*
+
+### 1. 秘籍逻辑实现
+- 在 `Cultivator` 中实现了 `process_secret_command`。
+- 支持以下指令 (严格校验当前境界)：
+    - `whosyourdaddy`: 炼气(0) -> 筑基(1)。
+    - `上上下下左左右右baba`: 筑基(1) -> 金丹(2)。
+    - `haiwangshabi`: 金丹(2) -> 元婴(3)。
+    - `reborn`: 重置为初始状态。
+
+### 2. UI 入口
+- 在右键菜单底部添加了隐藏选项 "天机"。
+- 点击弹出 `QInputDialog` 输入密令。
+- 成功后触发突破音效/特效。
+
+### 3. 验证
+- 通过 `tools_verify_cheats.py` 验证了所有代码的生效条件和晋升逻辑。
+

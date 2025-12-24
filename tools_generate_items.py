@@ -1,20 +1,46 @@
 import json
 import os
 
-TIERS = [
-    ("炼气", "Qi Refining", 1000, 50, 100),         # Name, EnName, BasePrice, BaseExp, BreakRate
-    ("筑基", "Foundation", 5000, 600, 500),
-    ("金丹", "Golden Core", 20000, 5000, 2000),
-    ("元婴", "Nascent Soul", 80000, 50000, 8000),
-    ("化神", "Spirit Severing", 300000, 500000, 30000),
-    ("炼虚", "Void Training", 1000000, 2000000, 100000),
-    ("合体", "Integration", 5000000, 10000000, 500000),
-    ("大乘", "Mahayana", 20000000, 50000000, 2000000),
-    ("渡劫", "Tribulation", 100000000, 200000000, 10000000)
+# Plan 4 EXP Table
+EXP_TABLE = [
+    200000,      # 0: 炼气
+    1400000,     # 1: 筑基
+    6000000,     # 2: 金丹
+    6000000,     # 3: 元婴
+    9000000,     # 4: 化神
+    13500000,    # 5: 炼虚
+    20250000,    # 6: 合体
+    30375000,    # 7: 大乘
+    999999999    # 8: 渡劫
+]
+
+# Tiers: Name, EnName, BasePrice, BaseExp (Calculated later), PillPrice
+# We will dynamic calc BaseExp in loop
+TIERS_INFO = [
+    ("炼气", "Qi Refining", 100),       
+    ("筑基", "Foundation", 500),
+    ("金丹", "Golden Core", 2000),
+    ("元婴", "Nascent Soul", 5000),
+    ("化神", "Spirit Severing", 10000),
+    ("炼虚", "Void Training", 20000),
+    ("合体", "Integration", 50000),
+    ("大乘", "Mahayana", 100000),
+    ("渡劫", "Tribulation", 500000)
 ]
 
 def generate_tier_items(tier_idx, tier_info):
-    name_cn, name_en, base_price, base_exp, pill_price = tier_info
+    name_cn, name_en, base_price_factor = tier_info
+    
+    # Calc Values
+    max_exp = EXP_TABLE[tier_idx] if tier_idx < len(EXP_TABLE) else EXP_TABLE[-1]
+    
+    # 丹药经验: 1% 当前等级总经验
+    base_exp = int(max_exp * 0.01)
+    
+    # 丹药价格: 基础因子 * 1.5
+    pill_price = int(base_price_factor * 1.5)
+    
+    base_price = base_price_factor # Material price base
     
     items = []
     pills = []
@@ -26,11 +52,11 @@ def generate_tier_items(tier_idx, tier_info):
     herb = {
         "id": f"herb_spirit_{tier_idx}",
         "name": f"{name_cn}灵草",
-        "type": "consumable",
+        "type": "consumable", # Or material, but consumable for exp
         "tier": tier_idx,
-        "price": int(base_price * 0.1),
+        "price": int(base_price),
         "desc": f"生长在灵气充裕之地的草药，适合{name_cn}期修士吞服。",
-        "effect": {"exp": int(base_exp * 0.1), "mind_dmg": 1}
+        "effect": {"exp": int(base_exp * 0.1), "mind_dmg": 1} # Herb gives 10% of pill
     }
     items.append(herb)
     
@@ -40,9 +66,9 @@ def generate_tier_items(tier_idx, tier_info):
         "name": f"{name_cn}元果",
         "type": "consumable",
         "tier": tier_idx,
-        "price": int(base_price * 0.5),
+        "price": int(base_price * 5),
         "desc": f"凝聚了天地日月的精华，{name_cn}期的大补之物。",
-        "effect": {"exp": int(base_exp * 0.3)}
+        "effect": {"exp": int(base_exp * 0.5)} # Fruit gives 50% of pill
     }
     items.append(fruit)
     
@@ -52,7 +78,7 @@ def generate_tier_items(tier_idx, tier_info):
         "name": f"{name_cn}妖丹",
         "type": "material",
         "tier": tier_idx,
-        "price": int(base_price * 0.8),
+        "price": int(base_price * 8),
         "desc": f"{name_cn}期妖兽的内丹，炼丹主材。"
     }
     items.append(monster_mat)
@@ -66,7 +92,7 @@ def generate_tier_items(tier_idx, tier_info):
         "type": "consumable",
         "tier": tier_idx,
         "price": pill_price,
-        "desc": f"大幅精进{name_cn}期修为。",
+        "desc": f"大幅精进{name_cn}期修为 (约1%)。",
         "effect": {"exp": base_exp},
         "recipe": {herb["id"]: 3}
     }
@@ -113,7 +139,8 @@ def generate_tier_items(tier_idx, tier_info):
     
     # 5. Breakthrough Pill (Next Tier)
     if tier_idx < 8:
-        next_tier_name = TIERS[tier_idx+1][0]
+        # Use TIERS_INFO for next name
+        next_tier_name = TIERS_INFO[tier_idx+1][0]
         pill_break = {
             "id": f"pill_break_{tier_idx}",
             "name": f"{next_tier_name}突破丹", # e.g. 筑基突破丹 (Targeting Next)
@@ -131,7 +158,7 @@ def generate_tier_items(tier_idx, tier_info):
 def main():
     full_data = {}
     
-    for idx, info in enumerate(TIERS):
+    for idx, info in enumerate(TIERS_INFO):
         key = f"tier_{idx}"
         mats, pills = generate_tier_items(idx, info)
         full_data[key] = {

@@ -3149,3 +3149,117 @@ AttributeError: 'Cultivator' object has no attribute 'layer'
 2025-12-24 17:21:29,131 [INFO] [cultivator.py:497] - 数据已保存至数据库
 2025-12-24 17:21:29,131 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
 2025-12-24 17:21:29,132 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766568089, Keys=0, Mouse=11
+2025-12-24 17:24:06,038 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-24 17:24:06,045 [INFO] [database.py:99] - 数据库初始化完成: all tables ready
+2025-12-24 17:24:06,048 [INFO] [main.py:12] - 启动应用程序...
+2025-12-24 17:24:06,183 [INFO] [pet_window.py:17] - 初始化 PetWindow...
+2025-12-24 17:24:06,184 [INFO] [item_manager.py:48] - Loaded 71 items from Database.
+2025-12-24 17:24:06,184 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-24 17:24:06,193 [INFO] [cultivator.py:118] - 坊市商品已刷新
+2025-12-24 17:24:06,248 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:24:06,249 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-24 17:24:10,061 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:24:12,971 [INFO] [pet_window.py:238] - 程序关闭，保存数据...
+2025-12-24 17:24:12,974 [INFO] [cultivator.py:497] - 数据已保存至数据库
+2025-12-24 17:24:12,974 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-24 17:24:12,976 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766568252, Keys=0, Mouse=21
+2025-12-24 17:24:55,783 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-24 17:24:55,783 [INFO] [database.py:99] - 数据库初始化完成: all tables ready
+2025-12-24 17:24:55,825 [INFO] [item_manager.py:96] - Successfully imported items from JSON to DB.
+2025-12-24 17:24:55,826 [INFO] [item_manager.py:48] - Loaded 71 items from Database.
+2025-12-24 17:24:55,827 [INFO] [item_manager.py:96] - Successfully imported items from JSON to DB.
+2025-12-24 17:27:21,822 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-24 17:27:21,828 [INFO] [database.py:99] - 数据库初始化完成: all tables ready
+2025-12-24 17:27:21,835 [INFO] [main.py:12] - 启动应用程序...
+2025-12-24 17:27:21,972 [INFO] [pet_window.py:17] - 初始化 PetWindow...
+2025-12-24 17:27:21,973 [INFO] [item_manager.py:48] - Loaded 71 items from Database.
+2025-12-24 17:27:21,973 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-24 17:27:21,982 [INFO] [cultivator.py:118] - 坊市商品已刷新
+2025-12-24 17:27:22,038 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:27:22,039 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-24 17:27:23,060 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:27:24,061 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:27:28,061 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:27:28,061 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:27:29,061 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:27:33,061 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:27:34,061 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:27:34,061 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:27:35,061 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:27:35,062 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:27:36,185 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:27:36,185 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:27:37,339 [INFO] [cultivator.py:159] - 领取每日奖励: 500 灵石
+2025-12-24 17:27:40,061 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:27:41,061 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:27:42,061 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:27:42,062 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:27:44,061 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:27:44,062 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:27:45,061 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:27:52,062 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:27:52,369 [INFO] [pet_window.py:238] - 程序关闭，保存数据...
+2025-12-24 17:27:52,371 [INFO] [cultivator.py:497] - 数据已保存至数据库
+2025-12-24 17:27:52,371 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-24 17:27:52,372 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766568472, Keys=0, Mouse=65
+2025-12-24 17:30:53,849 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-24 17:30:53,857 [INFO] [database.py:99] - 数据库初始化完成: all tables ready
+2025-12-24 17:30:53,858 [INFO] [item_manager.py:48] - Loaded 71 items from Database.
+2025-12-24 17:30:53,858 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-24 17:32:17,867 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-24 17:32:17,873 [INFO] [database.py:99] - 数据库初始化完成: all tables ready
+2025-12-24 17:32:17,879 [INFO] [main.py:12] - 启动应用程序...
+2025-12-24 17:32:18,012 [INFO] [pet_window.py:17] - 初始化 PetWindow...
+2025-12-24 17:32:18,013 [INFO] [item_manager.py:48] - Loaded 71 items from Database.
+2025-12-24 17:32:18,013 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-24 17:32:18,022 [INFO] [cultivator.py:118] - 坊市商品已刷新
+2025-12-24 17:32:18,077 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:32:18,078 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-24 17:32:22,062 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:32:22,063 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:32:27,062 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:32:27,062 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:32:27,627 [INFO] [cultivator.py:159] - 领取每日奖励: 500 灵石
+2025-12-24 17:32:29,062 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:32:29,062 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:32:30,061 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:32:30,062 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:32:31,062 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:32:31,553 [INFO] [pet_window.py:238] - 程序关闭，保存数据...
+2025-12-24 17:32:31,555 [INFO] [cultivator.py:497] - 数据已保存至数据库
+2025-12-24 17:32:31,555 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-24 17:32:31,557 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766568751, Keys=0, Mouse=12
+2025-12-24 17:32:33,825 [INFO] [logger.py:71] - 日志系统已启动 (Log system initialized).
+2025-12-24 17:32:33,828 [INFO] [database.py:99] - 数据库初始化完成: all tables ready
+2025-12-24 17:32:33,831 [INFO] [main.py:12] - 启动应用程序...
+2025-12-24 17:32:33,953 [INFO] [pet_window.py:17] - 初始化 PetWindow...
+2025-12-24 17:32:33,954 [INFO] [item_manager.py:48] - Loaded 71 items from Database.
+2025-12-24 17:32:33,954 [INFO] [event_manager.py:24] - 成功加载 4 个随机事件
+2025-12-24 17:32:33,963 [INFO] [cultivator.py:118] - 坊市商品已刷新
+2025-12-24 17:32:34,017 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:32:34,018 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-24 17:32:35,062 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:32:38,061 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:32:39,062 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:32:40,368 [INFO] [cultivator.py:159] - 领取每日奖励: 500 灵石
+2025-12-24 17:32:41,062 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:32:42,062 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:32:44,062 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:32:48,062 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:32:50,062 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:32:53,063 [DEBUG] [pet_window.py:574] - 切换状态: WORK
+2025-12-24 17:32:58,062 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:33:01,062 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:33:01,063 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:33:02,062 [DEBUG] [pet_window.py:574] - 切换状态: WORK
+2025-12-24 17:33:04,062 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:33:06,075 [DEBUG] [pet_window.py:574] - 切换状态: WORK
+2025-12-24 17:33:09,062 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:33:12,063 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:33:12,063 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:33:13,062 [DEBUG] [pet_window.py:574] - 切换状态: READ
+2025-12-24 17:33:14,063 [DEBUG] [pet_window.py:574] - 切换状态: IDLE
+2025-12-24 17:33:14,598 [INFO] [pet_window.py:238] - 程序关闭，保存数据...
+2025-12-24 17:33:14,601 [INFO] [cultivator.py:497] - 数据已保存至数据库
+2025-12-24 17:33:14,601 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-24 17:33:14,602 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766568794, Keys=47, Mouse=28
