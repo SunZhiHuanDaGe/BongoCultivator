@@ -121,3 +121,50 @@
 | 8 | 渡劫期 | 25600 |
 | 9 | 飞升 | 51200 |
 *注: 达到“渡劫期”圆满后，再次突破有望飞升（依据版本更新可能有所变动）。*
+
+
+生成图片素材的提示词：
+🎨 通用风格与角色描述 (必选)
+请把这段话加在每个 Prompt 的开头或中间，确保人物统一：
+
+(Character) A cute chibi cultivator character, wearing white traditional Hanfu robes with blue trim, black hair styled in a Daoist topknot bun. (Style) High-res pixel art style, 1024x1024 resolution, thick black contour outline, 2D game sprite asset. (Technical) Solid white background, crisp pixels, no anti-aliasing, sharp edges, isolated subject.
+
+1. 待机 (Idle)
+适用于 
+cultivator_idle.png
+。
+
+text
+A cute chibi cultivator character, wearing white traditional Hanfu robes with blue trim, black hair styled in a Daoist topknot bun.
+ACTION: Standing in a relaxed idle pose, breathing calmly, hands resting naturally by sides, facing forward.
+High-res pixel art style, 1024x1024 resolution, thick black contour outline, 2D game sprite asset.
+Solid white background, crisp pixels, no anti-aliasing, sharp edges, isolated subject.
+2. 行走 (Walk)
+适用于 
+cultivator_walk.png
+。
+
+text
+A cute chibi cultivator character, wearing white traditional Hanfu robes with blue trim, black hair styled in a Daoist topknot bun.
+ACTION: Walking forward cycle, dynamic confident stride, side view or 3/4 view.
+High-res pixel art style, 1024x1024 resolution, thick black contour outline, 2D game sprite asset.
+Solid white background, crisp pixels, no anti-aliasing, sharp edges, isolated subject.
+3. 炼丹 (Alchemy) - 两个版本
+适用于 
+cultivator_alchemy.png
+。根据您的需求，我提供了“普通”和“高阶”两个版本。
+
+版本 A：普通炼丹 (低境界/煮药感)
+
+text
+A cute chibi cultivator character, wearing white traditional Hanfu robes with blue trim, black hair styled in a Daoist topknot bun.
+ACTION: Sitting cross-legged on the floor, fanning a fire under a small simple copper pot, cooking medicinal herbs, light steam rising.
+High-res pixel art style, 1024x1024 resolution, thick black contour outline, 2D game sprite asset.
+Solid white background, crisp pixels, no anti-aliasing, sharp edges, isolated subject.
+版本 B：高阶炼丹 (炫酷大丹炉)
+
+text
+A cute chibi cultivator character, wearing white traditional Hanfu robes with blue trim, black hair styled in a Daoist topknot bun.
+ACTION: Casting magic spells in front of a massive, ornate golden furnace (Ding) with dragon carvings. The furnace is glowing with magical purple and blue aura, floating glowing pills.
+High-res pixel art style, 1024x1024 resolution, thick black contour outline, 2D game sprite asset.
+Solid white background, crisp pixels, no anti-aliasing, sharp edges, isolated subject.

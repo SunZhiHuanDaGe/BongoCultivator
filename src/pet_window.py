@@ -553,10 +553,17 @@ class PetWindow(QWidget):
         if os.path.exists(combat_path):
             self.state_images[PetState.COMBAT] = QPixmap(combat_path)
             
-        # ALCHEMY
-        alchemy_path = os.path.join(assets_path, 'cultivator_alchemy.png')
-        if os.path.exists(alchemy_path):
-            self.state_images[PetState.ALCHEMY] = QPixmap(alchemy_path)
+        # ALCHEMY (Load variants)
+        self.alchemy_images = {}
+        for variant in ['low', 'mid', 'high']:
+            path = os.path.join(assets_path, f'cultivator_alchemy_{variant}.png')
+            if os.path.exists(path):
+                self.alchemy_images[variant] = QPixmap(path)
+        
+        # Fallback alchemy default
+        alc_path = os.path.join(assets_path, 'cultivator_alchemy.png')
+        if os.path.exists(alc_path):
+             self.state_images[PetState.ALCHEMY] = QPixmap(alc_path)
 
         # WORK (Use walk as default)
         work_path = os.path.join(assets_path, 'cultivator_walk.png')
@@ -583,13 +590,31 @@ class PetWindow(QWidget):
             self.info_label.setText("资源缺失")
 
     def set_state(self, state: PetState):
-        if hasattr(self, 'state_images') and state in self.state_images:
+        if hasattr(self, 'state_images'):
             if getattr(self, 'current_state', None) != state:
                  logger.debug(f"切换状态: {state.name}")
             self.current_state = state
             
-            # Safe get pixmap with fallback to IDLE
-            pixmap = self.state_images.get(state)
+            pixmap = None
+            
+            # Special handling for Alchemy Tier
+            if state == PetState.ALCHEMY and hasattr(self, 'alchemy_images'):
+                # 0-2 (练气/筑基/金丹): Low
+                # 3-5 (元婴/化神/炼虚): Mid
+                # 6-8 (合体/大乘/渡劫): High
+                idx = self.cultivator.layer_index
+                if idx <= 2:
+                    pixmap = self.alchemy_images.get('low')
+                elif idx <= 5:
+                    pixmap = self.alchemy_images.get('mid')
+                else:
+                    pixmap = self.alchemy_images.get('high')
+            
+            # Fallback to standard logic if pixmap not set or not alchemy
+            if not pixmap:
+                pixmap = self.state_images.get(state)
+            
+            # Final fallback to IDLE
             if not pixmap and PetState.IDLE in self.state_images:
                 pixmap = self.state_images[PetState.IDLE]
             

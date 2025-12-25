@@ -14,12 +14,13 @@ plt.rcParams['axes.unicode_minus'] = False
 plt.style.use('dark_background')
 
 from src.services.stats_analyzer import stats_analyzer
+from src.ui.merit_tab import MeritTab
 
 class StatsWindow(QWidget):
     def __init__(self, cultivator=None, parent=None):
         super().__init__(parent)
         self.cultivator = cultivator
-        self.setWindowTitle("修炼记录 (Productivity Stats)")
+        self.setWindowTitle("修炼记录 - 天道酬勤")
         self.resize(600, 500)
         
         # Semi-transparent background
@@ -77,6 +78,10 @@ class StatsWindow(QWidget):
         self.tab_history = QWidget()
         self.init_tab_history()
         self.tabs.addTab(self.tab_history, "历史长河")
+        
+        # Tab 3: Merit (Achievements)
+        self.tab_merit = MeritTab(self.cultivator)
+        self.tabs.addTab(self.tab_merit, "功德簿")
         
         # Auto refresh logic
         self.timer = QTimer(self)

@@ -98,6 +98,30 @@ class DatabaseManager:
                     )
                 """)
 
+                # 6. Achievements
+                cursor.execute("""
+                    CREATE TABLE IF NOT EXISTS achievements (
+                        id TEXT PRIMARY KEY,
+                        category TEXT,
+                        name TEXT,
+                        desc TEXT,
+                        condition_type TEXT,
+                        condition_target TEXT,
+                        threshold INTEGER,
+                        reward_type TEXT,
+                        reward_value TEXT,
+                        is_hidden INTEGER DEFAULT 0,
+                        status INTEGER DEFAULT 0,
+                        unlocked_at INTEGER
+                    )
+                """)
+
+                # Migration for equipped_title
+                try:
+                    cursor.execute("ALTER TABLE player_status ADD COLUMN equipped_title TEXT")
+                except Exception:
+                    pass
+
                 conn.commit()
                 logger.info("数据库初始化完成: all tables ready")
         except Exception as e:

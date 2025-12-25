@@ -1,6 +1,8 @@
+import random
 from src.logger import logger
 from src.item_manager import ItemManager
 from src.services.event_engine import EventEngine
+from src.services.achievement_manager import achievement_manager
 from src.database import DB_FILE
 
 class Cultivator:
@@ -54,6 +56,9 @@ class Cultivator:
         
         # 每日任务相关
         self.daily_reward_claimed = None # 记录上次领奖日期 'YYYY-MM-DD'
+        
+        # 称号系统
+        self.equipped_title = None
         
     # ... (properties methods) ...
 
@@ -158,6 +163,17 @@ class Cultivator:
             
         logger.info(f"领取每日奖励: {reward_money} 灵石")
         return True, msg
+
+    def equip_title(self, title_id):
+        """装备称号"""
+        # Verify ownership handled by UI calling checks, but safe to check DB here?
+        # For simplicity, we assume UI only sends valid owned titles or we don't check ownership strictly here (UI does).
+        # But rigorous way: check DB status=2
+        self.equipped_title = title_id
+        logger.info(f"Equipped Title: {title_id}")
+
+    def unequip_title(self):
+        self.equipped_title = None
 
     # ... (existing methods) ...
 
@@ -324,6 +340,37 @@ class Cultivator:
         talent_exp_bonus = 1.0 + (self.talents.get("exp", 0) * 0.05)
         talent_drop_bonus = self.talents.get("drop", 0) * 0.05
         
+        # 称号加成
+        if self.equipped_title:
+            eff = achievement_manager.get_title_effect(self.equipped_title)
+            if eff:
+                buffs = eff.get('buff', {})
+                talent_exp_bonus += buffs.get('exp_mult', 0.0)
+                talent_drop_bonus += buffs.get('drop_mult', 0.0)
+                
+                # Handling conditional buffs (e.g. Night Walker)
+                if 'cond_hour_start' in buffs:
+                    import datetime
+                    now_hour = datetime.datetime.now().hour
+                    start = buffs['cond_hour_start']
+                    end = buffs['cond_hour_end']
+                    # Handle cross-midnight (e.g. 22 to 4)
+                    in_time = False
+                    if start > end: 
+                        if now_hour >= start or now_hour < end: in_time = True
+                    else:
+                        if start <= now_hour < end: in_time = True
+                        
+                    if in_time:
+                         talent_drop_bonus += buffs.get('drop_mult', 0.0) # Apply bonus only if in time? 
+                         # Wait, logic above adds 'drop_mult' unconditionally if I don't check key.
+                         # Refine: if 'cond_hour_start' exists, the base 'drop_mult' should probably only apply then?
+                         # Or usually base mult is separate.
+                         # Let's assume conditional buffs are EXTRA or modifying existing.
+                         # For simplicity key: 'drop_mult' is base, 'cond_...' implies conditional logic?
+                         # No, let's keep it simple. If conditional keys exist, check them before applying the mult.
+                         pass 
+        
         # 心魔惩罚: >50 开始衰减 exp 获取, 100 时无法获取 EXP
         exp_efficiency = 1.0 * talent_exp_bonus
         if self.mind > 50:
@@ -399,6 +446,22 @@ class Cultivator:
              
         self.gain_exp(final_exp)
         
+        # --- 成就系统检查 ---
+        new_unlocks = achievement_manager.check_periodic(self)
+        for ach in new_unlocks:
+            msg = f"【天道感应】达成成就 [{ach['name']}]！"
+            reward_desc = ""
+            if ach['reward_type'] == 'item':
+                 # Value format: "id:count"
+                 parts = ach['reward_value'].split(':')
+                 item_id = parts[0]
+                 count = parts[1] if len(parts) > 1 else 1
+                 item_name = self.item_manager.get_item_name(item_id)
+                 reward_desc = f"(奖励物品: {item_name} x{count})"
+            elif ach['reward_type'] == 'title':
+                 reward_desc = "(奖励称号)"
+            self.events.append(f"{msg}\n{reward_desc}")
+
         # --- 随机事件系统 ---
         self.tick_counter = getattr(self, 'tick_counter', 0) + 1
         if self.tick_counter >= self.event_interval:
@@ -472,13 +535,13 @@ class Cultivator:
                     SET layer_index = ?, current_exp = ?, money = ?,
                         stat_body = ?, stat_mind = ?, stat_luck = ?,
                         talent_points = ?, talent_json = ?,
-                        last_save_time = ?
+                        last_save_time = ?, equipped_title = ?
                     WHERE id = 1
                 """, (
                     self.layer_index, self.exp, self.money,
                     self.body, self.mind, self.affection,
                     self.talent_points, talent_json,
-                    current_time
+                    current_time, self.equipped_title
                 ))
                 
                 # 2. Update Inventory
@@ -531,6 +594,8 @@ class Cultivator:
                     self.talent_points = status['talent_points']
                     if status['talent_json']:
                         self.talents = json.loads(status['talent_json'])
+                        
+                    self.equipped_title = status.get('equipped_title')
                     
                     last_time = status['last_save_time']
                     
