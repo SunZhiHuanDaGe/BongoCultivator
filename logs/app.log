@@ -3800,3 +3800,693 @@ NameError: name 'random' is not defined
 2025-12-25 14:41:50,361 [INFO] [cultivator.py:566] - 数据已保存至数据库
 2025-12-25 14:41:50,361 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
 2025-12-25 14:41:50,362 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766644910, Keys=6, Mouse=157
+2025-12-25 15:15:24,735 [INFO] [logger.py:69] - 日志系统已启动 (Log system initialized).
+2025-12-25 15:15:24,744 [INFO] [database.py:126] - 数据库初始化完成: all tables ready
+2025-12-25 15:15:24,748 [INFO] [main.py:12] - 启动应用程序...
+2025-12-25 15:15:24,893 [INFO] [pet_window.py:18] - 初始化 PetWindow...
+2025-12-25 15:15:24,894 [INFO] [item_manager.py:48] - Loaded 113 items from Database.
+2025-12-25 15:15:24,895 [INFO] [event_engine.py:42] - EventEngine loaded 34 events, 0 history records.
+2025-12-25 15:15:24,904 [INFO] [cultivator.py:123] - 坊市商品已刷新
+2025-12-25 15:15:25,281 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:15:25,282 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-25 15:15:31,316 [DEBUG] [pet_window.py:625] - 切换状态: WORK
+2025-12-25 15:15:32,634 [INFO] [cultivator.py:686] - 玩家已转世重修 (数据重置)
+2025-12-25 15:15:34,316 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:15:42,316 [DEBUG] [pet_window.py:625] - 切换状态: READ
+2025-12-25 15:15:42,318 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:15:46,349 [DEBUG] [pet_window.py:625] - 切换状态: READ
+2025-12-25 15:15:46,349 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:15:48,316 [DEBUG] [pet_window.py:625] - 切换状态: WORK
+2025-12-25 15:15:51,317 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:15:56,316 [DEBUG] [pet_window.py:625] - 切换状态: READ
+2025-12-25 15:15:58,316 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:15:59,317 [DEBUG] [pet_window.py:625] - 切换状态: WORK
+2025-12-25 15:16:15,317 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:16:16,316 [DEBUG] [pet_window.py:625] - 切换状态: READ
+2025-12-25 15:16:19,316 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:16:24,820 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766646984, Keys=128, Mouse=66
+2025-12-25 15:16:29,316 [DEBUG] [pet_window.py:625] - 切换状态: READ
+2025-12-25 15:16:33,316 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:16:34,316 [DEBUG] [pet_window.py:625] - 切换状态: READ
+2025-12-25 15:16:36,316 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:16:38,317 [DEBUG] [pet_window.py:625] - 切换状态: READ
+2025-12-25 15:16:42,316 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:16:43,316 [DEBUG] [pet_window.py:625] - 切换状态: READ
+2025-12-25 15:16:43,317 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:16:51,317 [DEBUG] [pet_window.py:625] - 切换状态: WORK
+2025-12-25 15:17:06,117 [INFO] [main.py:35] - 用户强制退出 (SIGINT)
+2025-12-25 15:17:06,118 [INFO] [pet_window.py:238] - 程序关闭，保存数据...
+2025-12-25 15:17:06,121 [INFO] [cultivator.py:566] - 数据已保存至数据库
+2025-12-25 15:17:06,121 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-25 15:17:06,122 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766647026, Keys=75, Mouse=41
+2025-12-25 15:17:11,160 [INFO] [logger.py:69] - 日志系统已启动 (Log system initialized).
+2025-12-25 15:17:11,163 [INFO] [database.py:126] - 数据库初始化完成: all tables ready
+2025-12-25 15:17:11,167 [INFO] [main.py:12] - 启动应用程序...
+2025-12-25 15:17:11,305 [INFO] [pet_window.py:18] - 初始化 PetWindow...
+2025-12-25 15:17:11,306 [INFO] [item_manager.py:48] - Loaded 113 items from Database.
+2025-12-25 15:17:11,306 [INFO] [event_engine.py:42] - EventEngine loaded 34 events, 0 history records.
+2025-12-25 15:17:11,315 [INFO] [cultivator.py:123] - 坊市商品已刷新
+2025-12-25 15:17:11,686 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:17:11,687 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-25 15:17:17,817 [DEBUG] [pet_window.py:625] - 切换状态: WORK
+2025-12-25 15:17:23,817 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:17:34,817 [DEBUG] [pet_window.py:625] - 切换状态: READ
+2025-12-25 15:17:34,819 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:17:36,840 [DEBUG] [pet_window.py:625] - 切换状态: WORK
+2025-12-25 15:17:41,817 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:17:42,817 [DEBUG] [pet_window.py:625] - 切换状态: WORK
+2025-12-25 15:17:44,817 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:17:46,817 [DEBUG] [pet_window.py:625] - 切换状态: WORK
+2025-12-25 15:17:48,817 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:17:56,816 [DEBUG] [pet_window.py:625] - 切换状态: WORK
+2025-12-25 15:17:58,816 [DEBUG] [pet_window.py:625] - 切换状态: COMBAT
+2025-12-25 15:17:58,817 [DEBUG] [pet_window.py:625] - 切换状态: READ
+2025-12-25 15:18:00,818 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:18:01,817 [DEBUG] [pet_window.py:625] - 切换状态: WORK
+2025-12-25 15:18:11,821 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766647091, Keys=151, Mouse=14
+2025-12-25 15:18:19,817 [DEBUG] [pet_window.py:625] - 切换状态: IDLE
+2025-12-25 15:18:23,290 [INFO] [pet_window.py:238] - 程序关闭，保存数据...
+2025-12-25 15:18:23,291 [INFO] [cultivator.py:566] - 数据已保存至数据库
+2025-12-25 15:18:23,291 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-25 15:18:23,292 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766647103, Keys=40, Mouse=2
+2025-12-25 15:19:15,627 [INFO] [logger.py:69] - 日志系统已启动 (Log system initialized).
+2025-12-25 15:19:15,635 [INFO] [database.py:126] - 数据库初始化完成: all tables ready
+2025-12-25 15:19:15,639 [INFO] [main.py:12] - 启动应用程序...
+2025-12-25 15:19:15,784 [INFO] [pet_window.py:18] - 初始化 PetWindow...
+2025-12-25 15:19:15,785 [INFO] [item_manager.py:48] - Loaded 113 items from Database.
+2025-12-25 15:19:15,786 [INFO] [event_engine.py:42] - EventEngine loaded 34 events, 0 history records.
+2025-12-25 15:19:15,795 [INFO] [cultivator.py:123] - 坊市商品已刷新
+2025-12-25 15:19:16,182 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:19:16,184 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-25 15:19:17,238 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:19:19,317 [DEBUG] [pet_window.py:629] - 切换状态: WORK
+2025-12-25 15:19:20,349 [INFO] [cultivator.py:686] - 玩家已转世重修 (数据重置)
+2025-12-25 15:19:22,355 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:19:24,317 [DEBUG] [pet_window.py:629] - 切换状态: WORK
+2025-12-25 15:19:27,317 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:19:28,316 [DEBUG] [pet_window.py:629] - 切换状态: WORK
+2025-12-25 15:19:28,317 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:19:33,317 [DEBUG] [pet_window.py:629] - 切换状态: WORK
+2025-12-25 15:19:35,110 [INFO] [cultivator.py:686] - 玩家已转世重修 (数据重置)
+2025-12-25 15:19:36,317 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:19:39,317 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:19:39,318 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:19:40,317 [DEBUG] [pet_window.py:629] - 切换状态: WORK
+2025-12-25 15:19:44,316 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:19:45,318 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:19:47,317 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:19:48,317 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:19:50,317 [DEBUG] [pet_window.py:629] - 切换状态: COMBAT
+2025-12-25 15:19:50,318 [DEBUG] [pet_window.py:629] - 切换状态: WORK
+2025-12-25 15:19:52,317 [DEBUG] [pet_window.py:629] - 切换状态: COMBAT
+2025-12-25 15:19:52,317 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:19:53,317 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:19:54,316 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:19:54,317 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:19:56,317 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:19:56,317 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:19:57,317 [DEBUG] [pet_window.py:629] - 切换状态: WORK
+2025-12-25 15:19:58,317 [DEBUG] [pet_window.py:629] - 切换状态: COMBAT
+2025-12-25 15:19:58,318 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:20:01,317 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:20:03,317 [DEBUG] [pet_window.py:629] - 切换状态: COMBAT
+2025-12-25 15:20:04,317 [DEBUG] [pet_window.py:629] - 切换状态: WORK
+2025-12-25 15:20:15,822 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766647215, Keys=126, Mouse=71
+2025-12-25 15:20:20,318 [DEBUG] [pet_window.py:629] - 切换状态: COMBAT
+2025-12-25 15:20:20,318 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:20:26,317 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:20:29,317 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:20:29,318 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:20:39,317 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:20:39,318 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:20:44,316 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:20:47,317 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:20:49,318 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:20:51,317 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:20:52,317 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:20:57,317 [DEBUG] [pet_window.py:629] - 切换状态: COMBAT
+2025-12-25 15:20:57,318 [DEBUG] [pet_window.py:629] - 切换状态: WORK
+2025-12-25 15:21:01,318 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:21:03,317 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:21:03,318 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:21:07,317 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:21:11,316 [DEBUG] [pet_window.py:629] - 切换状态: COMBAT
+2025-12-25 15:21:11,317 [DEBUG] [pet_window.py:629] - 切换状态: WORK
+2025-12-25 15:21:15,817 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766647275, Keys=62, Mouse=143
+2025-12-25 15:21:16,318 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:21:20,317 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:21:24,317 [DEBUG] [pet_window.py:629] - 切换状态: COMBAT
+2025-12-25 15:21:24,317 [DEBUG] [pet_window.py:629] - 切换状态: WORK
+2025-12-25 15:21:26,316 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:21:27,317 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:21:28,760 [INFO] [pet_window.py:242] - 程序关闭，保存数据...
+2025-12-25 15:21:28,762 [INFO] [cultivator.py:566] - 数据已保存至数据库
+2025-12-25 15:21:28,762 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-25 15:21:28,764 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766647288, Keys=5, Mouse=13
+2025-12-25 15:23:41,293 [INFO] [logger.py:69] - 日志系统已启动 (Log system initialized).
+2025-12-25 15:23:41,299 [INFO] [database.py:126] - 数据库初始化完成: all tables ready
+2025-12-25 15:23:41,304 [INFO] [main.py:12] - 启动应用程序...
+2025-12-25 15:23:41,450 [INFO] [pet_window.py:18] - 初始化 PetWindow...
+2025-12-25 15:23:41,451 [INFO] [item_manager.py:48] - Loaded 113 items from Database.
+2025-12-25 15:23:41,452 [INFO] [event_engine.py:42] - EventEngine loaded 34 events, 0 history records.
+2025-12-25 15:23:41,462 [INFO] [cultivator.py:123] - 坊市商品已刷新
+2025-12-25 15:23:41,840 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:23:41,841 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-25 15:23:43,017 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:23:43,817 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:23:45,817 [DEBUG] [pet_window.py:629] - 切换状态: WORK
+2025-12-25 15:23:46,636 [INFO] [cultivator.py:686] - 玩家已转世重修 (数据重置)
+2025-12-25 15:23:48,818 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:23:50,818 [DEBUG] [pet_window.py:629] - 切换状态: WORK
+2025-12-25 15:23:54,820 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:23:58,818 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:23:58,985 [INFO] [pet_window.py:242] - 程序关闭，保存数据...
+2025-12-25 15:23:58,987 [INFO] [cultivator.py:566] - 数据已保存至数据库
+2025-12-25 15:23:58,988 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-25 15:23:58,989 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766647438, Keys=29, Mouse=7
+2025-12-25 15:27:47,871 [INFO] [logger.py:69] - 日志系统已启动 (Log system initialized).
+2025-12-25 15:27:47,877 [INFO] [database.py:126] - 数据库初始化完成: all tables ready
+2025-12-25 15:27:47,886 [INFO] [main.py:12] - 启动应用程序...
+2025-12-25 15:27:48,023 [INFO] [pet_window.py:18] - 初始化 PetWindow...
+2025-12-25 15:27:48,025 [INFO] [item_manager.py:48] - Loaded 113 items from Database.
+2025-12-25 15:27:48,025 [INFO] [event_engine.py:42] - EventEngine loaded 34 events, 0 history records.
+2025-12-25 15:27:48,034 [INFO] [cultivator.py:123] - 坊市商品已刷新
+2025-12-25 15:27:48,419 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:27:48,420 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-25 15:27:49,394 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:27:51,318 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:27:54,319 [DEBUG] [pet_window.py:629] - 切换状态: WORK
+2025-12-25 15:27:56,320 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:27:58,318 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:27:59,319 [DEBUG] [pet_window.py:629] - 切换状态: IDLE
+2025-12-25 15:28:01,318 [DEBUG] [pet_window.py:629] - 切换状态: WORK
+2025-12-25 15:28:03,320 [DEBUG] [pet_window.py:629] - 切换状态: COMBAT
+2025-12-25 15:28:03,320 [DEBUG] [pet_window.py:629] - 切换状态: READ
+2025-12-25 15:28:04,917 [INFO] [pet_window.py:242] - 程序关闭，保存数据...
+2025-12-25 15:28:04,918 [INFO] [cultivator.py:566] - 数据已保存至数据库
+2025-12-25 15:28:04,918 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-25 15:28:04,919 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766647684, Keys=10, Mouse=14
+2025-12-25 15:29:48,702 [INFO] [logger.py:69] - 日志系统已启动 (Log system initialized).
+2025-12-25 15:29:48,709 [INFO] [database.py:126] - 数据库初始化完成: all tables ready
+2025-12-25 15:29:48,713 [INFO] [main.py:12] - 启动应用程序...
+2025-12-25 15:29:48,854 [INFO] [pet_window.py:18] - 初始化 PetWindow...
+2025-12-25 15:29:48,855 [INFO] [item_manager.py:48] - Loaded 113 items from Database.
+2025-12-25 15:29:48,856 [INFO] [event_engine.py:42] - EventEngine loaded 34 events, 0 history records.
+2025-12-25 15:29:48,864 [INFO] [cultivator.py:123] - 坊市商品已刷新
+2025-12-25 15:29:49,057 [INFO] [pet_window.py:599] - Loaded tribulation asset 0: tribulation_0_foundation.png
+2025-12-25 15:29:49,108 [INFO] [pet_window.py:599] - Loaded tribulation asset 1: tribulation_1_goldcore.png
+2025-12-25 15:29:49,160 [INFO] [pet_window.py:599] - Loaded tribulation asset 2: tribulation_2_nascentsoul.png
+2025-12-25 15:29:49,160 [DEBUG] [pet_window.py:601] - Tribulation asset missing: tribulation_3_divine.png
+2025-12-25 15:29:49,160 [DEBUG] [pet_window.py:601] - Tribulation asset missing: tribulation_4_void.png
+2025-12-25 15:29:49,160 [DEBUG] [pet_window.py:601] - Tribulation asset missing: tribulation_5_integration.png
+2025-12-25 15:29:49,160 [DEBUG] [pet_window.py:601] - Tribulation asset missing: tribulation_6_mahayana.png
+2025-12-25 15:29:49,160 [DEBUG] [pet_window.py:601] - Tribulation asset missing: tribulation_7_calamity.png
+2025-12-25 15:29:49,160 [DEBUG] [pet_window.py:601] - Tribulation asset missing: tribulation_8_ascension.png
+2025-12-25 15:29:49,160 [INFO] [pet_window.py:603] - Total tribulation images loaded: 3. Keys: [0, 1, 2]
+2025-12-25 15:29:49,262 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 15:29:49,264 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-25 15:29:54,318 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 15:29:54,624 [INFO] [cultivator.py:686] - 玩家已转世重修 (数据重置)
+2025-12-25 15:29:56,319 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 15:29:58,318 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 15:29:58,319 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 15:29:59,319 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 15:29:59,320 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 15:30:00,320 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 15:30:03,319 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 15:30:10,319 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 15:30:10,322 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 15:30:12,318 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 15:30:12,318 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 15:30:13,319 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 15:30:13,694 [INFO] [pet_window.py:243] - 程序关闭，保存数据...
+2025-12-25 15:30:13,696 [INFO] [cultivator.py:566] - 数据已保存至数据库
+2025-12-25 15:30:13,696 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-25 15:30:13,697 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766647813, Keys=45, Mouse=13
+2025-12-25 15:32:03,123 [INFO] [logger.py:69] - 日志系统已启动 (Log system initialized).
+2025-12-25 15:32:03,128 [INFO] [database.py:126] - 数据库初始化完成: all tables ready
+2025-12-25 15:32:03,133 [INFO] [main.py:12] - 启动应用程序...
+2025-12-25 15:32:03,264 [INFO] [pet_window.py:18] - 初始化 PetWindow...
+2025-12-25 15:32:03,265 [INFO] [item_manager.py:48] - Loaded 113 items from Database.
+2025-12-25 15:32:03,266 [INFO] [event_engine.py:42] - EventEngine loaded 34 events, 0 history records.
+2025-12-25 15:32:03,275 [INFO] [cultivator.py:123] - 坊市商品已刷新
+2025-12-25 15:32:03,469 [INFO] [pet_window.py:599] - Loaded tribulation asset 0: tribulation_0_foundation.png
+2025-12-25 15:32:03,507 [INFO] [pet_window.py:599] - Loaded tribulation asset 1: tribulation_1_goldcore.png
+2025-12-25 15:32:03,567 [INFO] [pet_window.py:599] - Loaded tribulation asset 2: tribulation_2_nascentsoul.png
+2025-12-25 15:32:03,568 [DEBUG] [pet_window.py:601] - Tribulation asset missing: tribulation_3_divine.png
+2025-12-25 15:32:03,568 [DEBUG] [pet_window.py:601] - Tribulation asset missing: tribulation_4_void.png
+2025-12-25 15:32:03,568 [DEBUG] [pet_window.py:601] - Tribulation asset missing: tribulation_5_integration.png
+2025-12-25 15:32:03,568 [DEBUG] [pet_window.py:601] - Tribulation asset missing: tribulation_6_mahayana.png
+2025-12-25 15:32:03,568 [DEBUG] [pet_window.py:601] - Tribulation asset missing: tribulation_7_calamity.png
+2025-12-25 15:32:03,568 [DEBUG] [pet_window.py:601] - Tribulation asset missing: tribulation_8_ascension.png
+2025-12-25 15:32:03,568 [INFO] [pet_window.py:603] - Total tribulation images loaded: 3. Keys: [0, 1, 2]
+2025-12-25 15:32:03,665 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 15:32:03,667 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-25 15:32:05,812 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 15:32:06,817 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 15:32:08,819 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 15:32:10,820 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 15:32:10,820 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 15:32:12,254 [INFO] [pet_window.py:243] - 程序关闭，保存数据...
+2025-12-25 15:32:12,256 [INFO] [cultivator.py:566] - 数据已保存至数据库
+2025-12-25 15:32:12,256 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-25 15:32:12,257 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766647932, Keys=5, Mouse=8
+2025-12-25 15:43:45,266 [INFO] [logger.py:69] - 日志系统已启动 (Log system initialized).
+2025-12-25 15:43:45,272 [INFO] [database.py:126] - 数据库初始化完成: all tables ready
+2025-12-25 15:43:45,276 [INFO] [main.py:12] - 启动应用程序...
+2025-12-25 15:43:45,412 [INFO] [pet_window.py:18] - 初始化 PetWindow...
+2025-12-25 15:43:45,413 [INFO] [item_manager.py:48] - Loaded 113 items from Database.
+2025-12-25 15:43:45,413 [INFO] [event_engine.py:42] - EventEngine loaded 34 events, 0 history records.
+2025-12-25 15:43:45,422 [INFO] [cultivator.py:123] - 坊市商品已刷新
+2025-12-25 15:43:45,605 [INFO] [pet_window.py:599] - Loaded tribulation asset 0: tribulation_0_foundation.png
+2025-12-25 15:43:45,642 [INFO] [pet_window.py:599] - Loaded tribulation asset 1: tribulation_1_goldcore.png
+2025-12-25 15:43:45,695 [INFO] [pet_window.py:599] - Loaded tribulation asset 2: tribulation_2_nascentsoul.png
+2025-12-25 15:43:45,703 [INFO] [pet_window.py:599] - Loaded tribulation asset 3: tribulation_3_divine.png
+2025-12-25 15:43:45,714 [INFO] [pet_window.py:599] - Loaded tribulation asset 4: tribulation_4_void.png
+2025-12-25 15:43:45,721 [INFO] [pet_window.py:599] - Loaded tribulation asset 5: tribulation_5_integration.png
+2025-12-25 15:43:45,732 [INFO] [pet_window.py:599] - Loaded tribulation asset 6: tribulation_6_mahayana.png
+2025-12-25 15:43:45,744 [INFO] [pet_window.py:599] - Loaded tribulation asset 7: tribulation_7_calamity.png
+2025-12-25 15:43:45,758 [INFO] [pet_window.py:599] - Loaded tribulation asset 8: tribulation_8_ascension.png
+2025-12-25 15:43:45,758 [INFO] [pet_window.py:603] - Total tribulation images loaded: 9. Keys: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+2025-12-25 15:43:45,855 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 15:43:45,856 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-25 15:43:50,821 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 15:43:58,822 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 15:43:59,822 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 15:44:00,578 [INFO] [pet_window.py:243] - 程序关闭，保存数据...
+2025-12-25 15:44:00,580 [INFO] [cultivator.py:566] - 数据已保存至数据库
+2025-12-25 15:44:00,581 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-25 15:44:00,582 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766648640, Keys=33, Mouse=7
+2025-12-25 15:48:30,499 [INFO] [logger.py:69] - 日志系统已启动 (Log system initialized).
+2025-12-25 15:48:30,504 [INFO] [database.py:126] - 数据库初始化完成: all tables ready
+2025-12-25 15:48:30,509 [INFO] [main.py:12] - 启动应用程序...
+2025-12-25 15:48:30,644 [INFO] [pet_window.py:18] - 初始化 PetWindow...
+2025-12-25 15:48:30,645 [INFO] [item_manager.py:48] - Loaded 113 items from Database.
+2025-12-25 15:48:30,646 [INFO] [event_engine.py:42] - EventEngine loaded 34 events, 0 history records.
+2025-12-25 15:48:30,655 [INFO] [cultivator.py:123] - 坊市商品已刷新
+2025-12-25 15:48:30,839 [INFO] [pet_window.py:599] - Loaded tribulation asset 0: tribulation_0_foundation.png
+2025-12-25 15:48:30,875 [INFO] [pet_window.py:599] - Loaded tribulation asset 1: tribulation_1_goldcore.png
+2025-12-25 15:48:30,886 [INFO] [pet_window.py:599] - Loaded tribulation asset 2: tribulation_2_nascentsoul.png
+2025-12-25 15:48:30,894 [INFO] [pet_window.py:599] - Loaded tribulation asset 3: tribulation_3_divine.png
+2025-12-25 15:48:30,904 [INFO] [pet_window.py:599] - Loaded tribulation asset 4: tribulation_4_void.png
+2025-12-25 15:48:30,912 [INFO] [pet_window.py:599] - Loaded tribulation asset 5: tribulation_5_integration.png
+2025-12-25 15:48:30,924 [INFO] [pet_window.py:599] - Loaded tribulation asset 6: tribulation_6_mahayana.png
+2025-12-25 15:48:30,936 [INFO] [pet_window.py:599] - Loaded tribulation asset 7: tribulation_7_calamity.png
+2025-12-25 15:48:30,945 [INFO] [pet_window.py:599] - Loaded tribulation asset 8: tribulation_8_ascension.png
+2025-12-25 15:48:30,945 [INFO] [pet_window.py:603] - Total tribulation images loaded: 9. Keys: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+2025-12-25 15:48:31,040 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 15:48:31,042 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-25 15:48:36,837 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 15:48:41,823 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 15:48:42,822 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 15:48:43,667 [INFO] [pet_window.py:243] - 程序关闭，保存数据...
+2025-12-25 15:48:43,668 [INFO] [cultivator.py:566] - 数据已保存至数据库
+2025-12-25 15:48:43,668 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-25 15:48:43,669 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766648923, Keys=19, Mouse=7
+2025-12-25 15:50:50,178 [INFO] [logger.py:69] - 日志系统已启动 (Log system initialized).
+2025-12-25 15:50:50,184 [INFO] [database.py:126] - 数据库初始化完成: all tables ready
+2025-12-25 15:50:50,188 [INFO] [main.py:12] - 启动应用程序...
+2025-12-25 15:50:50,332 [INFO] [pet_window.py:18] - 初始化 PetWindow...
+2025-12-25 15:50:50,333 [INFO] [item_manager.py:48] - Loaded 113 items from Database.
+2025-12-25 15:50:50,333 [INFO] [event_engine.py:42] - EventEngine loaded 34 events, 0 history records.
+2025-12-25 15:50:50,342 [INFO] [cultivator.py:123] - 坊市商品已刷新
+2025-12-25 15:50:50,528 [INFO] [pet_window.py:599] - Loaded tribulation asset 0: tribulation_0_foundation.png
+2025-12-25 15:50:50,565 [INFO] [pet_window.py:599] - Loaded tribulation asset 1: tribulation_1_goldcore.png
+2025-12-25 15:50:50,577 [INFO] [pet_window.py:599] - Loaded tribulation asset 2: tribulation_2_nascentsoul.png
+2025-12-25 15:50:50,584 [INFO] [pet_window.py:599] - Loaded tribulation asset 3: tribulation_3_divine.png
+2025-12-25 15:50:50,595 [INFO] [pet_window.py:599] - Loaded tribulation asset 4: tribulation_4_void.png
+2025-12-25 15:50:50,602 [INFO] [pet_window.py:599] - Loaded tribulation asset 5: tribulation_5_integration.png
+2025-12-25 15:50:50,614 [INFO] [pet_window.py:599] - Loaded tribulation asset 6: tribulation_6_mahayana.png
+2025-12-25 15:50:50,626 [INFO] [pet_window.py:599] - Loaded tribulation asset 7: tribulation_7_calamity.png
+2025-12-25 15:50:50,635 [INFO] [pet_window.py:599] - Loaded tribulation asset 8: tribulation_8_ascension.png
+2025-12-25 15:50:50,635 [INFO] [pet_window.py:603] - Total tribulation images loaded: 9. Keys: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+2025-12-25 15:50:50,731 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 15:50:50,732 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 15:50:50,733 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-25 15:50:51,785 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 15:50:51,785 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 15:50:52,823 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 15:50:52,824 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 15:50:53,822 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 15:50:53,823 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 15:50:53,823 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 15:50:53,824 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 15:50:59,822 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 15:50:59,823 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 15:51:05,824 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 15:51:05,824 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 15:51:06,822 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 15:51:06,824 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 15:51:07,823 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 15:51:07,823 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 15:51:07,823 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 15:51:07,824 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 15:51:07,860 [INFO] [pet_window.py:243] - 程序关闭，保存数据...
+2025-12-25 15:51:07,863 [INFO] [cultivator.py:566] - 数据已保存至数据库
+2025-12-25 15:51:07,863 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-25 15:51:07,864 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766649067, Keys=9, Mouse=45
+2025-12-25 16:09:27,087 [INFO] [logger.py:69] - 日志系统已启动 (Log system initialized).
+2025-12-25 16:09:27,093 [INFO] [database.py:126] - 数据库初始化完成: all tables ready
+2025-12-25 16:09:27,097 [INFO] [main.py:12] - 启动应用程序...
+2025-12-25 16:09:27,235 [INFO] [pet_window.py:18] - 初始化 PetWindow...
+2025-12-25 16:09:27,236 [INFO] [item_manager.py:48] - Loaded 113 items from Database.
+2025-12-25 16:09:27,237 [INFO] [event_engine.py:42] - EventEngine loaded 34 events, 0 history records.
+2025-12-25 16:09:27,246 [INFO] [cultivator.py:123] - 坊市商品已刷新
+2025-12-25 16:09:27,432 [INFO] [pet_window.py:599] - Loaded tribulation asset 0: tribulation_0_foundation.png
+2025-12-25 16:09:27,469 [INFO] [pet_window.py:599] - Loaded tribulation asset 1: tribulation_1_goldcore.png
+2025-12-25 16:09:27,481 [INFO] [pet_window.py:599] - Loaded tribulation asset 2: tribulation_2_nascentsoul.png
+2025-12-25 16:09:27,488 [INFO] [pet_window.py:599] - Loaded tribulation asset 3: tribulation_3_divine.png
+2025-12-25 16:09:27,498 [INFO] [pet_window.py:599] - Loaded tribulation asset 4: tribulation_4_void.png
+2025-12-25 16:09:27,506 [INFO] [pet_window.py:599] - Loaded tribulation asset 5: tribulation_5_integration.png
+2025-12-25 16:09:27,518 [INFO] [pet_window.py:599] - Loaded tribulation asset 6: tribulation_6_mahayana.png
+2025-12-25 16:09:27,530 [INFO] [pet_window.py:599] - Loaded tribulation asset 7: tribulation_7_calamity.png
+2025-12-25 16:09:27,539 [INFO] [pet_window.py:599] - Loaded tribulation asset 8: tribulation_8_ascension.png
+2025-12-25 16:09:27,539 [INFO] [pet_window.py:603] - Total tribulation images loaded: 9. Keys: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+2025-12-25 16:09:27,635 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:09:27,636 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:09:27,637 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-25 16:09:29,738 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:09:29,738 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:09:31,836 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 16:09:31,836 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:09:31,837 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 16:09:31,837 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:09:37,397 [INFO] [pet_window.py:717] - [Secret] Before command: layer_index = 5
+2025-12-25 16:09:37,397 [INFO] [pet_window.py:722] - [Secret] After command: layer_index = 6, success = True
+2025-12-25 16:09:37,397 [INFO] [pet_window.py:730] - [Secret] Level up detected! 5 -> 6. Triggering ASCEND.
+2025-12-25 16:09:37,397 [DEBUG] [pet_window.py:635] - 切换状态: ASCEND
+2025-12-25 16:09:37,397 [INFO] [pet_window.py:663] - Loaded tribulation image for breakthrough from level 5 (using asset 5)
+2025-12-25 16:09:37,398 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:09:40,327 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:09:40,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:09:40,826 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 16:09:40,827 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:09:41,828 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:09:41,828 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:09:42,465 [INFO] [pet_window.py:243] - 程序关闭，保存数据...
+2025-12-25 16:09:42,466 [INFO] [cultivator.py:566] - 数据已保存至数据库
+2025-12-25 16:09:42,466 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-25 16:09:42,467 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766650182, Keys=30, Mouse=6
+2025-12-25 16:10:22,583 [INFO] [logger.py:69] - 日志系统已启动 (Log system initialized).
+2025-12-25 16:10:22,585 [INFO] [database.py:126] - 数据库初始化完成: all tables ready
+2025-12-25 16:10:22,587 [INFO] [main.py:12] - 启动应用程序...
+2025-12-25 16:10:22,704 [INFO] [pet_window.py:18] - 初始化 PetWindow...
+2025-12-25 16:10:22,704 [INFO] [item_manager.py:48] - Loaded 113 items from Database.
+2025-12-25 16:10:22,705 [INFO] [event_engine.py:42] - EventEngine loaded 34 events, 0 history records.
+2025-12-25 16:10:22,713 [INFO] [cultivator.py:123] - 坊市商品已刷新
+2025-12-25 16:10:22,890 [INFO] [pet_window.py:599] - Loaded tribulation asset 0: tribulation_0_foundation.png
+2025-12-25 16:10:22,927 [INFO] [pet_window.py:599] - Loaded tribulation asset 1: tribulation_1_goldcore.png
+2025-12-25 16:10:22,937 [INFO] [pet_window.py:599] - Loaded tribulation asset 2: tribulation_2_nascentsoul.png
+2025-12-25 16:10:22,953 [INFO] [pet_window.py:599] - Loaded tribulation asset 3: tribulation_3_divine.png
+2025-12-25 16:10:22,967 [INFO] [pet_window.py:599] - Loaded tribulation asset 4: tribulation_4_void.png
+2025-12-25 16:10:22,979 [INFO] [pet_window.py:599] - Loaded tribulation asset 5: tribulation_5_integration.png
+2025-12-25 16:10:22,992 [INFO] [pet_window.py:599] - Loaded tribulation asset 6: tribulation_6_mahayana.png
+2025-12-25 16:10:23,006 [INFO] [pet_window.py:599] - Loaded tribulation asset 7: tribulation_7_calamity.png
+2025-12-25 16:10:23,015 [INFO] [pet_window.py:599] - Loaded tribulation asset 8: tribulation_8_ascension.png
+2025-12-25 16:10:23,015 [INFO] [pet_window.py:603] - Total tribulation images loaded: 9. Keys: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+2025-12-25 16:10:23,111 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:10:23,111 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:10:23,113 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-25 16:10:24,165 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:10:24,165 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:10:26,264 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:10:26,264 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:10:27,314 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 16:10:27,315 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:10:29,191 [INFO] [pet_window.py:717] - [Secret] Before command: layer_index = 6
+2025-12-25 16:10:29,194 [INFO] [pet_window.py:722] - [Secret] After command: layer_index = 7, success = True
+2025-12-25 16:10:29,199 [INFO] [pet_window.py:730] - [Secret] Level up detected! 6 -> 7. Triggering ASCEND.
+2025-12-25 16:10:29,199 [DEBUG] [pet_window.py:635] - 切换状态: ASCEND
+2025-12-25 16:10:29,199 [INFO] [pet_window.py:663] - Loaded tribulation image for breakthrough from level 6 (using asset 6)
+2025-12-25 16:10:29,199 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:10:32,327 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:10:32,327 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:10:32,328 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 16:10:32,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:10:33,327 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:10:33,327 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:10:35,327 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 16:10:35,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:10:37,109 [INFO] [pet_window.py:717] - [Secret] Before command: layer_index = 7
+2025-12-25 16:10:37,115 [INFO] [cultivator.py:686] - 玩家已转世重修 (数据重置)
+2025-12-25 16:10:37,115 [INFO] [pet_window.py:722] - [Secret] After command: layer_index = 0, success = True
+2025-12-25 16:10:38,327 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:10:38,327 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:11:02,327 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:11:02,327 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:11:02,328 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:11:02,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:11:22,830 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766650282, Keys=30, Mouse=15
+2025-12-25 16:12:22,833 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766650342, Keys=0, Mouse=3
+2025-12-25 16:13:18,327 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:13:18,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:13:22,833 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766650402, Keys=0, Mouse=30
+2025-12-25 16:13:23,327 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:13:23,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:13:30,328 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:13:30,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:13:31,327 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:13:31,327 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:13:33,327 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 16:13:33,327 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:13:42,328 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:13:42,330 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:13:46,328 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 16:13:46,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:13:48,327 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:13:48,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:14:22,832 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766650462, Keys=26, Mouse=6
+2025-12-25 16:15:26,328 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:15:26,330 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:15:26,331 [INFO] [event_engine.py:109] - Triggering event: 灵气复苏 (evt_t0_c1)
+2025-12-25 16:15:29,328 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:15:29,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:15:49,328 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:15:49,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:15:52,328 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:15:52,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:15:53,327 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:15:53,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:15:53,329 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:15:53,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:15:55,327 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:15:55,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:15:55,329 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:15:55,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:16:02,327 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:16:02,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:16:05,328 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:16:05,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:16:07,328 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:16:07,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:16:17,328 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:16:17,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:16:22,329 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:16:22,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:16:22,833 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766650582, Keys=0, Mouse=121
+2025-12-25 16:16:24,328 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:16:24,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:16:25,331 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:16:25,332 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:16:25,332 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:16:25,332 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:16:32,327 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:16:32,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:16:32,329 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:16:32,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:16:34,328 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:16:34,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:16:39,328 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:16:39,330 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:17:00,328 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:17:00,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:17:01,328 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:17:01,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:17:05,328 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:17:05,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:17:05,330 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:17:05,330 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:17:08,329 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:17:08,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:17:10,329 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:17:10,330 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:17:15,328 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:17:15,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:17:20,328 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:17:20,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:17:22,830 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766650642, Keys=0, Mouse=60
+2025-12-25 16:17:25,040 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:17:27,329 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:17:27,330 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:17:27,330 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:17:27,330 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:17:32,328 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 16:17:32,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:17:35,899 [INFO] [pet_window.py:717] - [Secret] Before command: layer_index = 0
+2025-12-25 16:17:35,900 [INFO] [pet_window.py:722] - [Secret] After command: layer_index = 1, success = True
+2025-12-25 16:17:35,900 [INFO] [pet_window.py:730] - [Secret] Level up detected! 0 -> 1. Triggering ASCEND.
+2025-12-25 16:17:35,900 [DEBUG] [pet_window.py:635] - 切换状态: ASCEND
+2025-12-25 16:17:35,900 [INFO] [pet_window.py:663] - Loaded tribulation image for breakthrough from level 0 (using asset 0)
+2025-12-25 16:17:35,900 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:17:38,828 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:17:38,828 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:17:39,329 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 16:17:39,330 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:17:40,328 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:17:40,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:17:41,327 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:17:41,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:17:44,328 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:17:44,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:17:44,328 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:17:44,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:17:46,328 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 16:17:46,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:17:50,396 [INFO] [pet_window.py:717] - [Secret] Before command: layer_index = 1
+2025-12-25 16:17:50,400 [INFO] [pet_window.py:722] - [Secret] After command: layer_index = 2, success = True
+2025-12-25 16:17:50,401 [INFO] [pet_window.py:730] - [Secret] Level up detected! 1 -> 2. Triggering ASCEND.
+2025-12-25 16:17:50,401 [DEBUG] [pet_window.py:635] - 切换状态: ASCEND
+2025-12-25 16:17:50,401 [INFO] [pet_window.py:663] - Loaded tribulation image for breakthrough from level 1 (using asset 1)
+2025-12-25 16:17:50,401 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:17:53,329 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:17:53,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:17:53,330 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 16:17:53,330 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:17:54,328 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 16:17:54,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:17:54,328 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:17:54,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:17:55,328 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:17:55,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:17:55,763 [INFO] [pet_window.py:717] - [Secret] Before command: layer_index = 2
+2025-12-25 16:17:55,763 [INFO] [pet_window.py:722] - [Secret] After command: layer_index = 3, success = True
+2025-12-25 16:17:55,764 [INFO] [pet_window.py:730] - [Secret] Level up detected! 2 -> 3. Triggering ASCEND.
+2025-12-25 16:17:55,764 [DEBUG] [pet_window.py:635] - 切换状态: ASCEND
+2025-12-25 16:17:55,764 [INFO] [pet_window.py:663] - Loaded tribulation image for breakthrough from level 2 (using asset 2)
+2025-12-25 16:17:55,764 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:17:58,829 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:17:58,829 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:17:59,329 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 16:17:59,330 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:18:00,328 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:18:00,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:18:00,891 [INFO] [pet_window.py:717] - [Secret] Before command: layer_index = 3
+2025-12-25 16:18:00,891 [INFO] [pet_window.py:722] - [Secret] After command: layer_index = 4, success = True
+2025-12-25 16:18:00,892 [INFO] [pet_window.py:730] - [Secret] Level up detected! 3 -> 4. Triggering ASCEND.
+2025-12-25 16:18:00,892 [DEBUG] [pet_window.py:635] - 切换状态: ASCEND
+2025-12-25 16:18:00,892 [INFO] [pet_window.py:663] - Loaded tribulation image for breakthrough from level 3 (using asset 3)
+2025-12-25 16:18:00,892 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:18:03,828 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:18:03,831 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:18:04,328 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 16:18:04,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:18:05,788 [INFO] [pet_window.py:717] - [Secret] Before command: layer_index = 4
+2025-12-25 16:18:05,789 [INFO] [pet_window.py:722] - [Secret] After command: layer_index = 5, success = True
+2025-12-25 16:18:05,789 [INFO] [pet_window.py:730] - [Secret] Level up detected! 4 -> 5. Triggering ASCEND.
+2025-12-25 16:18:05,789 [DEBUG] [pet_window.py:635] - 切换状态: ASCEND
+2025-12-25 16:18:05,789 [INFO] [pet_window.py:663] - Loaded tribulation image for breakthrough from level 4 (using asset 4)
+2025-12-25 16:18:05,789 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:18:08,830 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:18:08,831 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:18:09,327 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 16:18:09,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:18:11,051 [INFO] [pet_window.py:717] - [Secret] Before command: layer_index = 5
+2025-12-25 16:18:11,051 [INFO] [pet_window.py:722] - [Secret] After command: layer_index = 6, success = True
+2025-12-25 16:18:11,052 [INFO] [pet_window.py:730] - [Secret] Level up detected! 5 -> 6. Triggering ASCEND.
+2025-12-25 16:18:11,052 [DEBUG] [pet_window.py:635] - 切换状态: ASCEND
+2025-12-25 16:18:11,052 [INFO] [pet_window.py:663] - Loaded tribulation image for breakthrough from level 5 (using asset 5)
+2025-12-25 16:18:11,052 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:18:13,904 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:18:13,905 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:18:14,329 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 16:18:14,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:18:14,331 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 16:18:14,331 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:18:15,328 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 16:18:15,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:18:15,329 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 16:18:15,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:18:16,164 [INFO] [pet_window.py:717] - [Secret] Before command: layer_index = 6
+2025-12-25 16:18:16,164 [INFO] [pet_window.py:722] - [Secret] After command: layer_index = 7, success = True
+2025-12-25 16:18:16,164 [INFO] [pet_window.py:730] - [Secret] Level up detected! 6 -> 7. Triggering ASCEND.
+2025-12-25 16:18:16,165 [DEBUG] [pet_window.py:635] - 切换状态: ASCEND
+2025-12-25 16:18:16,165 [INFO] [pet_window.py:663] - Loaded tribulation image for breakthrough from level 6 (using asset 6)
+2025-12-25 16:18:16,165 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:18:19,316 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:18:19,317 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:18:19,328 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 16:18:19,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:18:21,329 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:18:21,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:18:21,906 [INFO] [pet_window.py:717] - [Secret] Before command: layer_index = 7
+2025-12-25 16:18:21,907 [INFO] [pet_window.py:722] - [Secret] After command: layer_index = 8, success = True
+2025-12-25 16:18:21,907 [INFO] [pet_window.py:730] - [Secret] Level up detected! 7 -> 8. Triggering ASCEND.
+2025-12-25 16:18:21,907 [DEBUG] [pet_window.py:635] - 切换状态: ASCEND
+2025-12-25 16:18:21,907 [INFO] [pet_window.py:663] - Loaded tribulation image for breakthrough from level 7 (using asset 7)
+2025-12-25 16:18:21,907 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:18:22,831 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766650702, Keys=65, Mouse=33
+2025-12-25 16:18:24,829 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:18:24,830 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:18:25,329 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 16:18:25,330 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:18:25,332 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 16:18:25,332 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:18:27,328 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:18:27,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:18:28,329 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 16:18:28,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:18:29,095 [INFO] [pet_window.py:717] - [Secret] Before command: layer_index = 8
+2025-12-25 16:18:29,100 [INFO] [cultivator.py:686] - 玩家已转世重修 (数据重置)
+2025-12-25 16:18:29,100 [INFO] [pet_window.py:722] - [Secret] After command: layer_index = 0, success = True
+2025-12-25 16:18:31,328 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:18:31,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:18:33,328 [DEBUG] [pet_window.py:635] - 切换状态: WORK
+2025-12-25 16:18:33,328 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:18:34,647 [INFO] [pet_window.py:717] - [Secret] Before command: layer_index = 0
+2025-12-25 16:18:34,651 [INFO] [pet_window.py:722] - [Secret] After command: layer_index = 1, success = True
+2025-12-25 16:18:34,651 [INFO] [pet_window.py:730] - [Secret] Level up detected! 0 -> 1. Triggering ASCEND.
+2025-12-25 16:18:34,651 [DEBUG] [pet_window.py:635] - 切换状态: ASCEND
+2025-12-25 16:18:34,652 [INFO] [pet_window.py:663] - Loaded tribulation image for breakthrough from level 0 (using asset 0)
+2025-12-25 16:18:34,652 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:18:37,803 [DEBUG] [pet_window.py:635] - 切换状态: IDLE
+2025-12-25 16:18:37,804 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 1024x1024
+2025-12-25 16:18:38,329 [DEBUG] [pet_window.py:635] - 切换状态: COMBAT
+2025-12-25 16:18:38,330 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:18:39,329 [DEBUG] [pet_window.py:635] - 切换状态: READ
+2025-12-25 16:18:39,329 [INFO] [pet_window.py:690] - [set_state] Setting pixmap to image_label. Pixmap valid: True, size: 2048x2048
+2025-12-25 16:18:40,228 [INFO] [pet_window.py:243] - 程序关闭，保存数据...
+2025-12-25 16:18:40,230 [INFO] [cultivator.py:566] - 数据已保存至数据库
+2025-12-25 16:18:40,230 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-25 16:18:40,231 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766650720, Keys=29, Mouse=8
+2025-12-25 16:20:44,451 [INFO] [logger.py:69] - 日志系统已启动 (Log system initialized).
+2025-12-25 16:20:44,457 [INFO] [database.py:126] - 数据库初始化完成: all tables ready
+2025-12-25 16:20:44,462 [INFO] [main.py:12] - 启动应用程序...
+2025-12-25 16:20:44,608 [INFO] [pet_window.py:18] - 初始化 PetWindow...
+2025-12-25 16:20:44,609 [INFO] [item_manager.py:48] - Loaded 113 items from Database.
+2025-12-25 16:20:44,610 [INFO] [event_engine.py:42] - EventEngine loaded 34 events, 0 history records.
+2025-12-25 16:20:44,619 [INFO] [cultivator.py:123] - 坊市商品已刷新
+2025-12-25 16:20:44,925 [INFO] [pet_window.py:600] - Tribulation images loaded: 9
+2025-12-25 16:20:45,024 [DEBUG] [pet_window.py:632] - 切换状态: IDLE
+2025-12-25 16:20:45,025 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-25 16:20:48,828 [DEBUG] [pet_window.py:632] - 切换状态: READ
+2025-12-25 16:20:49,830 [DEBUG] [pet_window.py:632] - 切换状态: IDLE
+2025-12-25 16:20:52,829 [DEBUG] [pet_window.py:632] - 切换状态: WORK
+2025-12-25 16:20:59,830 [DEBUG] [pet_window.py:632] - 切换状态: IDLE
+2025-12-25 16:21:02,830 [DEBUG] [pet_window.py:632] - 切换状态: WORK
+2025-12-25 16:21:03,332 [INFO] [cultivator.py:686] - 玩家已转世重修 (数据重置)
+2025-12-25 16:21:05,829 [DEBUG] [pet_window.py:632] - 切换状态: IDLE
+2025-12-25 16:21:06,831 [DEBUG] [pet_window.py:632] - 切换状态: WORK
+2025-12-25 16:21:08,032 [DEBUG] [pet_window.py:632] - 切换状态: ASCEND
+2025-12-25 16:21:10,887 [DEBUG] [pet_window.py:632] - 切换状态: IDLE
+2025-12-25 16:21:11,828 [DEBUG] [pet_window.py:632] - 切换状态: COMBAT
+2025-12-25 16:21:12,829 [DEBUG] [pet_window.py:632] - 切换状态: READ
+2025-12-25 16:21:14,830 [DEBUG] [pet_window.py:632] - 切换状态: IDLE
+2025-12-25 16:21:15,829 [DEBUG] [pet_window.py:632] - 切换状态: READ
+2025-12-25 16:21:17,828 [DEBUG] [pet_window.py:632] - 切换状态: IDLE
+2025-12-25 16:21:19,830 [DEBUG] [pet_window.py:632] - 切换状态: WORK
+2025-12-25 16:21:20,639 [INFO] [cultivator.py:686] - 玩家已转世重修 (数据重置)
+2025-12-25 16:21:22,828 [DEBUG] [pet_window.py:632] - 切换状态: IDLE
+2025-12-25 16:21:24,096 [INFO] [pet_window.py:243] - 程序关闭，保存数据...
+2025-12-25 16:21:24,098 [INFO] [cultivator.py:566] - 数据已保存至数据库
+2025-12-25 16:21:24,098 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-25 16:21:24,100 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766650884, Keys=77, Mouse=32

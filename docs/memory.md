@@ -7,6 +7,7 @@
     - `Cultivator` (Model): 处理数据逻辑、属性计算、存档管理 (SQLite)。
     - `InputMonitor` & `ActivityRecorder`: 独立线程监控 APM 并持久化记录。
     - `ItemManager` & `EventManager`: 单例管理数据配置 (DB-driven)。
+    - `AchievementManager`: 追踪成就进度、解锁状态及头衔加成。
 
 ## 已完成功能 (Completed Features)
 1. **基础互动**: 
@@ -34,13 +35,22 @@
     - **可视化**: `StatsWindow` 展示今日/近7天/本月/今年的活跃度趋势 (Matplotlib)。
     - **游戏化**: 努力工作 (高APM) 增加“历练”收益。
 
-4. **视觉与特效 (Visuals)**:
+4. **视觉与特效**:
+*   **混合渲染系统**: `QPixmap` (静态人物) + `EffectWidget` (动态粒子) 分层渲染。
+*   **渡劫视觉系统**: 
+    *   **独立动画状态**: 实现了 `is_ascending` 锁，确保渡劫动画（3秒）拥有绝对的 Update 优先级，不被 IDLE 状态打断。
+    *   **全境界覆盖**: 完成了 Lv0-Lv8 全套渡劫图片素材的生成与集成，支持不同境界显示差异化的渡劫姿态（如气旋、结丹、元神出窍、分身、虚空、飞升等）。
+    *   **防御式编程**: 实现了健全的图片回退机制（Fallback）和调试日志，确保资源缺失时不会导致崩溃。
+*   **粒子特效**: 实现了 `Tribulation` (雷劫) 和 `Success` (金光) 两套粒子系统，以及透明度修复。
     - **状态与素材映射**:
         - **基础状态**: `idle` (摸鱼), `walk` (历练), `read` (悟道), `cast` (斗法), `sleep` (睡觉), `drag` (被拖拽)。
-        - **`cultivator_alchemy_*.png` (炼丹)**: 分级显示 - Low(Lv0-2), Mid(Lv3-5), High(Lv6-8)。
-        - **`tribulation_*.png` (渡劫/飞升)**: 境界突破时的专属异象 (Lv0-2 已实装)。
     - **粒子系统**: 渡劫(雷电)、炼丹(火焰/漩涡)、点击(光点/爱心)、突破成功(金光)。
-    - **动画**: 拖拽挣扎、渡劫序列(动画锁)、呼吸浮动。
+    - **动画**: 拖拽挣扎、渡劫序列(动画锁, 3s)、呼吸浮动。
+
+5. **成就与头衔 (Achievements & Titles)**:
+    - **天道功德**: 追踪累计点击/按键/在线时长，解锁 20+ 个成就。
+    - **头衔系统**: 佩戴头衔 (如"筑基·初窥") 获取被动属性加成 (EXP/灵石/掉率)。
+    - **UI集成**: `StatsWindow` 新增成就管理页签，实时查看进度与奖励。
 
 ## 置顶显示且不影响操作其他软件 (macOS 实现要点)
 目标：小人窗口始终在最前端，同时不抢焦点，用户仍可正常操作其他应用。
@@ -61,7 +71,8 @@
 ## 数据存储 (Data Persistence)
 - **数据库**: `user_data.db` (SQLite)
 - **表结构**:
-    - `player_status`: 单行记录 (境界, 经验, 灵石, 属性, 时间戳)。
+    - `player_status`: 单行记录 (含 `equipped_title` 字段)。
+    - `achievements`: 成就记录 (id, unlocked_at, status)。
     - `player_inventory`: 背包物品 (FK to definitions)。
     - `item_definitions`: 静态物品配置 (启动时从 Items v2 导入)。
     - `activity_logs_minute`: 分钟级键鼠操作记录。
@@ -81,16 +92,18 @@
 - [x] **[Plan 2 (Phase 6): 视觉增强](plan2_done.md)** (VFX, Animations)
 - [x] **[Plan 9: 物品扩充](plan9_done.md)** (110+ items, Sci-Fi Cultivation lore)
 - [x] **[Plan 10: 奇遇事件系统](plan10_done.md)** (DB-driven Event Engine, 60+ events)
+- [x] **[Plan 11: 成就系统](plan11_done.md)** (Achievements, Titles & Buffs)
+- [x] **[Plan 13: 渡劫视觉逻辑](plan13_done.md)** (Tribulation Animation Sequence, Transparency)
+- [x] **[Plan 12: 视觉素材扩展](plan12.md)** (Phase 2 & 3 Tribulation Assets)
 
 ### 待执行 (Pending / In Progress)
 
 #### 1. 系统深度化 (Priority: Medium)
-- [ ] **[Plan 11: 成就系统](plan11.md)**
-    - **内容**: 基于生产力数据 (Keys, Clicks) 的成就反馈机制。
+*   [ ] **Plan 14 (桌面互动扩展)**: 窗口吸附、拖拽反馈优化。
 
 #### 2. 遗留任务 from Plan 2/8
 - [ ] **Plan 2 (Phase 8)**: 桌面互动 (窗口吸附) / 放置深度化 (灵田)。
 - [ ] **Plan 8 (Windows)**: 在 Windows 环境下运行打包脚本。
 
 ---
-*上次更新时间: 2025-12-25 11:00*
+(最后更新: 2025-12-25 16:15)

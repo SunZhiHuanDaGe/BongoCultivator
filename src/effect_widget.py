@@ -235,6 +235,7 @@ class EffectWidget(QWidget):
             # Fade out
             alpha = int(p.life * 255)
             if alpha < 0: alpha = 0
+            if alpha > 255: alpha = 255 # Compress high life values to max opacity
             
             c = p.color
             c.setAlpha(alpha)

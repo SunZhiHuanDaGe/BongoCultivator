@@ -64,6 +64,11 @@ class PetWindow(QWidget):
         self.tray = tray
 
     def game_loop(self):
+        # 0. 绝对优先级锁：如果正在渡劫/飞升/播放动画，完全暂停状态更新
+        if getattr(self, 'is_ascending', False):
+            # logger.debug("Game Loop Skipped: Ascending Lock is Active") 
+            return
+
         # 1. 获取分离的统计数据
         kb_apm, mouse_apm = self.monitor.get_stats()
         
@@ -572,21 +577,27 @@ class PetWindow(QWidget):
              self.state_images[PetState.WORK] = QPixmap(work_path)
 
         # TRIBULATION
+        # TRIBULATION
         self.tribulation_images = {}
-        # Load specific 0-2 images
-        for i in range(3):
-            path = os.path.join(assets_path, f'tribulation_{i}_.png') # Note: Plan 13 says tribulation_0_foundation.png, but regex might be easier or exact mapping
-            # Actually user file names are tribulation_0_foundation.png
-            # Let's try exact names as defined
-            names = [
-                'tribulation_0_foundation.png',
-                'tribulation_1_goldcore.png',
-                'tribulation_2_nascentsoul.png'
-            ]
-            if i < len(names):
-                path = os.path.join(assets_path, names[i])
-                if os.path.exists(path):
-                    self.tribulation_images[i] = QPixmap(path)
+        # Load all specific 0-8 images defined in Plan 12
+        trib_names = [
+            'tribulation_0_foundation.png', # Lv0 -> Lv1
+            'tribulation_1_goldcore.png',   # Lv1 -> Lv2
+            'tribulation_2_nascentsoul.png',# Lv2 -> Lv3
+            'tribulation_3_divine.png',     # Lv3 -> Lv4
+            'tribulation_4_void.png',       # Lv4 -> Lv5
+            'tribulation_5_integration.png',# Lv5 -> Lv6
+            'tribulation_6_mahayana.png',   # Lv6 -> Lv7
+            'tribulation_7_calamity.png',   # Lv7 -> Lv8
+            'tribulation_8_ascension.png'   # Lv8 -> Lv9
+        ]
+        
+        for i, filename in enumerate(trib_names):
+            path = os.path.join(assets_path, filename)
+            if os.path.exists(path):
+                self.tribulation_images[i] = QPixmap(path)
+        
+        logger.info(f"Tribulation images loaded: {len(self.tribulation_images)}")
         
         # Fallback / Generic Tribulation if needed (user didn't provide generic yet, but we can reuse high alchemy or combat?)
         # For now, if missing, it falls back to IDLE in set_state
@@ -635,13 +646,30 @@ class PetWindow(QWidget):
             
             # Special handling for Tribulation (ASCEND)
             elif state == PetState.ASCEND and hasattr(self, 'tribulation_images'):
-                idx = self.cultivator.layer_index
-                # Map layer to image: 0->0, 1->1, 2->2, >2 -> use 2 or none
-                # Logic: We have images for 0, 1, 2.
-                # If layer > 2, we default to the highest available (2) for now, or just IDLE if strict.
-                # Let's use 2 as fallback for high levels until we have assets.
-                target_idx = min(idx, 2)
-                pixmap = self.tribulation_images.get(target_idx)
+                # 使用 layer_index - 1 是因为渡劫图代表的是"从哪个等级突破"
+                # 例如：从 Lv0 升 Lv1，应该显示 tribulation_0 (炼气渡劫)
+                # 但此时 layer_index 已经变成 1 了，所以要减 1
+                idx = max(0, self.cultivator.layer_index - 1)
+                
+                # Try to find exact match or fallback to lower levels
+                target_idx = idx
+                found_trib = False
+                while target_idx >= 0:
+                    if target_idx in self.tribulation_images:
+                        pixmap = self.tribulation_images[target_idx]
+                        found_trib = True
+                        break
+                    target_idx -= 1
+                
+                if not found_trib:
+                    # Force fallback to any available image
+                    if 0 in self.tribulation_images:
+                        pixmap = self.tribulation_images[0]
+                    elif self.tribulation_images:
+                        first_key = list(self.tribulation_images.keys())[0]
+                        pixmap = self.tribulation_images[first_key]
+                
+                # If still no pixmap, fallback will happen below
 
             # Fallback to standard logic
             if not pixmap:
@@ -652,7 +680,7 @@ class PetWindow(QWidget):
                 pixmap = self.state_images[PetState.IDLE]
             
             if pixmap:
-                 self.image_label.setPixmap(pixmap)
+                self.image_label.setPixmap(pixmap)
             
             # Update effect mode
             mode_map = {
@@ -674,15 +702,17 @@ class PetWindow(QWidget):
         from PyQt6.QtWidgets import QInputDialog, QLineEdit
         text, ok = QInputDialog.getText(self, "天机", "请输入密令:", QLineEdit.EchoMode.Normal, "")
         if ok and text:
-            # Check old level
             old_layer = self.cultivator.layer_index
             success, msg = self.cultivator.process_secret_command(text)
+            new_layer = self.cultivator.layer_index
+            
             self.show_notification(msg)
             
             if success:
                 # If level up happened
-                if self.cultivator.layer_index > old_layer:
+                if new_layer > old_layer:
                     self.is_ascending = True
+                    
                     # Show visual effect sequence
                     # 1. Tribulation visuals (briefly)
                     self.set_state(PetState.ASCEND)
@@ -923,17 +953,6 @@ class PetWindow(QWidget):
         
         menu.exec(pos)
 
-    def input_secret(self):
-        from PyQt6.QtWidgets import QInputDialog, QLineEdit
-        text, ok = QInputDialog.getText(self, "天机", "请输入密令:", QLineEdit.EchoMode.Normal, "")
-        if ok and text:
-            success, msg = self.cultivator.process_secret_command(text)
-            self.show_notification(msg)
-            if success:
-                # 播放音效或特效 (复用渡劫成功特效)
-                if "已转世" not in msg:
-                    self.effect_widget.trigger_breakthrough_success()
-                
     def on_attempt_breakthrough(self):
         # 1. Start Tribulation Effect first
         self.effect_widget.trigger_tribulation()
