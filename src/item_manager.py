@@ -28,75 +28,15 @@ class ItemManager:
     def load_items(self):
         from src.database import db_manager
         
-        # 1. Check if DB needs population
-        count = 0
+        # 1. Load into memory from DB
         try:
-            with db_manager._get_conn() as conn:
-                cursor = conn.cursor()
-                cursor.execute("SELECT count(*) FROM item_definitions")
-                row = cursor.fetchone()
-                if row:
-                    count = row[0]
+            self._load_from_db()
+            if not self.flat_items:
+                logger.warning("Item Database is EMPTY! Please run 'python3 tools/import_all_data.py' to populate data.")
+            else:
+                logger.info(f"Loaded {len(self.flat_items)} items from Database.")
         except Exception as e:
-            logger.error(f"Failed to check item DB: {e}")
-
-        if count == 0:
-            self.import_from_json()
-            
-        # 2. Load into memory
-        self._load_from_db()
-        logger.info(f"Loaded {len(self.flat_items)} items from Database.")
-
-    def import_from_json(self):
-        import json
-        from src.database import db_manager
-        from src.utils.path_helper import get_resource_path
-        
-        # Try v2 first
-        json_path = get_resource_path(os.path.join('src', 'data', 'items_v2.json'))
-        if not os.path.exists(json_path):
-             logger.warning(f"items_v2.json not found at {json_path}, skipping import.")
-             return
-
-        try:
-            with open(json_path, 'r', encoding='utf-8') as f:
-                data = json.load(f)
-                
-            with db_manager._get_conn() as conn:
-                cursor = conn.cursor()
-                
-                for tier_key, content in data.items():
-                    # tier_0 -> 0
-                    tier_idx = int(tier_key.split('_')[1])
-                    
-                    all_items = content.get("materials", []) + content.get("pills", [])
-                    
-                    for item in all_items:
-                        # Insert Item
-                        effect_val = item.get("effect")
-                        effect_json = json.dumps(effect_val) if effect_val else None
-                        
-                        cursor.execute("""
-                            INSERT OR REPLACE INTO item_definitions 
-                            (id, name, type, tier, description, price, effect_json)
-                            VALUES (?, ?, ?, ?, ?, ?, ?)
-                        """, (
-                            item["id"], item["name"], item["type"], item["tier"],
-                            item["desc"], item["price"], effect_json
-                        ))
-                        
-                        # Insert Recipe if exists
-                        if "recipe" in item:
-                            recipe_json = json.dumps(item["recipe"])
-                            cursor.execute("""
-                                INSERT OR REPLACE INTO recipes
-                                (result_item_id, ingredients_json, craft_time, success_rate)
-                                VALUES (?, ?, ?, ?)
-                            """, (item["id"], recipe_json, 10, 0.8)) # Default 10s, 80% success
-                            
-            logger.info("Successfully imported items from JSON to DB.")
-        except Exception as e:
-            logger.error(f"Import failed: {e}")
+            logger.error(f"Failed to load items from DB: {e}")
 
     def _load_from_db(self):
         from src.database import db_manager

@@ -174,13 +174,13 @@ class MarketWindow(QWidget):
         layout.addWidget(self.sell_list)
         
         btn_box = QHBoxLayout()
-        self.sell_btn = QPushButton("出售选定")
-        self.sell_btn.clicked.connect(self.sell_item)
-        self.style_action_btn(self.sell_btn)
+        self.sell_one_btn = QPushButton("出售 1 个")
+        self.sell_one_btn.clicked.connect(self.sell_item_one)
+        self.style_action_btn(self.sell_one_btn)
         
-        self.recycle_btn = QPushButton("一键回收杂物")
-        self.recycle_btn.clicked.connect(self.recycle_junk)
-        self.recycle_btn.setStyleSheet("""
+        self.sell_all_btn = QPushButton("出售整组")
+        self.sell_all_btn.clicked.connect(self.sell_item_all)
+        self.sell_all_btn.setStyleSheet("""
              QPushButton {
                 background: rgba(200, 50, 50, 40);
                 border: 1px solid #A55;
@@ -191,8 +191,8 @@ class MarketWindow(QWidget):
             QPushButton:hover { background: rgba(200, 50, 50, 80); }
         """)
         
-        btn_box.addWidget(self.sell_btn)
-        btn_box.addWidget(self.recycle_btn)
+        btn_box.addWidget(self.sell_one_btn)
+        btn_box.addWidget(self.sell_all_btn)
         layout.addLayout(btn_box)
         
         self.sell_msg = QLabel("")
@@ -201,18 +201,22 @@ class MarketWindow(QWidget):
 
     def refresh_sell_list(self):
         self.sell_list.clear()
+        # Sort items? By Tier/Name
+        # inventory is dict {id: count}
+        # Let's simple list
         for item_id, count in self.cultivator.inventory.items():
             if count > 0:
                 info = self.item_manager.get_item(item_id)
                 name = info.get("name", item_id) if info else item_id
+                tier = info.get("tier", 0) if info else 0
+                
                 base_price = info.get("price", 1) if info else 1
                 sell_price = max(1, int(base_price * 0.5))
                 
-                type_str = ""
-                if info and info.get("type") == "junk":
-                    type_str = " [杂物]"
+                # Show Tier
+                tier_str = f"[一阶]" if tier == 1 else f"[{tier}阶]" if tier > 0 else "[凡物]"
                 
-                text = f"{name}{type_str} x{count}\n售价: {sell_price} 灵石/个"
+                text = f"{tier_str} {name} x{count}\n售价: {sell_price} 灵石/个"
                 
                 item = QListWidgetItem(text)
                 item.setData(Qt.ItemDataRole.UserRole, item_id)
@@ -220,53 +224,38 @@ class MarketWindow(QWidget):
         
         self.update_money()
 
-    def sell_item(self):
+    def _get_selected_item_info(self):
         current_item = self.sell_list.currentItem()
         if not current_item:
-            return
-            
+            return None, 0, 0
         item_id = current_item.data(Qt.ItemDataRole.UserRole)
         count = self.cultivator.inventory.get(item_id, 0)
         
-        if count > 0:
-            info = self.item_manager.get_item(item_id)
-            base_price = info.get("price", 1) if info else 1
-            sell_price = max(1, int(base_price * 0.5))
-            
-            # 卖一个
-            self.cultivator.inventory[item_id] -= 1
-            self.cultivator.money += sell_price
-            
-            self.sell_msg.setText(f"出售成功! +{sell_price}灵石")
-            self.refresh_sell_list()
+        info = self.item_manager.get_item(item_id)
+        base_price = info.get("price", 1) if info else 1
+        sell_price = max(1, int(base_price * 0.5))
+        
+        return item_id, count, sell_price
 
-    def recycle_junk(self):
-        total_income = 0
-        items_to_sell = []
+    def sell_item_one(self):
+        item_id, count, sell_price = self._get_selected_item_info()
+        if not item_id or count <= 0: return
+
+        self.cultivator.inventory[item_id] -= 1
+        self.cultivator.money += sell_price
         
-        for item_id, count in self.cultivator.inventory.items():
-            if count > 0:
-                info = self.item_manager.get_item(item_id)
-                if info and info.get("type") == "junk":
-                    base_price = info.get("price", 1)
-                    sell_price = max(1, int(base_price * 0.5))
-                    total = sell_price * count
-                    
-                    items_to_sell.append((item_id, count))
-                    total_income += total
+        self.sell_msg.setText(f"出售成功! +{sell_price}灵石")
+        self.refresh_sell_list()
+
+    def sell_item_all(self):
+        item_id, count, sell_price = self._get_selected_item_info()
+        if not item_id or count <= 0: return
+
+        total_price = sell_price * count
+        self.cultivator.inventory[item_id] = 0
+        self.cultivator.money += total_price
         
-        if not items_to_sell:
-            self.sell_msg.setText("背包里没有杂物")
-            return
-            
-        # 执行出售
-        for item_id, count in items_to_sell:
-            self.cultivator.inventory[item_id] = 0
-            
-            # 清理 inventory 里为 0 的 key? 暂时留着也行
-        
-        self.cultivator.money += total_income
-        self.sell_msg.setText(f"一键回收完成! 获得 {total_income} 灵石")
+        self.sell_msg.setText(f"出售 {count}个! 获得 {total_price} 灵石")
         self.refresh_sell_list()
 
     # --- Utils ---
