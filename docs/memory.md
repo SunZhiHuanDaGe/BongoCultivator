@@ -4,37 +4,39 @@
 - **GUI Framework**: PyQt6
 - **架构模式**: 
     - `PetWindow` (View/Controller): 处理 UI、输入、动画渲染。
-    - `Cultivator` (Model): 处理数据逻辑、属性计算、存档管理。
-    - `InputMonitor`: 独立线程监控 APM。
-    - `ItemManager` & `EventManager`: 单例管理数据配置。
+    - `Cultivator` (Model): 处理数据逻辑、属性计算、存档管理 (SQLite)。
+    - `InputMonitor` & `ActivityRecorder`: 独立线程监控 APM 并持久化记录。
+    - `ItemManager` & `EventManager`: 单例管理数据配置 (DB-driven)。
 
 ## 已完成功能 (Completed Features)
 1. **基础互动**: 
     - 鼠标拖拽移动
     - 鼠标点击播放随机对话
-    - 右键菜单 (Context Menu)
-    - 托盘图标控制 (System Tray)
+    - 右键菜单 (Context Menu) - 动态境界文案
+    - 托盘图标控制 (System Tray) - 悬浮显示详细属性
     - 窗口置顶且不抢占焦点
 
 2. **修仙核心 (Cultivation Core)**:
     - **状态机**: IDLE (闭关), COMBAT (斗法), WORK (历练), READ (悟道) 基于 APM 自动切换。
-    - **三维属性**: 
-        - `Mind` (心魔): 影响修炼效率与渡劫成功率。
-        - `Body` (体魄): 影响渡劫成功率。
-        - `Affection` (好感): 影响掉落率。
-    - **物品系统**: 
-        - 物品分级 (Tier 1-2), 包含材料、消耗品、丹药。
-        - 存/取/使用逻辑 (`InventoryWindow`)。
+    - **境界系统**: 炼气 -> 渡劫 (9个大境界), 升级曲线已平衡 (1天 -> 152天)。
+    - **物品系统 (Tier 0-8)**: 
+        - 9套标准物品 (灵草/元果/丹药) 存入 SQLite。
+        - 动态掉落池: 根据当前境界掉落对应物资 (80%同阶, 15%低阶, 5%高阶)。
     - **炼丹系统**: 
         - 基于配方的炼丹界面 (`AlchemyWindow`)。
-    - **随机事件**:
-        - 定时触发 (默认 5分钟)，包含资源获取、状态变更。
-    - **渡劫与天赋**:
-        - 经验满后需手动渡劫 (成功率受属性影响)。
-        - 渡劫成功获得天赋点，可升级 `Exp` (悟性) 或 `Drop` (机缘)。
-        - `TalentWindow` 展示属性与加点。
-    - **坊市系统**: 
-        - 每日或手动刷新的随机商店。
+        - 丹药效果: 经验 (1%-5%)、状态恢复、Buff。
+    - **秘籍系统 (Cheats)**: 
+        - 右键隐藏入口输入密令，快速突破或重置 (`reborn`)。
+
+3. **生产力与统计 (Productivity & Stats)**:
+    - **数据采集**: `pynput` 监听键盘鼠标操作量。
+    - **持久化**: 分钟级数据存入 SQLite。
+    - **可视化**: `StatsWindow` 展示今日/近7天/本月/今年的活跃度趋势 (Matplotlib)。
+    - **游戏化**: 努力工作 (高APM) 增加“历练”收益。
+
+4. **视觉与特效 (Visuals)**:
+    - **粒子系统**: 渡劫(雷电)、点击(光点/爱心)、突破(光环)。
+    - **动画**: Idle 变体 (打瞌睡/观察)、拖拽挣扎动画。
 
 ## 置顶显示且不影响操作其他软件 (macOS 实现要点)
 目标：小人窗口始终在最前端，同时不抢焦点，用户仍可正常操作其他应用。
@@ -48,59 +50,47 @@
 2. **macOS 原生窗口层级与空间**
    - 通过 `winId()` 获取 `NSWindow`，调用 Objective‑C API 设置：
      - `setLevel(CGWindowLevelForKey(kCGFloatingWindowLevelKey))`：置顶层级。
-     - `setCollectionBehavior(CanJoinAllSpaces | Stationary | FullScreenAuxiliary)`：
-       保证跨桌面/全屏应用时仍显示。
+     - `setCollectionBehavior(CanJoinAllSpaces | Stationary | FullScreenAuxiliary)`：保证跨桌面/全屏应用时仍显示。
      - `setHidesOnDeactivate(False)`：失去激活时也不隐藏。
      - `orderFrontRegardless()`：确保置前。
-   - 在 `showEvent` 中延迟重复应用，避免窗口重建后失效。
-
-3. **不影响其他软件操作**
-   - 窗口不抢焦点，用户点击其他窗口时焦点会正常切换。
-   - 点击检测仅对“实体像素”生效：`mousePressEvent` 内部通过图片 alpha 进行命中测试，
-     透明区域 `event.ignore()`，减少对下层窗口的阻挡感。
-
-4. **后台输入监听**
-   - `InputMonitor` 使用 `pynput` 全局监听键鼠，让动画不依赖窗口焦点。
-   - macOS 需要在“隐私与安全性”中启用 **输入监控** 和 **辅助功能** 权限。
 
 ## 数据存储 (Data Persistence)
-- **文件**: `save_data.json`
-- **内容**: 经验、境界、灵石、背包、市场数据、三维属性、天赋数据。
-- **机制**: 程序关闭时自动保存，启动时读取；支持离线收益结算。
-
-## 关键修复 (Critical Fixes)
-- 修复了 `PetWindow` 初始化顺序导致的 `image_label` 属性丢失崩溃问题。
-- 修复了 macOS 下窗口置顶与焦点抢占的冲突 (使用 `WindowDoesNotAcceptFocus`)。
+- **数据库**: `user_data.db` (SQLite)
+- **表结构**:
+    - `player_status`: 单行记录 (境界, 经验, 灵石, 属性, 时间戳)。
+    - `player_inventory`: 背包物品 (FK to definitions)。
+    - `item_definitions`: 静态物品配置 (启动时从 Items v2 导入)。
+    - `activity_logs_minute`: 分钟级键鼠操作记录。
+    - `activity_logs_daily`: (可选) 聚合数据。
+- **机制**: 实时/定期 (1min) 写入数据库；支持重置 ("转世")。
 
 ## 执行计划与路线图 (Execution Roadmap)
 
-当前共有 **5** 个待执行计划，建议按以下顺序从底向上进行开发：
-
-### 1. 基础设施重构 (Priority: High)
-- [x] **[Plan 7: 数据库迁移](plan7.md)**
-    - **内容**: 物品系统重构 (9阶)，JSON 转 SQLite，支持重置存档。
-    - **状态**: **已完成**
-    - **理由**: 稳固底层数据结构，避免后续开发反复修改存取逻辑。
-
-### 2. 系统与体验优化 (Priority: High)
-- [x] **[Plan 6: UI与系统优化](plan6.md)**
-    - **内容**: 状态栏移至托盘，修仙文案替换，动态掉落池，丹药强度与神识限制。
-    - **状态**: **已完成**
-    - **理由**: 基于新数据库优化上层游戏体验。
-
-### 3. 内容填充与平衡 (Priority: Medium)
-- [x] **[Plan 4: 数值平衡](plan4.md)**
-    - **内容**: 调整升级曲线 (炼气1天 -> 大乘152天)，适配长线养成。
-    - **状态**: **已完成**
-- [x] **[Plan 5: 秘籍系统](plan5.md)**
-    - **内容**: 添加 `whosyourdaddy` 等作弊指令及 `reborn` 重置指令。
+### 已完成 (Completed)
+- [x] **[Plan 1: 核心重构](plan1_done.md)** (MVC, 状态机)
+- [x] **[Plan 3: 生产力统计](plan3_done.md)** (Activity Recording, Stats UI)
+- [x] **[Plan 4: 数值平衡](plan4_done.md)** (Exp Curve, Item Balance)
+- [x] **[Plan 5: 秘籍系统](plan5_done.md)** (Cheat Codes)
+- [x] **[Plan 6: UI与系统优化](plan6_done.md)** (Tray Info, Drop Balace, Alchemy 2.0)
+- [x] **[Plan 7: 数据库迁移](plan7_done.md)** (SQLite Migration, Item Tier 0-8)
+- [x] **[Plan 8: 跨平台打包 (macOS)](plan8_done.md)** (PyInstaller .app)
+- [x] **[Plan 2 (Phase 6): 视觉增强](plan2_done.md)** (VFX, Animations)
+- [x] **[Plan 9: 物品扩充与文案精修](plan9_done.md)**
+    - **内容**: 全面重构物品 DB (Tier 0-9)，新增 110+ 物品与 39+ 配方，采用修仙/科幻混合风格。
     - **状态**: **已完成**
 
-### 4. 发布与部署 (Priority: Low)
-- [x] **[Plan 8: 跨平台打包](plan8.md)**
-    - **内容**: PyInstaller 脚本，适配 macOS/Win，制作安装包。
-    - **状态**: **已完成 (macOS)**
-    - **理由**: 功能稳定后进行最终封装。
+### 待执行 (Pending / In Progress)
+
+#### 1. 系统深度化 (Priority: Medium)
+- [ ] **[Plan 10: 奇遇事件系统](plan10.md)**
+    - **内容**: `game_events` 表结构，支持条件触发 (Triggers) 和结果 (Consequences)。
+    - **目标**: 数据驱动的随机事件。
+- [ ] **[Plan 11: 成就系统](plan11.md)**
+    - **内容**: 基于生产力数据 (Keys, Clicks) 的成就反馈机制。
+
+#### 2. 遗留任务 from Plan 2/8
+- [ ] **Plan 2 (Phase 8)**: 桌面互动 (窗口吸附) / 放置深度化 (灵田)。
+- [ ] **Plan 8 (Windows)**: 在 Windows 环境下运行打包脚本。
 
 ---
-*上次更新时间: 2025-12-24 16:03*
+*上次更新时间: 2025-12-25 11:00*

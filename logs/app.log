@@ -3263,3 +3263,26 @@ AttributeError: 'Cultivator' object has no attribute 'layer'
 2025-12-24 17:33:14,601 [INFO] [cultivator.py:497] - 数据已保存至数据库
 2025-12-24 17:33:14,601 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
 2025-12-24 17:33:14,602 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766568794, Keys=47, Mouse=28
+2025-12-25 10:28:57,837 [INFO] [logger.py:69] - 日志系统已启动 (Log system initialized).
+2025-12-25 10:28:57,890 [INFO] [database.py:102] - 数据库初始化完成: all tables ready
+2025-12-25 10:28:57,898 [INFO] [main.py:12] - 启动应用程序...
+2025-12-25 10:28:58,113 [INFO] [pet_window.py:18] - 初始化 PetWindow...
+2025-12-25 10:28:58,114 [INFO] [item_manager.py:48] - Loaded 71 items from Database.
+2025-12-25 10:28:58,114 [INFO] [event_manager.py:25] - 成功加载 4 个随机事件
+2025-12-25 10:28:58,126 [INFO] [cultivator.py:118] - 坊市商品已刷新
+2025-12-25 10:28:58,187 [DEBUG] [pet_window.py:588] - 切换状态: IDLE
+2025-12-25 10:28:58,188 [INFO] [activity_recorder.py:16] - 启动 ActivityRecorder (每 60 秒记录一次)...
+2025-12-25 10:29:02,260 [DEBUG] [pet_window.py:588] - 切换状态: READ
+2025-12-25 10:29:03,260 [DEBUG] [pet_window.py:588] - 切换状态: IDLE
+2025-12-25 10:29:15,260 [DEBUG] [pet_window.py:588] - 切换状态: READ
+2025-12-25 10:29:17,261 [DEBUG] [pet_window.py:588] - 切换状态: IDLE
+2025-12-25 10:29:27,260 [DEBUG] [pet_window.py:588] - 切换状态: READ
+2025-12-25 10:29:28,261 [DEBUG] [pet_window.py:588] - 切换状态: IDLE
+2025-12-25 10:29:29,260 [DEBUG] [pet_window.py:588] - 切换状态: READ
+2025-12-25 10:29:29,261 [DEBUG] [pet_window.py:588] - 切换状态: IDLE
+2025-12-25 10:29:32,260 [DEBUG] [pet_window.py:588] - 切换状态: READ
+2025-12-25 10:29:35,260 [DEBUG] [pet_window.py:588] - 切换状态: IDLE
+2025-12-25 10:29:39,382 [INFO] [pet_window.py:237] - 程序关闭，保存数据...
+2025-12-25 10:29:39,385 [INFO] [cultivator.py:497] - 数据已保存至数据库
+2025-12-25 10:29:39,385 [INFO] [activity_recorder.py:20] - 停止 ActivityRecorder...
+2025-12-25 10:29:39,386 [INFO] [activity_recorder.py:37] - 已归档活动记录: Time=1766629779, Keys=0, Mouse=37

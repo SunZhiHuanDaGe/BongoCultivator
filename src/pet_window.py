@@ -283,7 +283,8 @@ class PetWindow(QWidget):
         
         # 5. 信息 Label (默认完全隐藏)
         self.info_label = QLabel(self)
-        self.info_label.resize(280, 50)
+        # 不再硬性限制高度为 50，给足空间或者后续自适应
+        self.info_label.setFixedWidth(280) 
         self.info_label.move(10, 10) # 顶部
         self.info_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.info_label.setStyleSheet("""
@@ -504,10 +505,26 @@ class PetWindow(QWidget):
                 color: #00FF7F; 
                 font-size: 16px;
                 font-weight: bold;
-                background-color: rgba(0, 0, 0, 0);
+                background-color: rgba(0, 0, 0, 150); /* 增加黑色半透明背景 */
+                border-radius: 5px;
                 padding: 4px;
             }
         """)
+        
+        # 核心修复：根据文本自适应大小和居中
+        self.info_label.adjustSize()
+        new_width = self.info_label.width()
+        
+        # 限制最大宽度，防止太宽
+        max_width = self.width() - 20 # 左右留边
+        if new_width > max_width:
+            self.info_label.setFixedWidth(max_width) # 定宽会让 Label 重新计算换行
+            self.info_label.adjustSize()             # 重新计算高度
+        
+        # 居中
+        new_x = (self.width() - self.info_label.width()) // 2
+        self.info_label.move(new_x, 10)
+        
         self.info_label.show()
         
         # 动态显示时长: 基础 3秒 + 每字 0.2秒
