@@ -107,7 +107,8 @@
 - [x] **[Plan 19: 物品使用反馈](plan19_done.md)** (Visual Notifications for Item Usage)
 - [x] **[Plan 20: 完善丹药效果](plan20_fix_effects.md)** (Inject Effects for Empty Items)
 - [x] **[Plan 21: 物品详情优化](plan21_done.md)** (Rich Text Description in UI)
-- [x] **[Plan 22: 数据持久化与存档迁移](plan22_data_persistence.md)** (Local AppData Storage)
+- [x] **[Plan 22: 数据持久化与存档迁移](plan22_done.md)** (Local AppData Storage)
+- [x] **[Plan 23: 数据自动同步](plan23_done.md)** (Version Control for Static Data)
 
 ### 待执行 (Pending / In Progress)
 

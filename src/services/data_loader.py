@@ -11,12 +11,45 @@ class DataLoader:
     主要用于初始化或数据迁移。
     """
     
+    DATA_VERSION = "001" # 初始版本号，每次修改静态数据(JSON)请递增
+
+    @staticmethod
+    def check_data_update():
+        """
+        检查代码中的数据版本号是否高于数据库中的版本号。
+        如果是，则强制执行 load_initial_data 更新静态数据。
+        """
+        try:
+            conn = sqlite3.connect(DB_FILE)
+            cursor = conn.cursor()
+            
+            # Get current DB version
+            cursor.execute("SELECT value FROM system_metadata WHERE key = 'data_version'")
+            row = cursor.fetchone()
+            db_version = row[0] if row else "000"
+            
+            logger.info(f"数据版本检查: Code={DataLoader.DATA_VERSION}, DB={db_version}")
+            
+            if DataLoader.DATA_VERSION > db_version:
+                logger.info("检测到数据更新，正在同步静态数据...")
+                if DataLoader.load_initial_data():
+                    # Update version in DB
+                    cursor.execute("INSERT OR REPLACE INTO system_metadata (key, value) VALUES ('data_version', ?)", (DataLoader.DATA_VERSION,))
+                    conn.commit()
+                    logger.info(f"数据更新完成，版本号更新为 {DataLoader.DATA_VERSION}")
+            else:
+                logger.debug("数据已是最新，跳过更新。")
+                
+            conn.close()
+        except Exception as e:
+            logger.error(f"版本检查失败: {e}")
+
     @staticmethod
     def load_initial_data():
         """
         从资源文件加载所有初始数据 (Items, Recipes, Events) 并写入数据库。
         """
-        logger.info("开始初始化数据库数据...")
+        logger.info("开始加载数据库数据...")
         
         # 1. 获取资源路径
         # 注意: get_resource_path 会处理打包后的路径映射
@@ -121,6 +154,9 @@ class DataLoader:
                     """, (evt_id, evt_type, evt_weight, evt_json))
                     count_events += 1
             
+            # Set initial version if not present
+            cursor.execute("INSERT OR IGNORE INTO system_metadata (key, value) VALUES ('data_version', ?)", (DataLoader.DATA_VERSION,))
+
             conn.commit()
             conn.close()
             

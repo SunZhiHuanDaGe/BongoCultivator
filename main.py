@@ -12,6 +12,10 @@ def main():
     # 0. 数据迁移检查 (在所有数据加载之前)
     from src.utils.data_migration import check_and_migrate_data
     check_and_migrate_data()
+    
+    # 0.1 静态数据版本同步
+    from src.services.data_loader import DataLoader
+    DataLoader.check_data_update()
 
     logger.info("启动应用程序...")
     app = QApplication(sys.argv)

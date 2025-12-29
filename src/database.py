@@ -28,6 +28,13 @@ class DatabaseManager:
                         mouse_count INTEGER DEFAULT 0
                     )
                 """)
+                # System Metadata for Version Control
+                cursor.execute("""
+                    CREATE TABLE IF NOT EXISTS system_metadata (
+                        key TEXT PRIMARY KEY,
+                        value TEXT
+                    )
+                """)
                 # Create index on timestamp for faster queries
                 cursor.execute("""
                     CREATE INDEX IF NOT EXISTS idx_timestamp 
