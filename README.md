@@ -93,27 +93,27 @@ python main.py
 
 ## 📂 项目结构 (Project Structure)
 
+关于项目的详细代码架构、模块职责及文件导航，请查阅独立的结构文档：
+👉 **[STRUCTURE.md](docs/STRUCTURE.md)**
+
+简要目录：
 ```
 bongo/
 ├── main.py              # 程序入口
-├── src/
-│   ├── cultivator.py    # [Model] 核心数据逻辑 (User Data)
-│   ├── pet_window.py    # [View] 主窗口 UI 与动画渲染
-│   ├── services/        # 业务服务 (EventEngine, AchievementManager)
-│   ├── ui/              # 子窗口 (Inventory, Alchemy, Stats)
-│   ├── data/            # 静态资源 (JSON Configs, Assets)
-│   └── database.py      # SQLite 管理
-├── assets/              # 图片与音频资源
-└── docs/                # 开发文档
+├── src/                 # 核心代码 (Model, View, Services)
+├── assets/              # 资源文件
+└── docs/                # 开发文档与计划
 ```
 
 ---
 
 ## 📝 开发计划与日志 (Changelog)
-详细的开发记录请参考 `docs/` 目录下的计划文档。
-- **v1.0**: 核心玩法上线，包含炼丹、事件与成就系统。
-- **v1.1**: 经济系统平衡，修复物品使用逻辑。
 
+详细的开发计划、历史归档及当前任务，请查阅计划索引：
+👉 **[Project Plans Index](docs/plans/README.md)**
+
+- **最新活动**: 查看 `docs/plans/active/` 目录。
+- **历史记录**: 查看 `docs/plans/archive/` 目录。
 ---
 
 ## 🤝 贡献 (Contributing)
