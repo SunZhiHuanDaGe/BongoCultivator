@@ -45,6 +45,27 @@ class DialogueManager:
                     }
                     self.dialogues.append(d)
             logger.info(f"DialogueManager loaded {len(self.dialogues)} dialogues.")
+            
+            # --- Inject Cheat Hints (Plan: Leaking Secrets) ---
+            # 1. Hint for Foundation Manual (Layer 0)
+            self.dialogues.append({
+                "id": "cheat_hint_1",
+                "text": "听说有一本【筑基宝典】，叫《魔兽争霸3》，要点就是 whosyour 嘘天机不可泄露！",
+                "type": "hint",
+                "conditions": {"min_layer": 0, "max_layer": 0},
+                "weight": 20 # Higher weight to ensure visibility
+            })
+            
+            # 2. Hint for Core Formation Secret (Layer 1)
+            self.dialogues.append({
+                "id": "cheat_hint_2",
+                "text": "传闻【结丹秘籍】就藏在魂斗虚空之中，口诀似乎是 '上上下下左左嘘天机不可泄露'...",
+                "type": "hint",
+                "conditions": {"min_layer": 1, "max_layer": 1},
+                "weight": 20
+            })
+            logger.info("Injected cheat hint dialogues.")
+            # --------------------------------------------------
         except Exception as e:
             logger.error(f"DialogueManager load failed: {e}")
 

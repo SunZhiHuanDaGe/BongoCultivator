@@ -85,6 +85,12 @@ class StatsWindow(DraggableWindow):
         self.tab_merit = MeritTab(self.cultivator)
         self.tabs.addTab(self.tab_merit, "功德簿")
         
+        
+        # Tab 4: Logs
+        self.tab_logs = QWidget()
+        self.init_tab_logs()
+        self.tabs.addTab(self.tab_logs, "修仙日志")
+
         # Auto refresh logic
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.refresh_data)
@@ -321,9 +327,89 @@ class StatsWindow(DraggableWindow):
         
         self.canvas_hist.draw()
 
+    def init_tab_logs(self):
+        from PyQt6.QtWidgets import QTableWidget, QTableWidgetItem, QHeaderView
+        
+        layout = QVBoxLayout(self.tab_logs)
+        
+        self.log_table = QTableWidget()
+        self.log_table.setColumnCount(3)
+        self.log_table.setHorizontalHeaderLabels(["时间", "类型", "事件"])
+        self.log_table.verticalHeader().setVisible(False)
+        
+        # Style
+        self.log_table.setStyleSheet("""
+            QTableWidget {
+                background-color: transparent;
+                gridline-color: #444;
+                color: #DDD;
+                border: none;
+            }
+            QHeaderView::section {
+                background-color: rgba(50, 50, 50, 200);
+                color: #FFD700;
+                padding: 4px;
+                border: none;
+            }
+            QTableCornerButton::section { background-color: transparent; }
+        """)
+        
+        # Column width
+        header = self.log_table.horizontalHeader()
+        header.setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents)
+        header.setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
+        header.setSectionResizeMode(2, QHeaderView.ResizeMode.Stretch)
+        
+        layout.addWidget(self.log_table)
+        
+        # Refresh btn
+        btn_refresh = QPushButton("刷新日志")
+        btn_refresh.setCursor(Qt.CursorShape.PointingHandCursor)
+        btn_refresh.setStyleSheet("color: white; border: 1px solid #666; padding: 5px; border-radius: 4px;")
+        btn_refresh.clicked.connect(self.refresh_logs)
+        layout.addWidget(btn_refresh)
+
+    def refresh_logs(self):
+        from src.database import db_manager
+        import datetime
+        
+        events = db_manager.get_recent_events(limit=50) # Get last 50
+        
+        self.log_table.setRowCount(0)
+        self.log_table.setRowCount(len(events))
+        
+        type_map = {
+            "breakthrough": "渡劫",
+            "breakthrough_fail": "渡劫失败",
+            "drop": "寻宝",
+            "achievement": "成就",
+            "event": "奇遇",
+            "offline": "闭关",
+            "cheat": "天机"
+        }
+        
+        for i, evt in enumerate(events):
+            # Time
+            dt_str = datetime.datetime.fromtimestamp(evt.timestamp).strftime("%m-%d %H:%M")
+            item_time = QTableWidgetItem(dt_str)
+            item_time.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+            
+            # Type
+            t_str = type_map.get(evt.event_type, evt.event_type)
+            item_type = QTableWidgetItem(t_str)
+            item_type.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+            
+            # Msg
+            item_msg = QTableWidgetItem(evt.message.replace('\n', ' '))
+            
+            self.log_table.setItem(i, 0, item_time)
+            self.log_table.setItem(i, 1, item_type)
+            self.log_table.setItem(i, 2, item_msg)
+
     def showEvent(self, event):
         super().showEvent(event)
         self.refresh_data()
+        self.refresh_logs() # Refresh logs too
         
     def refresh_data(self):
         # Fetch data

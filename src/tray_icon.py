@@ -39,6 +39,20 @@ class SystemTray(QObject):
         reset_pos_action.triggered.connect(self.pet_window.reset_position)
         menu.addAction(reset_pos_action)
         
+        # 始终置顶
+        self.top_action = QAction("始终置顶", self)
+        self.top_action.setCheckable(True)
+        self.top_action.setChecked(True)
+        self.top_action.triggered.connect(self.pet_window.set_always_on_top)
+        menu.addAction(self.top_action)
+
+        # 显示气泡/对话
+        self.notify_action = QAction("显示对话", self)
+        self.notify_action.setCheckable(True)
+        self.notify_action.setChecked(True)
+        self.notify_action.triggered.connect(self.pet_window.toggle_notifications)
+        menu.addAction(self.notify_action)
+
         menu.addSeparator()
         
         # 退出

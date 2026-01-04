@@ -73,3 +73,13 @@ def process_cheat_code(self, code):
 ### 3. 验证
 - 通过 `tools_verify_cheats.py` 验证了所有代码的生效条件和晋升逻辑。
 
+### 4. 2026-01-04 更新 (Optimization)
+- **别名支持**: 
+    - `whosyourdaddy` 增加支持拼写错误版本 `whosryoudaddy`。
+    - `上上下下左左右右baba` 增加支持带空格版本 `上上下下左左右右 baba`。
+- **线索提示 (Hints)**:
+    - 增加了随机对话内容，在炼气/筑基期通过对话向玩家泄露“天机”线索。
+    - 炼气期提示：`whosryoudaddy` (筑基宝典)。
+    - 筑基期提示：`上上下下左左右右 baba` (结丹秘籍)。
+
+

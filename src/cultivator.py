@@ -52,6 +52,17 @@ class Cultivator:
         self.death_count = 0
         self.legacy_points = 0
         
+    def _log_event(self, event_type, msg):
+        """记录日志同时通知UI"""
+        import time
+        from src.database import db_manager
+        
+        # 1. UI Notification Queue
+        self.events.append(msg)
+        
+        # 2. Persist
+        db_manager.log_event(event_type, msg, int(time.time()))
+        
     # ... (properties methods) ...
 
     def modify_stat(self, stat, value):
@@ -308,7 +319,8 @@ class Cultivator:
             self.talent_points += 1 # 获得天赋点
             
             msg = f"雷劫洗礼，金光护体！\n晋升【{self.current_layer}】\n体魄+2，天赋点+1"
-            self.events.append(msg)
+            msg = f"雷劫洗礼，金光护体！\n晋升【{self.current_layer}】\n体魄+2，天赋点+1"
+            self._log_event("breakthrough", msg)
             return True, msg
         else:
             # 失败惩罚
@@ -323,7 +335,8 @@ class Cultivator:
             self.mind = min(100, self.mind + 10)
             
             msg = f"渡劫失败！天雷滚滚，肉身受损。\n修为-{loss}，体魄-1，心魔+10"
-            self.events.append(msg)
+            msg = f"渡劫失败！天雷滚滚，肉身受损。\n修为-{loss}，体魄-1，心魔+10"
+            self._log_event("breakthrough_fail", msg)
             return False, msg
 
     def gain_item(self, item_id, count=1):
@@ -440,8 +453,9 @@ class Cultivator:
                 if drop_id:
                     self.gain_item(drop_id)
                     name = self.item_manager.get_item_name(drop_id)
+                    name = self.item_manager.get_item_name(drop_id)
                     gain_msg = f"探险发现: {name}!"
-                    self.events.append(gain_msg)
+                    self._log_event("drop", gain_msg)
                 
             if not gain_msg:
                 gain_msg = "+5 修为 (历练中)"
@@ -490,7 +504,9 @@ class Cultivator:
                  reward_desc = f"(奖励物品: {item_name} x{count})"
             elif ach['reward_type'] == 'title':
                  reward_desc = "(奖励称号)"
-            self.events.append(f"{msg}\n{reward_desc}")
+            elif ach['reward_type'] == 'title':
+                 reward_desc = "(奖励称号)"
+            self._log_event("achievement", f"{msg}\n{reward_desc}")
 
         # --- 随机事件系统 ---
         self.tick_counter = getattr(self, 'tick_counter', 0) + 1
@@ -509,7 +525,9 @@ class Cultivator:
                 event_msg = f"【机缘】{event['title']}\n{event['text']}"
                 if result_msg:
                      event_msg += f"\n> {result_msg}"
-                self.events.append(event_msg)
+                if result_msg:
+                     event_msg += f"\n> {result_msg}"
+                self._log_event("event", event_msg)
                 
                 # Make sure to show it in UI
                 if gain_msg:
@@ -532,7 +550,8 @@ class Cultivator:
             # 离线默认按打坐计算，但收益减半 (1.0 exp/s, Plan 4 benchmark)
             exp_gain = int(diff * 1.0)
             self.gain_exp(exp_gain)
-            self.events.append(f"闭关结束，离线 {diff // 60} 分钟，获得 {exp_gain} 修为")
+            self.gain_exp(exp_gain)
+            self._log_event("offline", f"闭关结束，离线 {diff // 60} 分钟，获得 {exp_gain} 修为")
             
     def get_random_dialogue(self):
         return dialogue_manager.get_random_dialogue(self)
@@ -670,29 +689,33 @@ class Cultivator:
         code = code.strip()
         
         # 1. isosyourdaddy -> 炼气(0) 到 筑基(1)
-        if code.lower() == "whosyourdaddy":
+        # 支持 typos: whosryoudaddy
+        if code.lower() in ["whosyourdaddy", "whosryoudaddy"]:
             if self.layer_index == 0:
                 self.layer_index = 1
                 self.exp = 0
                 self.body += 5
                 self.mind = 0
                 self.talent_points += 1
-                msg = "【天道作弊】神力加持！你已直接晋升筑基期！"
-                self.events.append(msg)
+                self.talent_points += 1
+                msg = "【筑基宝典】天道灌顶！你已直接晋升筑基期！"
+                self._log_event("cheat", msg)
                 return True, msg
             else:
                 return False, "当前境界无法使用此密令 (仅炼气期可用)"
                 
         # 2. 上上下下左左右右baba -> 筑基(1) 到 金丹(2)
-        elif code == "上上下下左左右右baba":
+        # 支持空格
+        elif code.replace(" ", "") == "上上下下左左右右baba":
             if self.layer_index == 1:
                 self.layer_index = 2
                 self.exp = 0
                 self.body += 10
                 self.mind = 0
                 self.talent_points += 1
-                msg = "【天道作弊】魂斗罗附体！你已直接晋升金丹大道！"
-                self.events.append(msg)
+                self.talent_points += 1
+                msg = "【结丹秘籍】魂斗罗附体！你已直接晋升金丹大道！"
+                self._log_event("cheat", msg)
                 return True, msg
             else:
                 return False, "当前境界无法使用此密令 (仅筑基期可用)"
@@ -705,8 +728,9 @@ class Cultivator:
                 self.body += 20
                 self.mind = 0
                 self.talent_points += 1
+                self.talent_points += 1
                 msg = "【天道作弊】海王之力附体？你已直接晋升元婴老祖！"
-                self.events.append(msg)
+                self._log_event("cheat", msg)
                 return True, msg
             else:
                 return False, "当前境界无法使用此密令 (仅金丹期可用)"

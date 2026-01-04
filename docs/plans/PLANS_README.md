@@ -29,6 +29,8 @@
 
 | Plan ID | 标题 (Title) | 关键功能 (Key Features) | 链接 (Link) |
 | :--- | :--- | :--- | :--- |
+| **Plan 35** | UI与体验优化 | 修复Windows输入框、多屏支持、托盘增强及事件日志。 | [plan35_done.md](archive/plan35_done.md) |
+| **Plan 34** | 修复废丹显示 (Fix Pill Waste) | 修复废丹显示为英文的问题，并添加物品定义。 | [plan34_done.md](archive/plan34_done.md) |
 | **Plan 33** | UI细节修复与图标更新 | 修复 Liquid 显示问题，更新应用图标。 | [plan33_done.md](archive/plan33_done.md) |
 | **Plan 32** | 事件文案差异化 | 优化 T0-T8 通用事件文案，使其符合修仙境界。 | [plan32_done.md](archive/plan32_done.md) |
 | **Plan 31** | 动态对话系统 | 数据库驱动的上下文敏感对话系统。 | [plan31_done.md](archive/plan31_done.md) |

@@ -165,6 +165,20 @@ Solid white background, crisp pixels, no anti-aliasing, sharp edges, isolated su
 
 text
 A cute chibi cultivator character, wearing white traditional Hanfu robes with blue trim, black hair styled in a Daoist topknot bun.
-ACTION: Casting magic spells in front of a massive, ornate golden furnace (Ding) with dragon carvings. The furnace is glowing with magical purple and blue aura, floating glowing pills.
+Action: Casting magic spells in front of a massive, ornate golden furnace (Ding) with dragon carvings. The furnace is glowing with magical purple and blue aura, floating glowing pills.
 High-res pixel art style, 1024x1024 resolution, thick black contour outline, 2D game sprite asset.
 Solid white background, crisp pixels, no anti-aliasing, sharp edges, isolated subject.
+---
+
+## 6. 天机 (Secret Commands)
+
+隐藏的作弊指令系统，可通过右键菜单“天机”入口输入。
+
+### 密令列表 (部分需要特定境界)
+
+| 密令 | 效果 | 限制条件 | 获取线索 |
+| :--- | :--- | :--- | :--- |
+| `whosryoudaddy` / `whosyourdaddy` | 获得【筑基宝典】，直升筑基期 (Lv1)。 | 仅炼气期 (Lv0) 可用 | 点击宠物对话 (几率) |
+| `上上下下左左右右 baba` (支持空格) | 获得【结丹秘籍】，直升金丹期 (Lv2)。 | 仅筑基期 (Lv1) 可用 | 点击宠物对话 (几率) |
+| `haiwangshabi` | 获得【海王之力】，直升元婴期 (Lv3)。 | 仅金丹期 (Lv2) 可用 | 无 |
+| `laozibuganle` | 兵解转世 (重置存档)。 | 无限制 | 无 |

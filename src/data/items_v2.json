@@ -100,6 +100,16 @@
                 "desc": "薄如蝉翼但坚韧异常，对着光看能看到细密的黑色神经网。",
                 "effect": {},
                 "recipe": {}
+            },
+            {
+                "id": "pill_waste",
+                "name": "废丹",
+                "type": "junk",
+                "tier": 0,
+                "price": 1,
+                "desc": "炼丹失败的产物，散发着焦糊味，毫无药用价值。",
+                "effect": {},
+                "recipe": {}
             }
         ],
         "pills": [

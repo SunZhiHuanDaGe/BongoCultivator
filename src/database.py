@@ -103,5 +103,29 @@ class DatabaseManager:
             logger.error(f"统计查询失败 ({group_by}): {e}")
             return []
 
+    def log_event(self, event_type: str, message: str, timestamp: int):
+        """
+        Record a significant game event.
+        """
+        try:
+            with self.get_session() as session:
+                log = PlayerEvent(timestamp=timestamp, event_type=event_type, message=message)
+                session.add(log)
+                session.commit()
+        except Exception as e:
+            logger.error(f"Failed to log event: {e}")
+
+    def get_recent_events(self, limit: int = 50):
+        """
+        Get recent events for display.
+        """
+        try:
+            with self.get_session() as session:
+                statement = select(PlayerEvent).order_by(PlayerEvent.timestamp.desc()).limit(limit)
+                return session.exec(statement).all()
+        except Exception as e:
+            logger.error(f"Failed to fetch events: {e}")
+            return []
+
 # Global instance
 db_manager = DatabaseManager()

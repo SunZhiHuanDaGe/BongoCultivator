@@ -126,6 +126,8 @@
 - [x] **[Plan 31: 动态对话系统](plans/archive/plan31_done.md)** (Dynamic Dialogue, Context-Aware)
 - [x] **[Plan 32: 事件文案差异化](plans/archive/plan32_done.md)** (Rich Event Content, Tier-based)
 - [x] **[Plan 29: 坊市体验优化](plans/archive/plan29_done.md)** (Market UX Fixes, Chinese Tiers)
+- [x] **[Plan 34: 修复废丹显示](plans/archive/plan34_done.md)** (Fix Pill Waste Translation)
+- [x] **[Plan 35: UI与体验优化](plans/archive/plan35_done.md)** (Windows Fixes, Multi-screen, Tray, Logs)
 
 ### 待执行 (Pending / In Progress)
 

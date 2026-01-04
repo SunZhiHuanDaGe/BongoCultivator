@@ -155,10 +155,30 @@ class PetWindow(QWidget):
             self.show_notification(latest_event)
             self.cultivator.events.clear()
                 
+    def set_always_on_top(self, enabled: bool):
+        flags = self.windowFlags()
+        if enabled:
+            flags |= Qt.WindowType.WindowStaysOnTopHint
+        else:
+            flags &= ~Qt.WindowType.WindowStaysOnTopHint
+        self.setWindowFlags(flags)
+        self.show() # setWindowFlags hides the window, need to show again
+
+    def toggle_notifications(self, enabled: bool):
+        self.notifications_enabled = enabled
+        if not enabled:
+            self.info_label.hide()
+
     # --- 辅助方法: 计算窗口安全位置 (防止超出屏幕) ---
     def _calculate_safe_pos(self, widget, prefer_side='right'):
         pet_geo = self.frameGeometry()
-        screen_geo = QApplication.primaryScreen().geometry()
+        
+        # Multi-monitor fix: Use the screen where the PetWindow currently is
+        current_screen = self.screen()
+        if not current_screen:
+             current_screen = QApplication.primaryScreen()
+             
+        screen_geo = current_screen.geometry()
         
         w = widget.width()
         h = widget.height()
@@ -584,6 +604,9 @@ class PetWindow(QWidget):
         super().leaveEvent(event)
         
     def show_notification(self, text):
+        if not self.notifications_enabled:
+            return
+
         # 显示通知时强制显示
         self.info_label.setText(text)
         self.info_label.setStyleSheet("""
@@ -779,8 +802,9 @@ class PetWindow(QWidget):
     # Skip lines until input_secret to override it
 
     def input_secret(self):
-        from PyQt6.QtWidgets import QInputDialog, QLineEdit
-        text, ok = QInputDialog.getText(self, "天机", "请输入密令:", QLineEdit.EchoMode.Normal, "")
+        from src.ui.custom_input import DarkInputDialog
+        text, ok = DarkInputDialog.get_text(self, "天机", "请输入密令:")
+        
         if ok and text:
             old_layer = self.cultivator.layer_index
             success, msg = self.cultivator.process_secret_command(text)
