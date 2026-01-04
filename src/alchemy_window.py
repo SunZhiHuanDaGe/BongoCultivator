@@ -164,22 +164,28 @@ class AlchemyWindow(DraggableWindow):
         self.craft_btn.setEnabled(can_craft)
 
     def start_crafting(self):
+        # Prevent double click
+        self.craft_btn.setEnabled(False)
+        
         if self.pet_window.is_alchemying:
+            logger.warning("炼丹正在进行中，忽略点击")
             return
             
-        # Consume materials immediately? Or after?
-        # Typically consume immediately to prevent exploiting
         info = self.item_manager.get_item(self.current_recipe_id)
         recipe = info.get("recipe", {})
         
+        logger.info(f"尝试炼丹: {info.get('name')} | 配方: {recipe} |当前库存: {self.cultivator.inventory}")
+
         # Deduct items
-        for mat_id, count in recipe.items():
-            self.cultivator.inventory[mat_id] -= count
-            
-        # Trigger PetWindow Alchemy State
-        # Pass the target result to PetWindow so it knows what to produce
-        self.pet_window.start_alchemy_task(self.current_recipe_id)
-        self.hide()
+        if self.cultivator.consume_items(recipe):
+            logger.info("材料扣除成功，开始炼制")
+            # Trigger PetWindow Alchemy State
+            self.pet_window.start_alchemy_task(self.current_recipe_id)
+            self.hide()
+        else:
+            logger.warning("材料扣除失败 (不足)")
+            self.detail_label.setText("材料不足，无法炼制！")
+            self.refresh_recipes() # Refresh to update status
 
     def showEvent(self, event):
         self.refresh_recipes()

@@ -1071,15 +1071,14 @@ class PetWindow(QWidget):
         menu.exec(pos)
 
     def on_voluntary_rebirth(self):
-        from PyQt6.QtWidgets import QMessageBox
+        from src.ui.custom_dialog import ConfirmationDialog
         from src.services.reincarnation_manager import ReincarnationManager
         
-        reply = QMessageBox.question(self, '兵解重修', 
+        reply = ConfirmationDialog.confirm(self, '兵解重修', 
                                      "你确定要兵解重修吗？\n当前修为将清空，但保留大部分气运(AP)。\n这将开始新的轮回。",
-                                     QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No, 
-                                     QMessageBox.StandardButton.No)
+                                     "兵解", "取消")
         
-        if reply == QMessageBox.StandardButton.Yes:
+        if reply:
              success, res = ReincarnationManager.perform_reincarnation(self.cultivator, "rebirth")
              if success:
                  self.show_notification(f"重修成功！继承气运: {res['legacy_points']}")

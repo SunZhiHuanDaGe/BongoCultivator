@@ -1,17 +1,9 @@
 from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel, 
-                             QPushButton, QFrame, QTabWidget, QGraphicsDropShadowEffect)
+                             QPushButton, QFrame, QTabWidget, QGraphicsDropShadowEffect,
+                             QTableWidget, QTableWidgetItem, QHeaderView)
 from PyQt6.QtCore import Qt, QTimer
 from PyQt6.QtGui import QColor, QFont
-from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.figure import Figure
-import matplotlib.pyplot as plt
-import matplotlib
-
-# 设置中文字体 (尝试多个常用中文字体)
-plt.rcParams['font.sans-serif'] = ['Arial Unicode MS', 'PingFang SC', 'Heiti TC', 'SimHei', 'sans-serif']
-plt.rcParams['axes.unicode_minus'] = False
-# Dark theme for plot
-plt.style.use('dark_background')
+from src.ui.charts import BarChartWidget, LineChartWidget
 
 from src.services.stats_analyzer import stats_analyzer
 from src.ui.merit_tab import MeritTab
@@ -133,11 +125,9 @@ class StatsWindow(DraggableWindow):
         layout.addLayout(summary_layout)
         
         # Chart
-        self.figure_today = Figure(figsize=(5, 3), dpi=100)
-        self.figure_today.patch.set_facecolor('none') # Transparent
-        self.canvas_today = FigureCanvas(self.figure_today)
-        self.canvas_today.setStyleSheet("background-color:transparent;")
-        layout.addWidget(self.canvas_today)
+        self.chart_today = BarChartWidget(self)
+        self.chart_today.setMinimumHeight(150)
+        layout.addWidget(self.chart_today)
         
         # Analysis Text
         self.lbl_analysis = QLabel("正在分析天道...")
@@ -261,11 +251,9 @@ class StatsWindow(DraggableWindow):
         layout.addLayout(stats_layout)
         
         # 3. Chart
-        self.figure_hist = Figure(figsize=(5, 3), dpi=100)
-        self.figure_hist.patch.set_facecolor('none')
-        self.canvas_hist = FigureCanvas(self.figure_hist)
-        self.canvas_hist.setStyleSheet("background-color:transparent;")
-        layout.addWidget(self.canvas_hist)
+        self.chart_history = LineChartWidget(self)
+        self.chart_history.setMinimumHeight(150)
+        layout.addWidget(self.chart_history)
         
         # Default load
         self.btn_week.setChecked(True)
@@ -297,38 +285,10 @@ class StatsWindow(DraggableWindow):
         self.plot_history_chart(data['trend'], data['labels'])
 
     def plot_history_chart(self, trend, labels):
-        self.figure_hist.clear()
-        ax = self.figure_hist.add_subplot(111)
-        
-        x = range(len(trend))
-        # Line chart for history
-        ax.plot(x, trend, color='#00FF7F', marker='o', linewidth=2, markersize=4)
-        # Fill under
-        ax.fill_between(x, trend, color='#00FF7F', alpha=0.1)
-        
-        # Style
-        ax.set_facecolor('none')
-        ax.spines['top'].set_visible(False)
-        ax.spines['right'].set_visible(False)
-        ax.spines['bottom'].set_color('#666')
-        ax.spines['left'].set_color('#666')
-        
-        ax.tick_params(axis='x', colors='#888')
-        ax.tick_params(axis='y', colors='#888')
-        
-        # Ticks
-        # If too many labels, sparse them
-        step = 1
-        if len(labels) > 10:
-            step = len(labels) // 6 + 1
-            
-        ax.set_xticks(x[::step])
-        ax.set_xticklabels(labels[::step])
-        
-        self.canvas_hist.draw()
+        self.chart_history.set_data(trend, labels)
 
     def init_tab_logs(self):
-        from PyQt6.QtWidgets import QTableWidget, QTableWidgetItem, QHeaderView
+
         
         layout = QVBoxLayout(self.tab_logs)
         
@@ -442,30 +402,8 @@ class StatsWindow(DraggableWindow):
                  self.btn_claim.setText("领取今日勤勉赏 (需 >2000 操作)")
         
     def plot_today_chart(self, trend_data):
-        self.figure_today.clear()
-        ax = self.figure_today.add_subplot(111)
-        
-        # X Axis: 0-23
-        hours = list(range(24))
-        
-        # Bar chart
-        bars = ax.bar(hours, trend_data, color='#FFD700', alpha=0.7)
-        
-        # Style
-        ax.set_facecolor('none') # Transparent chart area
-        ax.spines['top'].set_visible(False)
-        ax.spines['right'].set_visible(False)
-        ax.spines['bottom'].set_color('#666')
-        ax.spines['left'].set_color('#666')
-        
-        ax.tick_params(axis='x', colors='#888')
-        ax.tick_params(axis='y', colors='#888')
-        
-        # Only show some ticks on X to avoid crowding? 
-        # For 24h, showing 0, 6, 12, 18, 23 is good
-        ax.set_xticks([0, 6, 12, 18, 23])
-        ax.set_xticklabels(['00:00', '06:00', '12:00', '18:00', '23:00'])
-        
-        self.canvas_today.draw()
+        # 0-23
+        labels = [f"{i:02d}:00" for i in range(24)]
+        self.chart_today.set_data(trend_data, labels)
 
 

@@ -147,6 +147,10 @@
 
 #### 4. 优化 (Plan 25)
 - [x] **[Plan 39: 制作人彩蛋](plans/archive/plan39_creator_easter_egg_done.md)** (Added Creator Easter Egg Dialogues)
+- [x] **[Plan 40: 界面与交互修复](plans/archive/plan40_ui_fixes_done.md)** (Replaced MessageBox, Removed MPL)
+- [x] **[Plan 41: 修复日志窗口报错](plans/archive/plan41_fix_log_error_done.md)** (Fixed Import Scope)
+- [x] **[Plan 42: 修复逻辑 Bug](plans/archive/plan42_fix_app_logic_done.md)** (Safe Resource Consumption)
+- [x] **[Plan 43: 炼丹 UI 修复](plans/archive/plan43_fix_alchemy_ui_done.md)** (Sync UI State)
 - [ ] **[Plan 25]**: [用户注册与数据留存 (Supabase)](plans/active/plan25.md)
 
 ---

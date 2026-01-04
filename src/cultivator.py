@@ -363,10 +363,59 @@ class Cultivator:
         else:
             self.inventory[item_id] = count
             
-        # item_name = self.item_manager.get_item_name(item_id)
-        # self.events.append(f"获得: {item_name} x{count}")
-        # 暂时屏蔽获得物品的公共日志，避免刷屏？
-        pass
+    def has_items(self, items_dict: dict) -> bool:
+        """
+        检查是否拥有指定数量的所有物品
+        :param items_dict: {item_id: count}
+        :return: bool
+        """
+        for item_id, count in items_dict.items():
+            if self.inventory.get(item_id, 0) < count:
+                return False
+        return True
+
+    def consume_items(self, items_dict: dict) -> bool:
+        """
+        全量检查并安全扣除物品
+        :param items_dict: {item_id: count}
+        :return: Success bool
+        """
+        if not self.has_items(items_dict):
+            return False
+            
+        for item_id, count in items_dict.items():
+            self.inventory[item_id] -= count
+            if self.inventory[item_id] <= 0:
+                # Clean up empty slots
+                if item_id in self.inventory:
+                    del self.inventory[item_id]
+        return True
+
+    def consume_money(self, amount: int) -> bool:
+        """
+        安全扣除灵石
+        """
+        if self.money < amount:
+            return False
+        self.money -= amount
+        return True
+
+    def sell_item(self, item_id: str, count: int, unit_price: int) -> int:
+        """
+        安全出售物品
+        :return: 获得的总灵石 (如果失败返回0)
+        """
+        if self.inventory.get(item_id, 0) < count:
+            return 0
+        
+        self.inventory[item_id] -= count
+        if self.inventory[item_id] <= 0:
+            if item_id in self.inventory:
+                del self.inventory[item_id]
+                
+        earned = count * unit_price
+        self.money += earned
+        return earned
 
     def update(self, kb_apm, mouse_apm):
         """

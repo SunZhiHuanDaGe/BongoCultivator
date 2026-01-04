@@ -10,14 +10,14 @@
 
 ---
 ## 📝 计划
-1. 兵解重修时候的弹出框在 windows 上显示也不正常。
-2. 修仙记录点击没有打开窗口。
+
+1. 兵解之后，轮回次数没有增加。
 
 ## 🚀 进行中 (Active)
 
 | Plan ID | 标题 (Title) | 描述 (Description) | 链接 (Link) |
 | :--- | :--- | :--- | :--- |
-| **Plan 40** | 界面与交互修复 | 修复重修弹窗及因移除 mpl 导致的记录窗口打不开问题。 | [plan40.md](active/plan40.md) |
+| **Plan 44** | 丹药效果实装 | 为所有丹药配置实际属性效果，支持混合效果。 | [plan44_pills_update.md](active/plan44_pills_update.md) |
 | **Plan 25** | 用户系统 (User System) | 使用 Supabase 完成邮箱验证注册功能，留存用户数据。 | [plan25.md](active/plan25.md) |
 
 ---
@@ -28,6 +28,10 @@
 
 | Plan ID | 标题 (Title) | 关键功能 (Key Features) | 链接 (Link) |
 | :--- | :--- | :--- | :--- |
+| **Plan 43** | 炼丹 UI 修复 | 修复炼丹按钮状态不同步问题。 | [plan43_fix_alchemy_ui_done.md](archive/plan43_fix_alchemy_ui_done.md) |
+| **Plan 42** | 修复逻辑 Bug (Fix Logic) | 修复炼丹/交易可能导致资源负数的 Bug。 | [plan42_fix_app_logic_done.md](archive/plan42_fix_app_logic_done.md) |
+| **Plan 41** | 修复日志窗口报错 | 修复 QTableWidgetItem 作用域问题。 | [plan41_fix_log_error_done.md](archive/plan41_fix_log_error_done.md) |
+| **Plan 40** | 界面与交互修复 | 修复重修弹窗及移除 MPL 依赖。 | [plan40_ui_fixes_done.md](archive/plan40_ui_fixes_done.md) |
 | **Plan 39** | 制作人彩蛋 | 增加 'robinshi2009' 彩蛋对话。 | [plan39_done.md](archive/plan39_creator_easter_egg_done.md) |
 | **Plan 38** | 事件日志修复 | 修复事件触发时结果显示重复的 Bug。 | [plan38_event_log_fix_done.md](archive/plan38_event_log_fix_done.md) |
 | **Plan 37** | 托盘与窗口置顶修复 | 修复对话框显示状态同步及 macOS 窗口置顶切换失效问题。 | [plan37_tray_fixes_done.md](archive/plan37_tray_fixes_done.md) |

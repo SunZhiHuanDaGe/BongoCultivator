@@ -9,23 +9,23 @@
 ## 📋 任务描述 (Tasks)
 
 ### 1. 兵解重修弹窗重构 (Reincarnation Dialog)
-- [ ] **创建/复用自定义对话框**:
+- [x] **创建/复用自定义对话框**:
   - 检查现有的 `src/ui/custom_input.py` 或创建通用的 `ConfirmationDialog`。
   - 确保支持自定义标题、内容及“确定/取消”按钮文案。
   - 样式需符合“修仙风格”（深色背景、金色边框/文字）。
-- [ ] **替换调用逻辑**:
+- [x] **替换调用逻辑**:
   - 修改 `src/pet_window.py` 中的 `on_voluntary_rebirth` 方法。
   - 移除 `QMessageBox.question`，改为调用自定义对话框。
 
 ### 2. 修仙记录窗口修复 (Stats Window Fix)
-- [ ] **移除 Matplotlib 依赖**:
+- [x] **移除 Matplotlib 依赖**:
   - 修改 `src/ui/stats_window.py`。
   - 删除所有 `matplotlib` 相关的 import。
-- [ ] **重写图表组件**:
+- [x] **重写图表组件**:
   - **今日趋势图 (Today Chart)**: 使用 `QPainter` 绘制简单的柱状图或折线图。
   - **历史趋势图 (History Chart)**:同样使用自定义 Widget 绘制简易折线图。
   - 保持图表风格为金色/半透明，与现有 UI 融合。
-- [ ] **验证**:
+- [x] **验证**:
   - 确保点击“修仙记录”能正常打开窗口。
   - 确保数据正常显示，图表无报错。
 

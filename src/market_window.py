@@ -245,8 +245,7 @@ class MarketWindow(DraggableWindow):
         price = goods["price"]
         item_id = goods["id"]
         
-        if self.cultivator.money >= price:
-            self.cultivator.money -= price
+        if self.cultivator.consume_money(price):
             self.cultivator.gain_item(item_id, 1)
             
             # 移除商品 (买完就没了)
@@ -366,22 +365,18 @@ class MarketWindow(DraggableWindow):
         item_id, count, sell_price = self._get_selected_item_info()
         if not item_id or count <= 0: return
 
-        self.cultivator.inventory[item_id] -= 1
-        self.cultivator.money += sell_price
-        
-        self.sell_msg.setText(f"出售成功! +{sell_price}灵石")
-        self.refresh_sell_list()
+        if self.cultivator.sell_item(item_id, 1, sell_price) > 0:
+            self.sell_msg.setText(f"出售成功! +{sell_price}灵石")
+            self.refresh_sell_list()
 
     def sell_item_all(self):
         item_id, count, sell_price = self._get_selected_item_info()
         if not item_id or count <= 0: return
 
-        total_price = sell_price * count
-        self.cultivator.inventory[item_id] = 0
-        self.cultivator.money += total_price
-        
-        self.sell_msg.setText(f"出售 {count}个! 获得 {total_price} 灵石")
-        self.refresh_sell_list()
+        total_earn = self.cultivator.sell_item(item_id, count, sell_price)
+        if total_earn > 0:
+            self.sell_msg.setText(f"出售 {count}个! 获得 {total_earn} 灵石")
+            self.refresh_sell_list()
 
     # --- Utils ---
     def update_money(self):
