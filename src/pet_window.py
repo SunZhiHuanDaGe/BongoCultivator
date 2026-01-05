@@ -166,6 +166,8 @@ class PetWindow(QWidget):
         self.show() # setWindowFlags hides the window, need to show again
 
     def toggle_notifications(self, enabled: bool):
+        from src.logger import logger
+        logger.info(f"对话框显示状态切换: {self.notifications_enabled} -> {enabled}")
         self.notifications_enabled = enabled
         if not enabled:
             self.info_label.hide()
@@ -1145,6 +1147,90 @@ class PetWindow(QWidget):
             self.shake_timer.stop()
         if hasattr(self, 'original_pos'):
             self.move(self.original_pos)
+
+    # --- Plan 46: 轮回转世 (进度导出/导入) ---
+    def trigger_export_progress(self):
+        """
+        触发进度导出 - "轮回留痕"
+        弹出文件保存对话框，将进度导出为 JSON 文件
+        """
+        from PyQt6.QtWidgets import QFileDialog
+        from src.services.progress_exporter import ProgressExporter
+        
+        # 生成默认文件名
+        default_filename = ProgressExporter.get_default_filename()
+        
+        # 弹出保存对话框
+        filepath, _ = QFileDialog.getSaveFileName(
+            self,
+            "轮回留痕 - 导出进度",
+            default_filename,
+            "存档文件 (*.json);;所有文件 (*.*)"
+        )
+        
+        if not filepath:
+            return  # 用户取消
+        
+        # 确保文件扩展名
+        if not filepath.endswith('.json'):
+            filepath += '.json'
+        
+        # 执行导出
+        success, message = ProgressExporter.export_progress(self.cultivator, filepath)
+        
+        if success:
+            self.show_notification(message)
+        else:
+            from src.ui.custom_dialog import ConfirmationDialog
+            ConfirmationDialog.alert(self, "导出失败", message)
+    
+    def trigger_import_progress(self):
+        """
+        触发进度导入 - "转世归来"
+        弹出确认对话框和文件选择对话框，从 JSON 文件导入进度
+        """
+        from PyQt6.QtWidgets import QFileDialog
+        from src.ui.custom_dialog import ConfirmationDialog
+        from src.services.progress_exporter import ProgressExporter
+        
+        # 先确认
+        reply = ConfirmationDialog.confirm(
+            self, 
+            "转世归来", 
+            "此操作将覆盖当前所有进度！\n确定要从存档文件恢复进度吗？",
+            "确定转世",
+            "取消"
+        )
+        
+        if not reply:
+            return  # 用户取消
+        
+        # 弹出文件选择对话框
+        filepath, _ = QFileDialog.getOpenFileName(
+            self,
+            "转世归来 - 导入进度",
+            "",
+            "存档文件 (*.json);;所有文件 (*.*)"
+        )
+        
+        if not filepath:
+            return  # 用户取消
+        
+        # 执行导入
+        success, message = ProgressExporter.import_progress(self.cultivator, filepath)
+        
+        if success:
+            # 刷新 UI 状态
+            self.set_state(PetState.IDLE)
+            self.show_notification(message)
+            
+            # 刷新打开的子窗口（如果有）
+            if hasattr(self, 'inventory_window') and self.inventory_window and self.inventory_window.isVisible():
+                self.inventory_window.refresh_inventory()
+            if hasattr(self, 'market_window') and self.market_window and self.market_window.isVisible():
+                self.market_window.refresh_display()
+        else:
+            ConfirmationDialog.alert(self, "导入失败", message)
 
 
 

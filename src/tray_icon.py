@@ -59,6 +59,21 @@ class SystemTray(QObject):
 
         menu.addSeparator()
         
+        # 轮回转世 子菜单 (Plan 46)
+        reincarnation_menu = QMenu("轮回转世", menu)
+        
+        export_action = QAction("轮回留痕 (导出进度)", self)
+        export_action.triggered.connect(self.pet_window.trigger_export_progress)
+        reincarnation_menu.addAction(export_action)
+        
+        import_action = QAction("转世归来 (导入进度)", self)
+        import_action.triggered.connect(self.pet_window.trigger_import_progress)
+        reincarnation_menu.addAction(import_action)
+        
+        menu.addMenu(reincarnation_menu)
+
+        menu.addSeparator()
+        
         # 退出
         quit_action = QAction("退出", self)
         quit_action.triggered.connect(self.app.quit)

@@ -103,6 +103,7 @@
     - `activity_logs_minute`: 分钟级键鼠操作记录。
     - `activity_logs_daily`: (可选) 聚合数据。
 - **机制**: 实时/定期 (1min) 写入数据库；支持重置 ("转世")。
+- **进度迁移 (Plan 46)**: 托盘菜单"轮回转世"支持导出/导入 JSON 格式的完整进度备份，版本无关，解决更新丢档问题。
 
 ## 执行计划与路线图 (Execution Roadmap)
 
@@ -153,7 +154,8 @@
 - [x] **[Plan 43: 炼丹 UI 修复](plans/archive/plan43_fix_alchemy_ui_done.md)** (Sync UI State)
 - [x] **[Plan 44: 丹药效果实装](plans/archive/plan44_pills_update.md)** (Updated Pill Effects & Docs)
 - [x] **[Plan 45: 气运系统重构](plans/archive/plan45_luck_rework_done.md)** (Luck Overhaul, Per-Life Roguelike Stat)
+- [x] **[Plan 46: 进度迁移系统](plans/archive/plan46_progress_migration_done.md)** (轮回转世: 导出/导入 JSON 进度备份)
 - [ ] **[Plan 25]**: [用户注册与数据留存 (Supabase)](plans/active/plan25.md)
 
 ---
-(最后更新: 2026-01-05 11:02)
+(最后更新: 2026-01-05 11:45)
