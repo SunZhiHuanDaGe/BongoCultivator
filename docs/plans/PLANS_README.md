@@ -28,6 +28,7 @@
 ### ✅ 已完成 (Completed)
 | Plan ID | 标题 (Title) | 描述 (Description) | 链接 (Link) |
 | :--- | :--- | :--- | :--- |
+| **Plan 45** | 气运系统重构 | 重构气运为单世有效属性，影响修炼/掉落/渡劫，新增4种气运丹药。 | [plan45_luck_rework_done.md](archive/plan45_luck_rework_done.md) |
 | **Plan 44** | 丹药效果实装 | 为所有丹药配置实际属性效果，支持混合效果。 | [plan44_pills_update.md](archive/plan44_pills_update.md) |
 | **Plan 43** | 炼丹 UI 修复 | 修复炼丹按钮连点及 UI 状态同步问题。 | [plan43_fix_alchemy_ui.md](archive/plan43_fix_alchemy_ui.md) |
 

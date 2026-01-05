@@ -253,12 +253,29 @@ class InventoryWindow(DraggableWindow):
                 msg_parts.append(f"增益[{buff_name}]")
                 used_success = True
                 
-            # 5. Affection
+            # 5. Affection (气运)
             if "affection" in effects:
                 val = effects["affection"]
-                self.cultivator.modify_stat("affection", val)
-                msg_parts.append(f"好感+{val}")
-                used_success = True
+                
+                # Plan 45: "一面之缘"机制检查
+                is_once_per_life = effects.get("once_per_life", False)
+                
+                if is_once_per_life:
+                    if item_id in self.cultivator.used_once_items:
+                        # 已使用过此类物品，本世无效
+                        msg_parts.append("（一面之缘，已无效）")
+                        # 不标记为成功使用，不消耗物品
+                    else:
+                        # 首次使用，生效并记录
+                        self.cultivator.modify_stat("affection", val)
+                        self.cultivator.used_once_items.add(item_id)
+                        msg_parts.append(f"气运+{val}")
+                        used_success = True
+                else:
+                    # 普通气运物品,无限制
+                    self.cultivator.modify_stat("affection", val)
+                    msg_parts.append(f"气运+{val}")
+                    used_success = True
                 
             # 6. Special Actions
             if "action" in effects:

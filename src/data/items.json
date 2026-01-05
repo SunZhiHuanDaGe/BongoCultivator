@@ -370,6 +370,19 @@
                     "part_snake_skin": 2,
                     "ore_copper_red": 1
                 }
+            },
+            {
+                "id": "pill_luck_1",
+                "name": "小造化丹",
+                "type": "consumable",
+                "tier": 1,
+                "price": 2000,
+                "desc": "夺天地之造化，微量提升本世气运。（一面之缘）",
+                "effect": {
+                    "affection": 1,
+                    "once_per_life": true
+                },
+                "recipe": {}
             }
         ]
     },
@@ -737,6 +750,19 @@
                     "herb_soul_restore": 1,
                     "water_nether": 2
                 }
+            },
+            {
+                "id": "pill_luck_3",
+                "name": "生生造化丹",
+                "type": "consumable",
+                "tier": 3,
+                "price": 32000,
+                "desc": "蕴含天机之力的宝珠，服用可转运。（一面之缘）",
+                "effect": {
+                    "affection": 3,
+                    "once_per_life": true
+                },
+                "recipe": {}
             }
         ]
     },
@@ -1022,6 +1048,19 @@
                     "core_star": 1,
                     "dust_void": 3
                 }
+            },
+            {
+                "id": "fruit_karma",
+                "name": "春秋大道丹",
+                "type": "consumable",
+                "tier": 5,
+                "price": 200000,
+                "desc": "蕴含时间法则的丹药，可以从时间长河中重塑气运。（一面之缘）",
+                "effect": {
+                    "affection": 5,
+                    "once_per_life": true
+                },
+                "recipe": {}
             }
         ]
     },
@@ -1374,6 +1413,19 @@
                     "lotus_chaos": 1,
                     "gas_primordial": 1
                 }
+            },
+            {
+                "id": "root_dragon",
+                "name": "鸿蒙气运",
+                "type": "consumable",
+                "tier": 8,
+                "price": 1000000,
+                "desc": "神秘且强大的气息，拥有逆天改命之效。（一面之缘）",
+                "effect": {
+                    "affection": 10,
+                    "once_per_life": true
+                },
+                "recipe": {}
             }
         ]
     },

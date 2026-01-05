@@ -21,7 +21,7 @@ class Cultivator:
         # 核心属性
         self.mind = 0      # 心魔 (0-100)，越高修练越慢
         self.body = 10     # 体魄 (基础10)，影响渡劫成功率
-        self.affection = 0 # 好感度 (0-100)，影响材料掉率
+        self.affection = 0 # Plan 45: 气运 (0-100)，单世有效，影响修炼/掉落/渡劫
         
         # 坊市数据
         self.market_goods = [] # [{id, price, discount}]
@@ -51,6 +51,9 @@ class Cultivator:
         # Plan 14: 轮回系统
         self.death_count = 0
         self.legacy_points = 0
+        
+        # Plan 45: "一面之缘"物品使用记录（同类丹药一世只能吃一次）
+        self.used_once_items = set()
         
     def _log_event(self, event_type, msg):
         """记录日志同时通知UI"""
@@ -95,25 +98,30 @@ class Cultivator:
         self.last_market_refresh = time.time()
         self.market_goods = []
         
-
-
         # 动态Tier匹配 (Plan 26)
         # 允许范围: [Current Tier - 1, Current Tier + 1]
         player_tier = min(self.layer_index, 8)
         min_tier = max(0, player_tier - 1)
         max_tier = min(8, player_tier + 1)
         
+        # Plan 45: 气运影响坊市
+        # 高阶物品概率: 基础10% + 气运*0.2% (上限 30%)
+        luck = getattr(self, 'affection', 0)
+        high_tier_chance = min(0.1 + luck * 0.002, 0.3)
+        # 折扣力度加成: 气运*0.3% (最大额外 30% 折扣)
+        luck_discount_bonus = min(luck * 0.003, 0.3)
+        
         for _ in range(6):
             # 随机决定类型
             roll = random.random()
             
             # 随机决定此商品的 Tier
-            # 权重: 同阶 60%, 低阶 30%, 高阶 10%
+            # Plan 45: 高阶概率受气运影响
             tier_roll = random.random()
             target_tier = player_tier
             if tier_roll < 0.3:
                  target_tier = min_tier
-            elif tier_roll > 0.9:
+            elif tier_roll > (1.0 - high_tier_chance):  # 气运越高，高阶越容易出现
                  target_tier = max_tier
                  
             item_id = None
@@ -127,8 +135,10 @@ class Cultivator:
                 info = self.item_manager.get_item(item_id)
                 base_price = info.get("price", 100)
                 
-                # 随机折扣 (0.8 ~ 1.25)
-                discount = round(random.uniform(0.8, 1.2), 2)
+                # Plan 45: 折扣受气运影响
+                # 基础折扣 0.8~1.2，气运额外降低下限
+                min_discount = max(0.5, 0.8 - luck_discount_bonus)
+                discount = round(random.uniform(min_discount, 1.2), 2)
                 final_price = int(base_price * discount)
                 
                 self.market_goods.append({
@@ -139,7 +149,8 @@ class Cultivator:
         
         # 立即保存进数据库，防止刷新后只在内存
         self.save_data()
-        logger.info(f"坊市商品已刷新 (Tier {min_tier}-{max_tier})")
+        luck_info = f", 气运加成: 高阶率+{int(high_tier_chance*100)}%, 折扣+{int(luck_discount_bonus*100)}%" if luck > 0 else ""
+        logger.info(f"坊市商品已刷新 (Tier {min_tier}-{max_tier}{luck_info})")
 
     def check_daily_refresh(self):
         """检查是否需要每日自动刷新"""
@@ -302,7 +313,13 @@ class Cultivator:
              # 心魔惩罚: 每点 -0.5%
              success_rate = 0.5 + (self.body * 0.01) - (self.mind * 0.005)
              method_str = "顺其自然"
-             
+        
+        # Plan 45: 气运加成 (每点 +0.1%，上限 +10%)
+        luck_bonus = min(self.affection * 0.001, 0.1)
+        success_rate += luck_bonus
+        if luck_bonus > 0:
+            method_str += f" 气运+{int(luck_bonus*100)}%"
+              
         success_rate = max(0.01, min(0.99, success_rate)) # 限制范围
         
         roll = random.random()
@@ -471,6 +488,10 @@ class Cultivator:
             if random.random() < 0.05: # 偶尔提示
                  gain_msg = "心神不宁..."
         
+        # Plan 45: 气运修练加成 (每点气运 +1% 修练效率)
+        luck_exp_bonus = 1.0 + (self.affection * 0.01)
+        exp_efficiency *= luck_exp_bonus
+        
         # 1. 判定状态
         if kb_apm < 30 and mouse_apm < 30:
             # IDLE
@@ -484,9 +505,10 @@ class Cultivator:
             current_state_code = 2 
             base_exp = 5
             
-            # 好感度加成掉落率 (Plan 6: 降低 1/10)
+            # Plan 45: 气运加成掉落率 (每点气运 +0.5% 掉落概率)
             # Base 0.5% per second (~once per 3 mins)
-            drop_bonus = (self.affection * 0.0002) + (talent_drop_bonus * 0.1) 
+            luck_drop_bonus = self.affection * 0.005  # 0.5% per point
+            drop_bonus = luck_drop_bonus + (talent_drop_bonus * 0.1) 
             
             if random.random() < (0.005 + drop_bonus):
                 # Dynamic Drop Pool (Plan 6)
@@ -658,6 +680,13 @@ class Cultivator:
                     )
                     session.add(stock)
                 
+                # Plan 45: 保存"一面之缘"使用记录
+                from src.models import UsedOnceItem
+                session.exec(delete(UsedOnceItem))
+                for item_id in self.used_once_items:
+                    used_item = UsedOnceItem(item_id=item_id)
+                    session.add(used_item)
+                
                 session.commit()
                 # logger.debug("数据已保存 (SQLModel)")
                 
@@ -705,6 +734,11 @@ class Cultivator:
                             "price": m.price,
                             "discount": m.discount
                         })
+                    
+                    # Plan 45: 加载"一面之缘"使用记录
+                    from src.models import UsedOnceItem
+                    used_items = session.exec(select(UsedOnceItem)).all()
+                    self.used_once_items = {item.item_id for item in used_items}
                         
                     # Offline Progress
                     if player.last_save_time > 0:
@@ -751,9 +785,9 @@ class Cultivator:
             else:
                 return False, "当前境界无法使用此密令 (仅炼气期可用)"
                 
-        # 2. 上上下下左左右右baba -> 筑基(1) 到 金丹(2)
+        # 2. 上上下下左右左右baba -> 筑基(1) 到 金丹(2)
         # 支持空格
-        elif code.replace(" ", "") == "上上下下左左右右baba":
+        elif code.replace(" ", "") == "上上下下左右左右baba":
             if self.layer_index == 1:
                 self.layer_index = 2
                 self.exp = 0

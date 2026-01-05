@@ -152,7 +152,8 @@
 - [x] **[Plan 42: 修复逻辑 Bug](plans/archive/plan42_fix_app_logic_done.md)** (Safe Resource Consumption)
 - [x] **[Plan 43: 炼丹 UI 修复](plans/archive/plan43_fix_alchemy_ui_done.md)** (Sync UI State)
 - [x] **[Plan 44: 丹药效果实装](plans/archive/plan44_pills_update.md)** (Updated Pill Effects & Docs)
+- [x] **[Plan 45: 气运系统重构](plans/archive/plan45_luck_rework_done.md)** (Luck Overhaul, Per-Life Roguelike Stat)
 - [ ] **[Plan 25]**: [用户注册与数据留存 (Supabase)](plans/active/plan25.md)
 
 ---
-(最后更新: 2026-01-04 12:56)
+(最后更新: 2026-01-05 11:02)

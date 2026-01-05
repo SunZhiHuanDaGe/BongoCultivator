@@ -71,11 +71,10 @@ class ItemManager:
                     
                     self.flat_items[item_id] = row
                     
-                    # Categorize
-                    cat = "pills" if "pill" in item_id or itype == "consumable" else "materials" 
-                    # Note: My generator uses "consumable" for herbs too.
-                    # Adjust optimization: Check if ID contains 'pill' or type is break/buff
-                    if itype in ['breakthrough', 'buff'] or 'pill' in item_id:
+                    # Categorize: pills/consumables vs materials
+                    # Pills 类型包括: pill*, break*, buff, exp, stat, recov, utility, special, cosmetic, consumable
+                    pill_types = ['breakthrough', 'buff', 'exp', 'stat', 'recov', 'utility', 'special', 'cosmetic', 'consumable', 'break']
+                    if itype in pill_types or 'pill' in item_id:
                         cat = "pills"
                     else:
                         cat = "materials"
@@ -138,7 +137,10 @@ class ItemManager:
             
             if "stat_body" in effects: effect_list.append(f"体魄 +{effects['stat_body']}")
             if "mind_heal" in effects: effect_list.append(f"心魔 -{effects['mind_heal']}")
-            if "affection" in effects: effect_list.append(f"好感 +{effects['affection']}")
+            if "affection" in effects:
+                val = effects['affection']
+                once_tag = "（一面之缘）" if effects.get('once_per_life') else ""
+                effect_list.append(f"气运 +{val}{once_tag}")
             if "breakthrough_chance" in effects: 
                 val = effects['breakthrough_chance']
                 effect_list.append(f"突破成功率 +{int(val*100)}%")

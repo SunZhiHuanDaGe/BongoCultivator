@@ -179,6 +179,6 @@ Solid white background, crisp pixels, no anti-aliasing, sharp edges, isolated su
 | 密令 | 效果 | 限制条件 | 获取线索 |
 | :--- | :--- | :--- | :--- |
 | `whosryoudaddy` / `whosyourdaddy` | 获得【筑基宝典】，直升筑基期 (Lv1)。 | 仅炼气期 (Lv0) 可用 | 点击宠物对话 (几率) |
-| `上上下下左左右右 baba` (支持空格) | 获得【结丹秘籍】，直升金丹期 (Lv2)。 | 仅筑基期 (Lv1) 可用 | 点击宠物对话 (几率) |
+| `上上下下左右左右baba` (支持空格) | 获得【结丹秘籍】，直升金丹期 (Lv2)。 | 仅筑基期 (Lv1) 可用 | 点击宠物对话 (几率) |
 | `haiwangshabi` | 获得【海王之力】，直升元婴期 (Lv3)。 | 仅金丹期 (Lv2) 可用 | 无 |
 | `laozibuganle` | 兵解转世 (重置存档)。 | 无限制 | 无 |

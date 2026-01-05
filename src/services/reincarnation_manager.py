@@ -2,6 +2,7 @@ from src.logger import logger
 from src.database import db_manager
 import time
 import json
+import random
 
 class ReincarnationManager:
     """
@@ -38,16 +39,6 @@ class ReincarnationManager:
         
         # 3. 灵石/物品继承 (少量折算)
         # 简单策略：只继承当前灵石的 10%
-        # 用户后来补充: "按比例折算为少量初始灵石，都是所有物品。"
-        # 这意味着我们需要评估背包价值。
-        inventory_value = 0
-        
-        # 简单估价: 假设所有物品平均价值 10 (或者去查 item_manager)
-        # 为了避免循环依赖 import item_manager，这里我们简单处理或者通过 cultivator 获取
-        # 更有甚者，直接忽略物品价值，只继承金钱。
-        # A simple approximation if we don't have prices handy easily without circular imports:
-        # Just use current money * 10% for now, or assume items are sold.
-        # Let's stick to money * 10%.
         inherited_money = int(cultivator.money * 0.1)
         
         return {
@@ -68,6 +59,9 @@ class ReincarnationManager:
         new_legacy_points = legacy['legacy_points']
         new_money = legacy['starting_money']
         
+        # Plan 45: 计算新生气运 (0-99)
+        new_luck = random.randint(0, 99)
+        
         # 2. 重置数据库
         try:
             with db_manager._get_conn() as conn:
@@ -80,13 +74,14 @@ class ReincarnationManager:
                     UPDATE player_status
                     SET layer_index=0, current_exp=0, 
                         money=?, 
-                        stat_body=10, stat_mind=0, stat_luck=0,
+                        stat_body=10, stat_mind=0, stat_luck=?,
                         talent_points=?, talent_json='{"exp":0,"drop":0}',
                         last_save_time=?,
                         death_count=?, legacy_points=?
                     WHERE id=1
                 """, (
-                    new_money, 
+                    new_money,
+                    new_luck,
                     new_legacy_points, 
                     int(time.time()),
                     new_death_count,
@@ -96,9 +91,12 @@ class ReincarnationManager:
                 # Clear Inventory Table (Wipe all items)
                 cursor.execute("DELETE FROM player_inventory")
                 
+                # Plan 45: 清空本世使用过的"一面之缘"物品记录
+                cursor.execute("DELETE FROM used_once_items")
+                
                 conn.commit()
                 
-            logger.info(f"轮回成功 ({reason}): 继承AP={new_legacy_points}, 继承灵石={new_money}")
+            logger.info(f"轮回成功 ({reason}): 继承AP={new_legacy_points}, 继承灵石={new_money}, 新气运={new_luck}")
             
             # 3. 刷新内存中的 Cultivator
             cultivator.exp = 0
@@ -106,15 +104,18 @@ class ReincarnationManager:
             cultivator.money = new_money
             cultivator.body = 10
             cultivator.mind = 0
-            cultivator.affection = 0
+            # Plan 45: 轮回后随机给予初始气运 (0-99)
+            cultivator.affection = new_luck
             cultivator.inventory = {}
             cultivator.talents = {"exp": 0, "drop": 0}
             cultivator.talent_points = new_legacy_points
             cultivator.death_count = new_death_count
             cultivator.legacy_points = new_legacy_points
+            # Plan 45: 清空"一面之缘"使用记录
+            cultivator.used_once_items = set()
             
             # Log event
-            msg = f"【轮回】一世终了，{reason=='rebirth' and '兵解重修' or '身死道消'}。\n保留气运点: {new_legacy_points} (继承率 {int(legacy['rate_used']*100)}%)"
+            msg = f"【轮回】第{new_death_count}世终了，{reason=='rebirth' and '兵解重修' or '身死道消'}。\n保留天赋点: {new_legacy_points} (继承率 {int(legacy['rate_used']*100)}%)\n本世气运: {cultivator.affection}"
             cultivator.events.append(msg)
             
             return True, legacy

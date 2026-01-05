@@ -59,7 +59,7 @@ class DialogueManager:
             # 2. Hint for Core Formation Secret (Layer 1)
             self.dialogues.append({
                 "id": "cheat_hint_2",
-                "text": "传闻【结丹秘籍】就藏在魂斗虚空之中，口诀似乎是 '上上下下左左嘘天机不可泄露'...",
+                "text": "传闻【结丹秘籍】就藏在魂斗虚空之中，口诀似乎是 '上上下下左右左右。。。嘘天机不可泄露'...",
                 "type": "hint",
                 "conditions": {"min_layer": 1, "max_layer": 1},
                 "weight": 20

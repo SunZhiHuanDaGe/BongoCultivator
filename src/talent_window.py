@@ -194,6 +194,7 @@ class TalentWindow(DraggableWindow):
         self.mind_label.setText(f"心魔: {self.cultivator.mind} / 100")
         self.body_label.setText(f"体魄: {self.cultivator.body}")
         self.aff_label.setText(f"气运: {self.cultivator.affection}")
+        self.death_label.setText(f"轮回: {self.cultivator.death_count} 世")
         
         # 刷新点数
         pts = self.cultivator.talent_points

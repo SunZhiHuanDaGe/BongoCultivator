@@ -37,3 +37,9 @@ class MarketStock(SQLModel, table=True):
     count: int = Field(default=1)
     price: int
     discount: float
+
+
+# Plan 45: 记录"一面之缘"物品使用状态，每次轮回重置
+class UsedOnceItem(SQLModel, table=True):
+    __tablename__ = "used_once_items"
+    item_id: str = Field(primary_key=True)  # 使用过的物品ID

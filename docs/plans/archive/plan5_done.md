@@ -7,7 +7,7 @@
 1.  **代码**: `whosyourdaddy`
     *   **效果**: 立即突破至 **筑基期** (如果当前低于筑基)。
     *   **备注**: 经典魔兽争霸秘籍。
-2.  **代码**: `上上下下左左右右baba`
+2.  **代码**: `上上下下左右左右baba`
     *   **效果**: 立即突破至 **金丹期** (如果当前低于金丹)。
     *   **备注**: 经典魂斗罗 Konami Code。
 
@@ -37,7 +37,7 @@ def process_cheat_code(self, code):
             self.cultivator.exp = 0
             return "神力加持！你已直接晋升筑基期！"
             
-    elif code == "上上下下左左右右baba":
+    elif code == "上上下下左右左右baba":
         # 目标: 金丹 (Layer 2)
         if self.cultivator.layer_index < 2:
             self.cultivator.layer_index = 2
@@ -61,7 +61,7 @@ def process_cheat_code(self, code):
 - 在 `Cultivator` 中实现了 `process_secret_command`。
 - 支持以下指令 (严格校验当前境界)：
     - `whosyourdaddy`: 炼气(0) -> 筑基(1)。
-    - `上上下下左左右右baba`: 筑基(1) -> 金丹(2)。
+    - `上上下下左右左右baba`: 筑基(1) -> 金丹(2)。
     - `haiwangshabi`: 金丹(2) -> 元婴(3)。
     - `reborn`: 重置为初始状态。
 
@@ -76,10 +76,10 @@ def process_cheat_code(self, code):
 ### 4. 2026-01-04 更新 (Optimization)
 - **别名支持**: 
     - `whosyourdaddy` 增加支持拼写错误版本 `whosryoudaddy`。
-    - `上上下下左左右右baba` 增加支持带空格版本 `上上下下左左右右 baba`。
+    - `上上下下左右左右baba` 增加支持带空格版本 `上上下下左右左右 baba`。
 - **线索提示 (Hints)**:
     - 增加了随机对话内容，在炼气/筑基期通过对话向玩家泄露“天机”线索。
     - 炼气期提示：`whosryoudaddy` (筑基宝典)。
-    - 筑基期提示：`上上下下左左右右 baba` (结丹秘籍)。
+    - 筑基期提示：`上上下下左右左右 baba` (结丹秘籍)。
 
 

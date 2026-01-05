@@ -157,6 +157,10 @@ class EventEngine:
             elif k == "body":
                 cultivator.modify_stat("body", val)
                 logs.append(f"体魄 {'+' if val>0 else ''}{val}")
+            # Plan 45: 支持气运效果
+            elif k == "affection":
+                cultivator.modify_stat("affection", val)
+                logs.append(f"气运 {'+' if val>0 else ''}{val}")
             elif k == "items":
                 # items: { "id": count }
                 if isinstance(v, dict):

@@ -25,10 +25,10 @@ def main():
     else:
         print("FAIL: Allow upgrade from wrong tier")
 
-    # 2. Test "上上下下左左右右baba" (Target: 2)
+    # 2. Test "上上下下左右左右baba" (Target: 2)
     # Current is 1
     print(f"\n[Test 3] Konami Code (Current: {c.layer_index})")
-    success, msg = c.process_secret_command("上上下下左左右右baba")
+    success, msg = c.process_secret_command("上上下下左右左右baba")
     print(f"Result: {success}, Msg: {msg}")
     if success and c.layer_index == 2:
         print("PASS: Upgraded to Tier 2")
