@@ -8,6 +8,7 @@ __pycache__/
 # Build Artifacts
 build/
 dist/
+*.spec
 
 # Logs
 logs/
@@ -29,3 +30,27 @@ env/
 
 # Crash reports
 crash_*.txt
+
+# ========================================
+# GitHub Release - 以下为非发布文件
+# ========================================
+
+# AI Agent 工作目录
+.agent/
+AGENTS.md
+
+# 开发工具脚本
+tools/
+
+# 其他页面（宣传页除外）
+pages/
+
+# 运行时数据目录
+data/
+
+# 内部文档（保留 README）
+docs/plans/
+docs/mechanics/
+docs/memory.md
+docs/STRUCTURE.md
+docs/distribution_guide.md

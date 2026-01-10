@@ -99,7 +99,7 @@ class TalentWindow(DraggableWindow):
         talent_layout.addLayout(self.exp_talent_widget)
         
         # 2. 掉落天赋
-        self.drop_talent_widget = self.create_talent_row("福源 (掉率+5%)", "drop")
+        self.drop_talent_widget = self.create_talent_row("福缘 (掉率+5%)", "drop")
         talent_layout.addLayout(self.drop_talent_widget)
         
         layout.addWidget(talent_frame)

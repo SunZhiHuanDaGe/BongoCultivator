@@ -697,6 +697,9 @@ class Cultivator:
                         self.calculate_offline_progress(player.last_save_time)
                 else:
                     logger.info("新存档 (或数据为空)，初始化...")
+                    # Plan 45: 新存档时随机初始化气运 (0-99)
+                    self.affection = random.randint(0, 99)
+                    logger.info(f"本世初始气运: {self.affection}")
                     self.refresh_market()
                     
         except Exception as e:

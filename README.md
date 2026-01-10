@@ -1,133 +1,174 @@
-# BongoCultivator (桌面修仙宠物)
+# 🧘 BongoCultivator (修仙桌宠)
 
-BongoCultivator 是一款基于 PyQt6 开发的跨平台（Windows/macOS）桌面宠物挂机游戏，结合了**修仙题材**与**生产力工具**属性。
-它会在你的桌面上生成一个可爱的修仙小人，不仅能陪伴你工作/学习，还会根据你的键盘鼠标操作（APM）自动修炼、突破境界、寻宝炼丹。
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Windows-green.svg)]()
 
-让你的每一次敲击代码，都成为飞升得道的基石！
+<p align="center">
+  <img src="assets/cultivator_idle.png" alt="BongoCultivator" width="200">
+</p>
 
----
-
-## ✨ 核心特色 (Features)
-
-### 1. 挂机修仙 (Idle Cultivation)
-*   **APM 驱动修炼**: 
-    *   **闭关 (Idle)**: 摸鱼时自动积累少量修为。
-    *   **历练 (Work)**: 键盘敲击（写代码/文档）时，进入“历练”状态，收益提升且掉落材料。
-    *   **悟道 (Read)**: 频繁使用鼠标时，进入“悟道”状态，偶尔触发顿悟。
-    *   **斗法 (Combat)**: 极高频率操作时，进入“斗法”模式，高收益伴随心魔风险。
-*   **九大境界**: 从【炼气期】到【渡劫期】9大境界，指数级升级曲线。
-*   **渡劫飞升**: 满经验后需手动渡劫，通过精心设计的雷劫动画，成功则属性大涨，失败则身死道消。
-*   **轮回系统**: 即使身死道消（或手动转世），也能通过**遗产系统**继承部分天赋与灵石，开启更强的下一世。
-
-### 2. 丰富系统 (Rich Systems)
-*   **物品与炼丹**: 
-    *   内置 100+ 种灵草、矿石、兽丹（Tier 0 - Tier 8）。
-    *   **炼丹房**: 收集材料，按照丹方炼制提升修为、恢复状态或辅助突破的丹药。
-    *   **坊市**: 定期刷新的随机商店，支持动态物价与捡漏稀有宝物。
-*   **奇遇事件**: 
-    *   **DB驱动引擎**: 基于状态触发的 60+ 种随机事件（如“偶遇前辈高人”、“发现上古遗迹”）。
-    *   **修仙日志**: 在“修仙记录”中回看你的每一次奇遇、突破与寻宝记录。
-*   **成就与头衔**:
-    *   记录你的总键鼠操作数、在线时长等，解锁“天道酬勤”、“键仙”等 20+ 成就。
-    *   佩戴专属**头衔**，获得永久属性加成（如经验获取+10%、掉落率提升）。
-
-### 3. 生产力统计 (Productivity Stats)
-*   **数据可视化**: 内置 `StatsWindow`，图表展示今日、本周、本月的键盘/鼠标活跃度趋势。
-*   **工作激励**: 看着修为随工作量上涨，让枯燥的工作多一份动力。
-*   **每日勤勉奖**: 若当日操作数达标，还可领取灵石奖励。
-
-### 4. 桌面陪伴 (Desktop Companion)
-*   **无缝集成**: 
-    *   **始终置顶**: 可并在托盘菜单一键切换置顶状态。
-    *   **不抢占焦点**: 经过 macOS/Windows 双平台优化，完全不影响你操作其他软件。
-    *   背景透明，小人可由鼠标随意拖拽。
-*   **视觉特效**:
-    *   包含呼吸、移动、施法等多种平滑动画。
-    *   粒子特效：渡劫雷光、炼丹火焰、突破金光。
+<p align="center">
+  <strong>在敲键盘中历练筋骨，在点鼠标中斩妖除魔，在摸鱼中打坐悟道。</strong><br>
+  你的桌面，就是你的修仙洞府。
+</p>
 
 ---
 
-## 🛠 技术栈 (Tech Stack)
-*   **语言**: Python 3.10+
-*   **GUI 框架**: PyQt6
-*   **数据存储**: SQLite + SQLModel (ORM)
-    *   支持自动初始化与数据库迁移。
-    *   存档位于系统标准数据目录 (AppData/Application Support)，更新不丢档。
-*   **图表绘制**: Matplotlib
-*   **输入监听**: Pynput
-*   **打包工具**: PyInstaller (支持 macOS .app / Windows .exe)
+## ✨ 核心特色
+
+### ⌨️ 赛博修炼
+你的每一次键盘敲击、鼠标点击都会被系统捕获并转化为修为：
+- **闭关 (Idle)**: 摸鱼时自动积累修为
+- **历练 (Work)**: 敲键盘（写代码/文档）收益提升
+- **悟道 (Read)**: 频繁鼠标操作时触发顿悟
+- **斗法 (Combat)**: 极高 APM 进入战斗模式
+
+### 🐱 桌面陪伴
+一只可爱的修仙小人常驻桌面：
+- 始终置顶但不抢占焦点
+- 背景透明、可自由拖拽
+- 多种状态动画（呼吸、施法、炼丹）
+- 粒子特效（雷劫、火焰、金光）
+
+### ⚗️ 炼丹系统
+- **121 种物品** (Tier 0 - Tier 8)
+- **42 种丹方** 可供炼制
+- **坊市交易** 每 15 分钟刷新
+
+### 🎲 随机奇遇
+- **66+ 种事件** 随时触发
+- 根据境界和状态解锁不同事件
+- 完整的修仙日志记录
+
+### 🏆 成就系统
+- 20+ 成就解锁专属头衔
+- 头衔提供永久属性加成
 
 ---
 
-## 🚀 快速开始 (Quick Start)
+## 🎮 九重境界
 
-### 1. 运行预编译版本
-*   **macOS**: 在 `dist/` 目录下找到 `BongoCultivator.app`，直接双击运行即可。
-*   **Windows**: 运行 `BongoCultivator.exe`。
+```
+炼气期 → 筑基期 → 金丹期 → 元婴期 → 化神期 → 炼虚期 → 合体期 → 大乘期 → 渡劫期 → ✨ 飞升仙界
+```
 
-### 2. 源码运行 (Development)
-如果你想自己修改或调试：
+---
+
+## 🚀 快速开始
+
+### 方式一：下载预编译版本（推荐）
+
+前往 [Releases](https://github.com/robinshi2010/BongoCultivator/releases) 页面下载：
+- **macOS**: `BongoCultivator.app`
+- **Windows**: `BongoCultivator.exe`
+
+### 方式二：源码运行
 
 ```bash
 # 1. 克隆仓库
-git clone https://github.com/YourRepo/bongo-cultivation.git
-cd bongo-cultivation
+git clone https://github.com/robinshi2010/BongoCultivator.git
+cd BongoCultivator
 
 # 2. 安装依赖
-pip install -r requirements.txt
-# (主要依赖: PyQt6, pynput, matplotlib, pillow, sqlmodel)
+pip3 install -r requirements.txt
 
 # 3. 运行
-python main.py
+python3 main.py
 ```
+
+### 依赖项
+- Python 3.10+
+- PyQt6
+- pynput
+- matplotlib
+- pillow
+- sqlmodel
 
 ---
 
-## 🎮 操作指南 (Controls)
+## 🎮 操作指南
 
-*   **左键拖拽**: 移动小人位置。
-*   **左键点击**: 随机播放修仙对话 / 互动。
-*   **右键点击**: 打开功能菜单。
-    *   **状态**: 查看详细属性（心魔、体魄、好感度、成就）。
-    *   **储物袋**: 查看装备、使用丹药。
-    *   **炼丹房**: 合成道具。
-    *   **统计**: 查看工作效率图表与修仙日志。
-    *   **设置**: 退出程序等。
-*   **托盘图标 (右下角/顶栏)**: 
-    *   **始终置顶**: 切换窗口是否置顶。
-    *   **显示对话**: 开关气泡提示。
-    *   **重置位置**: 找回飞出屏幕的小人。
+| 操作 | 说明 |
+|------|------|
+| **左键拖拽** | 移动小人位置 |
+| **左键点击** | 播放修仙对话 |
+| **右键点击** | 打开功能菜单 |
+
+### 功能菜单
+- 📊 **状态** - 查看详细属性
+- 🎒 **储物袋** - 查看物品、使用丹药
+- ⚗️ **炼丹房** - 合成丹药
+- 🏪 **坊市** - 购买材料
+- 📈 **统计** - 工作效率图表
+- ⚙️ **设置** - 系统选项
 
 ---
 
-## 📂 项目结构 (Project Structure)
+## 🛠 技术栈
 
-关于项目的详细代码架构、模块职责及文件导航，请查阅独立的结构文档：
-👉 **[STRUCTURE.md](docs/STRUCTURE.md)**
+| 组件 | 技术 |
+|------|------|
+| **语言** | Python 3.10+ |
+| **GUI** | PyQt6 |
+| **数据库** | SQLite + SQLModel |
+| **图表** | Matplotlib |
+| **输入监听** | Pynput |
+| **打包** | PyInstaller |
 
-简要目录：
+---
+
+## 📂 项目结构
+
 ```
-bongo/
+BongoCultivator/
 ├── main.py              # 程序入口
-├── src/                 # 核心代码 (Model, View, Services)
+├── requirements.txt     # 依赖声明
+├── LICENSE              # CC BY-NC-SA 4.0
 ├── assets/              # 资源文件
-└── docs/                # 开发文档与计划
+│   ├── cultivator_*.png # 角色状态图
+│   └── tribulation_*.png# 渡劫特效图
+└── src/                 # 源代码
+    ├── cultivator.py    # 核心逻辑
+    ├── data/            # 静态数据 (JSON)
+    ├── models/          # 数据模型
+    ├── services/        # 业务服务
+    ├── ui/              # UI 组件
+    └── utils/           # 工具函数
 ```
 
 ---
 
-## 📝 开发计划与日志 (Changelog)
+## 📜 许可证
 
-详细的开发计划、历史归档及当前任务，请查阅计划索引：
-👉 **[Project Plans Index](docs/plans/PLANS_README.md)**
+本项目采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 协议。
 
-- **最新活动**: 查看 `docs/plans/active/` 目录。
-- **历史记录**: 查看 `docs/plans/archive/` 目录。
+✅ 免费使用和分享  
+✅ 可以修改代码  
+❌ **禁止商业使用**  
+🔄 修改版须使用相同协议
 
 ---
 
-## 🤝 贡献 (Contributing)
+## 🤝 贡献
+
 欢迎提交 Issue 或 PR！
-如果你有有趣的修仙事件文案或新的丹药点子，请直接在 Issue 中留言。
+
+如果你有：
+- 有趣的修仙事件文案
+- 新的丹药点子
+- Bug 反馈
+
+请在 [Issues](https://github.com/robinshi2010/BongoCultivator/issues) 中留言。
 
 ---
+
+## 📧 联系
+
+- GitHub: [@robinshi2010](https://github.com/robinshi2010)
+
+---
+
+<p align="center">
+  <strong>愿道友早日飞升 🌟</strong>
+</p>
