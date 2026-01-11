@@ -180,7 +180,7 @@ jobs:
           # 测试核心模块导入
           print('测试导入核心模块...')
           from src.cultivator import Cultivator
-          from src.database import Database
+          from src.database import DatabaseManager
           from src.state import GameState
           from src.item_manager import ItemManager
           from src.services.event_engine import EventEngine
